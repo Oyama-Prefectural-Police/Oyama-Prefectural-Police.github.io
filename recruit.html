@@ -12,7 +12,7 @@
     <style>
         body { font-family: 'Noto Sans JP', sans-serif; background-color: #ffffff; margin: 0; color: #333; line-height: 1.6; }
         
-        /* --- 固定トップバー --- */
+        /* --- 【全ページ共通】統一トップバー --- */
         .police-nav { 
             background-color: #182b4b; 
             min-height: 70px; 
@@ -32,12 +32,25 @@
             max-width: 1400px; 
             margin: 0 auto; 
         }
-        .nav-logo-icon { height: 55px; width: auto; }
-        .nav-item { color: white; text-decoration: none; padding: 10px 15px; font-size: 0.9rem; font-weight: bold; }
+        .nav-brand { display: flex; align-items: center; flex-shrink: 0; }
+        .nav-logo-icon { height: 55px; width: auto; margin-right: 15px; }
+        
+        .nav-menu { display: flex; align-items: center; }
+        .nav-item { 
+            color: white; 
+            text-decoration: none; 
+            padding: 10px 18px; 
+            font-size: 0.9rem; 
+            font-weight: bold; 
+            border-right: 1px solid rgba(255,255,255,0.3); 
+            transition: background 0.3s;
+        }
+        .nav-item:hover { background-color: rgba(255,255,255,0.1); color: #ffdd57; }
+        .nav-item:last-child { border-right: none; }
 
-        /* --- 採用ヒーロービジュアル --- */
+        /* --- 採用ページ専用スタイル --- */
         .recruit-hero {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('recruit_bg.png') no-repeat center center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('pato1.webp') no-repeat center center;
             background-size: cover;
             height: 55vh;
             display: flex;
@@ -46,11 +59,15 @@
             color: white;
             text-align: center;
         }
-        .recruit-copy { font-family: 'Shippori Mincho', serif; font-size: calc(2.2rem + 2vw); font-weight: 700; text-shadow: 2px 2px 15px rgba(0,0,0,0.6); }
+        .recruit-copy { 
+            font-family: 'Shippori Mincho', serif; 
+            font-size: calc(2.2rem + 2vw); 
+            font-weight: 700; 
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.8); /* 背景画像で見やすいよう影を強めに */
+            letter-spacing: 0.2rem;
+        }
 
-        /* --- コンテンツエリア --- */
         .recruit-main { max-width: 900px; margin: 60px auto; padding: 0 20px; }
-        
         .section-title { 
             text-align: center; 
             font-family: 'Shippori Mincho', serif; 
@@ -61,48 +78,26 @@
             padding-bottom: 10px;
         }
         .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: #ffdd57;
+            content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 4px; background-color: #ffdd57;
         }
 
         .discord-box {
-            background: #f0f4f8;
-            border: 2px solid #182b4b;
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 50px;
+            background: #f0f4f8; border: 2px solid #182b4b; padding: 40px; border-radius: 12px; text-align: center; margin-bottom: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        .discord-box h3 { font-size: 1.8rem; font-weight: bold; color: #182b4b; margin-bottom: 20px; }
-        .discord-box p { font-size: 1.1rem; color: #444; margin-bottom: 30px; }
-
         .btn-discord {
-            display: inline-flex;
-            align-items: center;
-            background-color: #5865F2; /* Discord Color */
-            color: white;
-            padding: 18px 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+            display: inline-flex; align-items: center; background-color: #5865F2; color: white;
+            padding: 18px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 8px;
+            text-decoration: none; transition: 0.3s; box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
         }
         .btn-discord:hover { background-color: #4752c4; color: white; transform: scale(1.05); }
 
-        .job-detail {
-            border-left: 5px solid #182b4b;
-            padding-left: 20px;
-            margin: 40px 0;
+        @media (max-width: 1024px) {
+            .nav-container { flex-direction: column; padding: 10px 0; }
+            .nav-menu { margin-top: 10px; flex-wrap: wrap; justify-content: center; }
+            .nav-item { border: none; font-size: 0.8rem; padding: 5px 10px; }
         }
-        .job-detail h4 { font-weight: bold; font-size: 1.2rem; color: #182b4b; }
     </style>
 </head>
 <body>
@@ -110,10 +105,17 @@
     <nav class="police-nav">
         <div class="nav-container">
             <div class="nav-brand">
-                <a href="index.html"><img src="ooyamapolice.webp" alt="ロゴ" class="nav-logo-icon"></a>
+                <a href="index.html">
+                    <img src="ooyamapolice.webp" alt="大山県警ロゴ" class="nav-logo-icon">
+                </a>
             </div>
             <div class="nav-menu">
-                <a href="index.html" class="nav-item">トップページ</a>
+                <a href="about.html" class="nav-item">大山県警のご紹介</a>
+                <a href="safety.html" class="nav-item">安全・安心な暮らし</a>
+                <a href="traffic.html" class="nav-item">交通安全</a>
+                <a href="procedures.html" class="nav-item">各種申請・手続き</a>
+                <a href="contact.html" class="nav-item">ご相談窓口</a>
+                <a href="recruit.html" class="nav-item">採用案内</a>
             </div>
         </div>
     </nav>
@@ -137,19 +139,12 @@
             </a>
         </div>
 
-        <div class="job-detail">
-            <h4>募集要項</h4>
-            <p>・大山県内での法執行業務、パトロール、事件捜査に意欲のある方</p>
-            <p>・無線機および標準装備の適切な運用が可能な方</p>
-            <p>・他部署との連携を重視し、規律を遵守できる方</p>
-        </div>
-
         <div style="text-align: center; margin-top: 60px;">
-            <p style="font-weight: bold; color: #d9534f;">※詳細はコミュニティサーバーをご確認ください。</p>
+            <p style="font-weight: bold; color: #d9534f;">※面接を希望される方は、サーバー内の「採用案内」をご確認ください。</p>
         </div>
     </main>
 
-    <footer class="footer has-background-dark has-text-white">
+    <footer class="footer has-background-dark has-text-white py-5">
         <div class="content has-text-centered">
             <p>&copy; 2026 大山県警察本部</p>
         </div>
