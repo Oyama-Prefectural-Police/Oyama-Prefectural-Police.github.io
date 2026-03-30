@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刑事部 | 大山県警察本部</title>
+    <link rel="icon" href="ooyamapolice.webp" type="image/webp">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f4f7f9; color: #333; margin: 0; padding: 0; }
+        
+        /* --- 共通ナビ（黄色ホバー） --- */
+        .police-nav { background-color: #182b4b; min-height: 70px; padding: 0 30px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1400px; margin: 0 auto; }
+        .nav-brand { display: flex; align-items: center; }
+        .nav-logo-icon { height: 55px; width: auto; margin-right: 15px; }
+        .nav-menu { display: flex; align-items: center; }
+        .nav-item { color: white; text-decoration: none; padding: 10px 18px; font-size: 0.9rem; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.2); transition: 0.3s; }
+        .nav-item:hover { background-color: rgba(255, 255, 255, 0.1); color: #ffd700; }
+
+        /* --- ヘッダー（刑事部：ボルドー） --- */
+        .dept-header { background: #7f1d1d; color: white; padding: 50px 20px; text-align: center; border-bottom: 4px solid #450a0a; }
+        .dept-title { font-family: 'Shippori Mincho', serif; font-size: 2.2rem; letter-spacing: 0.3rem; }
+
+        /* --- メインコンテンツ --- */
+        .main-container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        
+        .info-card { background: white; padding: 30px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 40px; border-top: 5px solid #7f1d1d; }
+        .section-label { font-weight: bold; color: #7f1d1d; border-left: 4px solid #7f1d1d; padding-left: 12px; margin-bottom: 15px; display: block; font-size: 1.1rem; }
+        .info-text { font-size: 1rem; color: #4a5568; line-height: 1.8; margin-bottom: 25px; }
+        .info-list { list-style: none; padding-left: 10px; margin-bottom: 20px; }
+        .info-list li { position: relative; padding-left: 20px; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; }
+        .info-list li::before { content: "■"; color: #7f1d1d; position: absolute; left: 0; font-size: 0.8rem; top: 4px; }
+        
+        /* お知らせヘッダーと投稿ボタン */
+        .board-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        .board-title { font-family: 'Shippori Mincho', serif; font-size: 1.5rem; color: #182b4b; margin: 0; }
+        .post-open-btn { background: white; border: 1px solid #7f1d1d; color: #7f1d1d; padding: 5px 15px; border-radius: 2px; font-weight: bold; cursor: pointer; font-size: 0.85rem; transition: 0.2s; }
+        .post-open-btn:hover { background: #7f1d1d; color: white; }
+
+        .news-item { background: #fff; border: 1px solid #e2e8f0; padding: 20px; margin-bottom: 15px; border-radius: 4px; }
+        .news-header { display: flex; align-items: center; margin-bottom: 10px; gap: 12px; }
+        .news-tag { background: #fef2f2; color: #991b1b; font-size: 0.7rem; padding: 2px 8px; border-radius: 2px; font-weight: bold; border: 1px solid #fecaca; }
+        .news-content { font-size: 1rem; line-height: 1.8; color: #334155; white-space: pre-wrap; }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .board-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="police-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html"><img src="ooyamapolice.webp" alt="ロゴ" class="nav-logo-icon"></a>
+            </div>
+            <div class="nav-menu">
+                <a href="about.html" class="nav-item">大山県警のご紹介</a>
+                <a href="safety.html" class="nav-item">安全・安心な暮らし</a>
+                <a href="traffic.html" class="nav-item">交通安全</a>
+                <a href="procedures.html" class="nav-item">各種申請・手続き</a>
+                <a href="contact.html" class="nav-item">ご相談窓口</a>
+                <a href="recruit.html" class="nav-item">採用案内</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="dept-header">
+        <h1 class="dept-title">刑事部</h1>
+        <p>CRIMINAL INVESTIGATION DIVISION</p>
+    </header>
+
+    <main class="main-container">
+        <div class="info-card">
+            <span class="section-label">刑事部の役割</span>
+            <p class="info-text">刑事部は、殺人・強盗などの凶悪犯罪から、詐欺・贈収賄などの知能犯罪、さらには広域暴力団対策まで、専門的な知識と捜査技術を駆使して事件の解決にあたります。</p>
+            
+            <span class="section-label">主な活動内容</span>
+            <ul class="info-list">
+                <li><strong>捜査第一課：</strong> 殺人、強盗、放火、強姦等の強行犯捜査を担当。</li>
+                <li><strong>捜査第二課：</strong> 詐欺、贈収賄、選挙違反、通貨偽造等の知能犯捜査を担当。</li>
+                <li><strong>捜査第三課：</strong> 窃盗事件、空き巣、ひったくり等の窃盗犯捜査を担当。</li>
+                <li><strong>鑑識課：</strong> 現場の指紋・足跡の採取、写真撮影、証拠物の鑑定を行い、科学捜査を支えます。</li>
+            </ul>
+
+            <span class="section-label">組織構成</span>
+            <p class="info-text" style="margin-bottom: 0;">捜査第一課 / 捜査第二課 / 捜査第三課 / 組織犯罪対策課 / 鑑識課 / 機動捜査隊</p>
+        </div>
+
+        <div class="board-header">
+            <h2 class="board-title">刑事部 捜査・公示情報</h2>
+            <button class="post-open-btn" id="openModalBtn">＋ お知らせを投稿する</button>
+        </div>
+
+        <div id="deptNewsList" class="news-list">
+            <p style="text-align:center; color:#999; padding: 40px;">最新の情報を取得中...</p>
+        </div>
+    </main>
+
+    <div class="modal" id="postModal">
+        <div class="modal-background" id="modalBg"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">刑事部 お知らせ投稿</p>
+            </header>
+            <section class="modal-card-body">
+                <div class="field">
+                    <label class="label">担当者・課名</label>
+                    <input class="input" type="text" id="postAuthor" placeholder="例：捜査第一課 強行犯係">
+                </div>
+                <div class="field">
+                    <label class="label">お知らせ内容</label>
+                    <textarea class="textarea" id="postContent" placeholder="内容を入力してください"></textarea>
+                </div>
+                <div class="field">
+                    <label class="label">部署パスワード</label>
+                    <input class="input" type="password" id="postPw" placeholder="keiji_dept">
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-link" id="submitBtn" style="background-color:#7f1d1d;">投稿を実行</button>
+                <button class="button" id="closeModalBtn">キャンセル</button>
+            </footer>
+        </div>
+    </div>
+
+    <footer class="footer has-background-dark has-text-white py-5">
+        <div class="content has-text-centered"><p>&copy; 2026 大山県警察本部 刑事部</p></div>
+    </footer>
+
+    <script>
+        // 【注意】刑事部専用のGAS URLをここに貼り付けてください
+        const KEIJI_GAS_URL = "ここに刑事部専用のGASリンクを貼る"; 
+
+        const modal = document.getElementById('postModal');
+        document.getElementById('openModalBtn').onclick = () => modal.classList.add('is-active');
+        document.getElementById('closeModalBtn').onclick = () => modal.classList.remove('is-active');
+        document.getElementById('modalBg').onclick = () => modal.classList.remove('is-active');
+
+        document.getElementById('submitBtn').onclick = async () => {
+            const author = document.getElementById('postAuthor').value;
+            const content = document.getElementById('postContent').value;
+            const pw = document.getElementById('postPw').value;
+            const dateStr = new Date().toLocaleDateString('ja-JP').replace(/\//g, '.');
+
+            if(!author || !content || !pw) return alert("すべての項目を入力してください。");
+            const postData = { action: "post", date: dateStr, author: author, content: content, pw: pw };
+            const btn = document.getElementById('submitBtn');
+            btn.classList.add('is-loading');
+
+            try {
+                await fetch(KEIJI_GAS_URL, { method: "POST", body: JSON.stringify(postData) });
+                alert("送信完了（パスワードが違う場合は反映されません）");
+                location.reload();
+            } catch (e) {
+                alert("エラーが発生しました。");
+                btn.classList.remove('is-loading');
+            }
+        };
+
+        async function loadNews() {
+            const list = document.getElementById('deptNewsList');
+            try {
+                const res = await fetch(KEIJI_GAS_URL);
+                const data = await res.json();
+                if(!data || data.length === 0) {
+                    list.innerHTML = "<p style='text-align:center; padding:40px; color:#999;'>現在、刑事部からのお知らせはありません。</p>";
+                    return;
+                }
+                list.innerHTML = "";
+                data.reverse().forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'news-item';
+                    div.innerHTML = `
+                        <div class="news-header">
+                            <span class="news-date">${item.date}</span>
+                            <span class="news-tag">刑事公示</span>
+                        </div>
+                        <div class="news-content">${item.content}</div>
+                        <div style="text-align:right; font-size:0.8rem; color:#94a3b8; margin-top:10px;">発信：${item.author}</div>
+                    `;
+                    list.appendChild(div);
+                });
+            } catch (e) {
+                list.innerHTML = "<p style='text-align:center; padding:40px;'>データの取得に失敗しました。</p>";
+            }
+        }
+        window.onload = loadNews;
+    </script>
+</body>
+</html>
