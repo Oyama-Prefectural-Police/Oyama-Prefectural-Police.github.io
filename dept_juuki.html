@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>銃器対策部 | 大山県警察本部</title>
+    <link rel="icon" href="ooyamapolice.webp" type="image/webp">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #0f172a; color: #e2e8f0; margin: 0; padding: 0; }
+        
+        /* --- 共通ナビ（黄色ホバー） --- */
+        .police-nav { background-color: #020617; min-height: 70px; padding: 0 30px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; border-bottom: 1px solid #1e293b; }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1400px; margin: 0 auto; }
+        .nav-brand { display: flex; align-items: center; }
+        .nav-logo-icon { height: 55px; width: auto; margin-right: 15px; }
+        .nav-menu { display: flex; align-items: center; }
+        .nav-item { color: #94a3b8; text-decoration: none; padding: 10px 18px; font-size: 0.9rem; font-weight: bold; border-right: 1px solid #1e293b; transition: 0.3s; }
+        .nav-item:hover { background-color: rgba(255, 255, 255, 0.05); color: #ffd700; text-decoration: none; }
+
+        /* --- ヘッダー（銃器対策部：タクティカルブラック） --- */
+        .dept-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 60px 20px; text-align: center; border-bottom: 4px solid #7f1d1d; }
+        .dept-title { font-family: 'Shippori Mincho', serif; font-size: 2.5rem; letter-spacing: 0.5rem; text-shadow: 0 0 10px rgba(127, 29, 29, 0.8); }
+
+        /* --- メインコンテンツ --- */
+        .main-container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        
+        /* 業務内容カード（ダークモード仕様） */
+        .info-card { background: #1e293b; padding: 30px; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); margin-bottom: 40px; border-top: 5px solid #7f1d1d; }
+        .section-label { font-weight: bold; color: #f87171; border-left: 4px solid #7f1d1d; padding-left: 12px; margin-bottom: 15px; display: block; font-size: 1.1rem; }
+        .info-text { font-size: 1rem; color: #cbd5e1; line-height: 1.8; margin-bottom: 25px; }
+        .info-list { list-style: none; padding-left: 10px; margin-bottom: 20px; }
+        .info-list li { position: relative; padding-left: 20px; margin-bottom: 10px; border-bottom: 1px solid #334155; padding-bottom: 8px; }
+        .info-list li::before { content: "▲"; color: #7f1d1d; position: absolute; left: 0; font-size: 0.8rem; top: 4px; }
+        
+        /* お知らせヘッダーと投稿ボタン */
+        .board-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; border-bottom: 2px solid #334155; padding-bottom: 10px; }
+        .board-title { font-family: 'Shippori Mincho', serif; font-size: 1.5rem; color: #f87171; margin: 0; }
+        .post-open-btn { background: transparent; border: 1px solid #f87171; color: #f87171; padding: 5px 15px; border-radius: 2px; font-weight: bold; cursor: pointer; font-size: 0.85rem; transition: 0.2s; }
+        .post-open-btn:hover { background: #7f1d1d; color: white; border-color: #7f1d1d; }
+
+        .news-item { background: #0f172a; border: 1px solid #334155; padding: 20px; margin-bottom: 15px; border-radius: 4px; }
+        .news-header { display: flex; align-items: center; margin-bottom: 10px; gap: 12px; }
+        .news-tag { background: #450a0a; color: #f87171; font-size: 0.7rem; padding: 2px 8px; border-radius: 2px; font-weight: bold; border: 1px solid #7f1d1d; }
+        .news-content { font-size: 1rem; line-height: 1.8; color: #e2e8f0; white-space: pre-wrap; }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .board-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="police-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html"><img src="ooyamapolice.webp" alt="ロゴ" class="nav-logo-icon"></a>
+            </div>
+            <div class="nav-menu">
+                <a href="about.html" class="nav-item">大山県警のご紹介</a>
+                <a href="safety.html" class="nav-item">安全・安心な暮らし</a>
+                <a href="traffic.html" class="nav-item">交通安全</a>
+                <a href="procedures.html" class="nav-item">各種申請・手続き</a>
+                <a href="contact.html" class="nav-item">ご相談窓口</a>
+                <a href="recruit.html" class="nav-item">採用案内</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="dept-header">
+        <h1 class="dept-title">銃器対策部</h1>
+        <p>TACTICAL RESPONSE UNIT</p>
+    </header>
+
+    <main class="main-container">
+        
+        <div class="info-card">
+            <span class="section-label">銃器対策部の役割</span>
+            <p class="info-text">銃器対策部は、テロ事案、人質立てこもり事件、および強力な銃器を使用した凶悪犯罪に対処する、警察組織最高レベルの武力行使を伴う専門部隊です。極限状況下における迅速かつ確実な制圧を任務としています。</p>
+            
+            <span class="section-label">主な活動内容</span>
+            <ul class="info-list">
+                <li><strong>対テロリズム：</strong> 重要施設への襲撃、ハイジャック等のテロ事案に対する即応・制圧。</li>
+                <li><strong>人質救出：</strong> 特殊な戦術と機材を用いた人質救出および犯人の無力化。</li>
+                <li><strong>銃器犯罪対処：</strong> 暴力団等の強力な武装勢力に対する検挙・突入任務。</li>
+                <li><strong>要人警護支援：</strong> 大規模行事における対テロ警戒およびバックアップ。</li>
+            </ul>
+
+            <span class="section-label">主要装備（Tactical Gear）</span>
+            <p class="info-text">
+                Heckler & Koch HK416 / HK417 / MP5<br>
+                SIG Sauer MPX / SIG P320 / Glock 17<br>
+                防弾シールド / 防弾ベスト（Type IV以上） / NVG等特殊光学機器
+            </p>
+
+            <span class="section-label">組織構成</span>
+            <p class="info-text" style="margin-bottom: 0;">特殊部隊（SAT） / 銃器対策部隊 / 特殊犯捜査係（SIT支援）</p>
+        </div>
+
+        <div class="board-header">
+            <h2 class="board-title">銃器対策部 内部公示</h2>
+            <button class="post-open-btn" id="openModalBtn">＋ 公示を投稿する</button>
+        </div>
+
+        <div id="deptNewsList" class="news-list">
+            <p style="text-align:center; color:#94a3b8; padding: 40px;">情報を暗号化解除中...</p>
+        </div>
+    </main>
+
+    <div class="modal" id="postModal">
+        <div class="modal-background" id="modalBg"></div>
+        <div class="modal-card">
+            <header class="modal-card-head" style="background: #0f172a; border-bottom: 1px solid #7f1d1d;">
+                <p class="modal-card-title" style="color: white;">銃器対策部 公示投稿</p>
+            </header>
+            <section class="modal-card-body" style="background: #1e293b; color: white;">
+                <div class="field">
+                    <label class="label" style="color: #cbd5e1;">担当者・コードネーム</label>
+                    <input class="input" type="text" id="postAuthor" style="background: #0f172a; color: white; border-color: #334155;">
+                </div>
+                <div class="field">
+                    <label class="label" style="color: #cbd5e1;">公示内容</label>
+                    <textarea class="textarea" id="postContent" style="background: #0f172a; color: white; border-color: #334155;"></textarea>
+                </div>
+                <div class="field">
+                    <label class="label" style="color: #cbd5e1;">部署パスワード</label>
+                    <input class="input" type="password" id="postPw" placeholder="juuki_dept" style="background: #0f172a; color: white; border-color: #334155;">
+                </div>
+            </section>
+            <footer class="modal-card-foot" style="background: #0f172a; border-top: 1px solid #334155;">
+                <button class="button is-danger" id="submitBtn" style="background-color:#7f1d1d;">投稿を実行</button>
+                <button class="button" id="closeModalBtn">キャンセル</button>
+            </footer>
+        </div>
+    </div>
+
+    <footer class="footer py-5" style="background-color: #020617; color: #475569; border-top: 1px solid #1e293b;">
+        <div class="content has-text-centered"><p>&copy; 2026 大山県警察本部 銃器対策部</p></div>
+    </footer>
+
+    <script>
+        // 【注意】銃器対策部専用のGAS URLをここに貼り付けてください
+        const JUUKI_GAS_URL = "ここに銃器対策部専用のGASリンクを貼る"; 
+
+        const modal = document.getElementById('postModal');
+        document.getElementById('openModalBtn').onclick = () => modal.classList.add('is-active');
+        document.getElementById('closeModalBtn').onclick = () => modal.classList.remove('is-active');
+        document.getElementById('modalBg').onclick = () => modal.classList.remove('is-active');
+
+        document.getElementById('submitBtn').onclick = async () => {
+            const author = document.getElementById('postAuthor').value;
+            const content = document.getElementById('postContent').value;
+            const pw = document.getElementById('postPw').value;
+            const dateStr = new Date().toLocaleDateString('ja-JP').replace(/\//g, '.');
+
+            if(!author || !content || !pw) return alert("すべての項目を入力してください。");
+            const postData = { action: "post", date: dateStr, author: author, content: content, pw: pw };
+            const btn = document.getElementById('submitBtn');
+            btn.classList.add('is-loading');
+
+            try {
+                await fetch(JUUKI_GAS_URL, { method: "POST", body: JSON.stringify(postData) });
+                alert("送信完了しました。");
+                location.reload();
+            } catch (e) {
+                alert("通信エラー。");
+                btn.classList.remove('is-loading');
+            }
+        };
+
+        async function loadNews() {
+            const list = document.getElementById('deptNewsList');
+            try {
+                const res = await fetch(JUUKI_GAS_URL);
+                const data = await res.json();
+                if(!data || data.length === 0) {
+                    list.innerHTML = "<p style='text-align:center; padding:40px; color:#94a3b8;'>現在、公示されている情報はありません。</p>";
+                    return;
+                }
+                list.innerHTML = "";
+                data.reverse().forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'news-item';
+                    div.innerHTML = `
+                        <div class="news-header">
+                            <span class="news-date" style="color: #94a3b8;">${item.date}</span>
+                            <span class="news-tag">作戦指令/公示</span>
+                        </div>
+                        <div class="news-content">${item.content}</div>
+                        <div style="text-align:right; font-size:0.8rem; color:#64748b; margin-top:10px;">承認者：${item.author}</div>
+                    `;
+                    list.appendChild(div);
+                });
+            } catch (e) {
+                list.innerHTML = "<p style='text-align:center; padding:40px;'>データの取得に失敗しました。</p>";
+            }
+        }
+        window.onload = loadNews;
+    </script>
+</body>
+</html>
