@@ -3,100 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大山県警察本部 - Oyama Prefectural Police</title>
+    <title>大山県警察本部</title>
+    
+    <link rel="icon" href="ooyamapolice.webp" type="image/webp">
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background-color: #f5f5f5;
+            background-color: #ffffff;
+            margin: 0;
         }
-        /* 日本の警察らしい濃紺のヘッダー */
-        .navbar {
-            background-color: #001f3f; 
+
+        /* 沖縄県警風トップバー（青背景に白文字） */
+        .police-nav {
+            background-color: #1a4fa3; /* 沖縄県警に近い青色 */
+            padding: 10px 0;
         }
-        .navbar-item, .navbar-link {
-            color: #ffffff !important;
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
         }
-        .hero.is-police {
-            background: linear-gradient(rgba(0, 31, 63, 0.8), rgba(0, 31, 63, 0.8)), 
-                        url('https://images.unsplash.com/photo-1541872703-74c5e443d1f9?q=80&w=2000&auto=format&fit=crop'); /* 背景画像例 */
-            background-size: cover;
+
+        .nav-item {
             color: white;
+            text-decoration: none;
+            padding: 0 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-right: 1px solid rgba(255, 255, 255, 0.5);
+            line-height: 1.2;
         }
-        .section-title {
-            border-left: 8px solid #001f3f;
-            padding-left: 15px;
-            margin-bottom: 2rem;
+
+        /* 最後の項目の境界線を消す */
+        .nav-item:last-child {
+            border-right: none;
         }
-        .footer {
-            background-color: #001f3f;
-            color: white;
+
+        .nav-item:hover {
+            color: #dfe6e9;
+            text-decoration: underline;
+        }
+
+        /* ロゴエリア */
+        .logo-section {
+            padding: 20px 0;
+            text-align: center;
+            background-color: #001f3f; /* ロゴ画像に合わせた濃紺 */
+        }
+
+        .logo-img {
+            max-height: 120px; /* ロゴの大きさを調整 */
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* コンテンツ */
+        .main-content {
+            padding: 50px 20px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <header class="logo-section">
         <div class="container">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="#">
-                    <strong>大山県警察本部</strong>
-                </a>
-            </div>
-            <div class="navbar-menu">
-                <div class="navbar-end">
-                    <a class="navbar-item">組織案内</a>
-                    <a class="navbar-item">各部紹介</a>
-                    <a class="navbar-item">装備品</a>
-                    <a class="navbar-item">採用情報</a>
-                </div>
-            </div>
+            <img src="ooyamapolice.webp" alt="大山県警察" class="logo-img">
+        </div>
+    </header>
+
+    <nav class="police-nav">
+        <div class="nav-container">
+            <a href="#" class="nav-item">大山県警のご紹介</a>
+            <a href="#" class="nav-item">安全・安心な暮らし</a>
+            <a href="#" class="nav-item">交通安全</a>
+            <a href="#" class="nav-item">各種申請・手続き</a>
+            <a href="#" class="nav-item">ご相談窓口</a>
+            <a href="#" class="nav-item">採用案内</a>
+            <a href="#" class="nav-item">新着情報</a>
         </div>
     </nav>
 
-    <section class="hero is-medium is-police">
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <h1 class="title is-1 has-text-white">
-                    大山県の安全と平穏を守る
-                </h1>
-                <p class="subtitle has-text-white">
-                    Oyama Prefectural Police Department
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
+    <main class="main-content">
         <div class="container">
-            <h2 class="title is-3 section-title">組織の役割</h2>
-            <div class="columns">
-                <div class="column">
-                    <div class="box">
-                        <h3 class="title is-5">警備部</h3>
-                        <p>テロ対策や要人警護、大規模災害時の救助活動を担います。特殊部隊(SAT)もこの管轄です。</p>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="box">
-                        <h3 class="title is-5">刑事部</h3>
-                        <p>凶悪犯罪の捜査、鑑識活動を行い、事件の早期解決を目指します。</p>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="box">
-                        <h3 class="title is-5">地域部</h3>
-                        <p>交番やパトカーによる巡回を行い、住民に最も近い場所で地域の安全を守ります。</p>
-                    </div>
-                </div>
+            <h1 class="title is-2">大山県の安全と平穏を守る</h1>
+            <p class="subtitle">Oyama Prefectural Police Department</p>
+            <div class="notification is-light">
+                ここは現在構築中の大山県警察公式ウェブサイト（仮）です。
             </div>
         </div>
-    </section>
+    </main>
 
-    <footer class="footer">
+    <footer class="footer has-background-dark has-text-white">
         <div class="content has-text-centered">
-            <p>&copy; 2026 大山県警察本部. All Rights Reserved.</p>
+            <p>&copy; 2026 大山県警察本部</p>
         </div>
     </footer>
 
