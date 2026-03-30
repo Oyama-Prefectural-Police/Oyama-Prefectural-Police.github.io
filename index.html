@@ -175,17 +175,18 @@
         // パスワード設定
         const MASTER_PW = "OyamaKouhouPolice";
         
-        // GASのウェブアプリURL
-        const GAS_URL = "https://script.google.com/macros/s/AKfycbzyJCPhAE73GxJK5JB0et-JSkpBzHppAhA4K-5iyo43td1CA8HhMacNtfcDahZezKdT/exec";
+        // 最新のGAS URL
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzB-fPkuAMnJGq8jxZXIq3PZqBaLLT4LqZlQw4i-_qD2m-mHfXvHJo5kYkfxcdWBPNO/exec";
 
         // データの読み込み
         window.onload = async () => {
             try {
                 const response = await fetch(GAS_URL);
                 const data = await response.json();
+                // 取得したデータを逆順（新しい順）にして表示
                 data.reverse().forEach(item => renderNews(item));
             } catch (e) {
-                console.error("お知らせの取得に失敗しました");
+                console.error("お知らせの取得に失敗しました。GASのデプロイ設定を確認してください。");
             }
         };
 
@@ -221,14 +222,20 @@
             const postData = { date: dateStr, content: content, author: author, pw: pass };
 
             try {
+                // セキュリティ（CORS）を回避するための no-cors モード
                 await fetch(GAS_URL, {
                     method: "POST",
-                    body: JSON.stringify(postData)
+                    body: JSON.stringify(postData),
+                    mode: 'no-cors'
                 });
-                alert('お知らせを公開しました');
-                location.reload();
+                
+                alert('お知らせを送信しました！数秒後に反映されます。');
+                close();
+                // 少し待ってからリロードして最新情報を取得
+                setTimeout(() => { location.reload(); }, 1500);
             } catch (e) {
-                alert('通信エラーが発生しました');
+                alert('通信エラーが発生しました。');
+                console.error(e);
             }
         };
     </script>
