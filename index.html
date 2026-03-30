@@ -47,7 +47,7 @@
         .nav-item:hover { background-color: rgba(255,255,255,0.1); color: #ffdd57; }
         .nav-item:last-child { border-right: none; }
 
-        /* --- ヒーロー画像（拡大版） --- */
+        /* --- ヒーロー画像 --- */
         .main-hero { 
             width: 100%; 
             height: 60vh; 
@@ -159,7 +159,7 @@
             <a href="statistics.html" class="menu-card">各種統計資料</a>
             <a href="public_info.html" class="menu-card">大山県警の公表</a>
             <a href="consultation.html" class="menu-card">ご相談窓口</a>
-            <a href="tip_line.html" class="menu-card">情報受付窓口</a>
+            <a href="ranks.html" class="menu-card">階級・制度</a>
             <a href="sns.html" class="menu-card">公式SNS</a>
             <a href="publicity.html" class="menu-card">警察広報資料</a>
             <a href="lost_found.html" class="menu-card">落とし物・忘れ物</a>
@@ -172,7 +172,7 @@
         <div class="modal-card">
             <header class="modal-card-head"><p class="modal-card-title">お知らせ新規投稿</p></header>
             <section class="modal-card-body">
-                <div class="field"><label class="label">部署・担当者名</label><input class="input" type="text" id="author" placeholder="例：広報係 イシカワ"></div>
+                <div class="field"><label class="label">部署・担当者名</label><input class="input" type="text" id="author" placeholder="例：交通機動隊"></div>
                 <div class="field"><label class="label">パスワード</label><input class="input" type="password" id="password"></div>
                 <div class="field"><label class="label">内容</label><textarea class="textarea" id="content"></textarea></div>
             </section>
@@ -222,10 +222,8 @@
             const pass = document.getElementById('password').value;
             const content = document.getElementById('content').value;
             if(pass !== MASTER_PW) return alert('パスワードが違います');
-            
             const dateStr = new Date().toLocaleDateString('ja-JP').replace(/\//g, '.');
             const postData = { date: dateStr, content: content, author: author, pw: pass, action: "post" };
-
             await fetch(GAS_URL, { method: "POST", body: JSON.stringify(postData), mode: 'no-cors' });
             alert('投稿しました。反映されるまでお待ちください。');
             location.reload();
@@ -234,11 +232,10 @@
         async function deleteNews(rowId) {
             const pass = prompt("管理者パスワードを入力してください");
             if(pass !== MASTER_PW) return alert("パスワードが違います");
-
             const deleteData = { pw: pass, action: "delete", lineRow: rowId };
             try {
                 await fetch(GAS_URL, { method: "POST", body: JSON.stringify(deleteData), mode: 'no-cors' });
-                alert('表示を消去しました（スプレッドシートに履歴は残ります）');
+                alert('表示を消去しました');
                 location.reload();
             } catch (e) { alert('通信エラー'); }
         }
