@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交通安全 | 大山県警察本部</title>
+    <link rel="icon" href="ooyamapolice.webp" type="image/webp">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #ffffff; margin: 0; color: #333; line-height: 1.8; }
+        
+        /* --- 【全ページ共通】統一トップバー --- */
+        .police-nav { background-color: #182b4b; min-height: 70px; padding: 0 30px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1400px; margin: 0 auto; }
+        .nav-brand { display: flex; align-items: center; flex-shrink: 0; }
+        .nav-logo-icon { height: 55px; width: auto; margin-right: 15px; }
+        .nav-menu { display: flex; align-items: center; }
+        .nav-item { color: white; text-decoration: none; padding: 10px 18px; font-size: 0.9rem; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.3); transition: background 0.3s; }
+        .nav-item:hover { background-color: rgba(255,255,255,0.1); color: #ffdd57; }
+        .nav-item:last-child { border-right: none; }
+
+        /* --- ヒーロービジュアル --- */
+        .traffic-hero { background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('pato1.webp') no-repeat center center; background-size: cover; height: 45vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .traffic-copy { font-family: 'Shippori Mincho', serif; font-size: calc(1.8rem + 1.5vw); font-weight: 700; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); letter-spacing: 0.3rem; }
+
+        /* --- 交通規制・事故情報エリア --- */
+        .traffic-main { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .section-title { text-align: center; font-family: 'Shippori Mincho', serif; font-size: 2rem; margin-bottom: 40px; color: #182b4b; position: relative; padding-bottom: 10px; }
+        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background-color: #ffdd57; }
+
+        /* 交通部専用投稿ボタン（オレンジ系で差別化） */
+        .post-trigger { border: 2px dashed #f39c12; background: #fff; color: #e67e22; width: 100%; padding: 15px; text-align: center; font-size: 1rem; cursor: pointer; margin-bottom: 25px; border-radius: 8px; font-weight: bold; }
+        .post-trigger:hover { background: #fffaf0; border-style: solid; }
+        
+        .traffic-info-list { list-style: none; padding: 0; margin-bottom: 60px; }
+        .traffic-info-item { background: #fff5f5; border: 1px solid #feb2b2; padding: 20px; border-radius: 6px; margin-bottom: 15px; position: relative; display: flex; align-items: flex-start; }
+        .traffic-icon { font-size: 1.5rem; margin-right: 15px; color: #e74c3c; }
+        .traffic-body { flex: 1; }
+        .traffic-date { font-size: 0.8rem; font-weight: bold; color: #c0392b; margin-bottom: 5px; }
+        .traffic-text { font-weight: bold; color: #333; line-height: 1.5; white-space: pre-wrap; }
+        .delete-btn { position: absolute; top: 10px; right: 10px; color: #ccc; cursor: pointer; border: none; background: none; font-size: 1.2rem; }
+
+        @media (max-width: 1024px) {
+            .nav-container { flex-direction: column; padding: 10px 0; }
+            .nav-menu { margin-top: 10px; flex-wrap: wrap; justify-content: center; }
+            .nav-item { border: none; font-size: 0.8rem; padding: 5px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="police-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html"><img src="ooyamapolice.webp" alt="ロゴ" class="nav-logo-icon"></a>
+            </div>
+            <div class="nav-menu">
+                <a href="about.html" class="nav-item">大山県警のご紹介</a>
+                <a href="safety.html" class="nav-item">安全・安心な暮らし</a>
+                <a href="traffic.html" class="nav-item">交通安全</a>
+                <a href="procedures.html" class="nav-item">各種申請・手続き</a>
+                <a href="contact.html" class="nav-item">ご相談窓口</a>
+                <a href="recruit.html" class="nav-item">採用案内</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="traffic-hero">
+        <h1 class="traffic-copy">守ろう、交通ルールと命。</h1>
+    </section>
+
+    <main class="traffic-main">
+        <h2 class="section-title">リアルタイム事故・規制情報</h2>
+        
+        <div class="post-trigger" id="openModal">🚔 交通部専用：規制情報を投稿する</div>
+        
+        <ul class="traffic-info-list" id="trafficList"></ul>
+
+        <h2 class="section-title">交通安全のポイント</h2>
+        <div class="columns is-multiline mt-4">
+            <div class="column is-6">
+                <div class="box">
+                    <h3 class="has-text-weight-bold" style="color:#182b4b;">交通事故防止</h3>
+                    <p>夕暮れ時は早めのライト点灯を。歩行者は反射材の着用をお願いします。</p>
+                </div>
+            </div>
+            <div class="column is-6">
+                <div class="box">
+                    <h3 class="has-text-weight-bold" style="color:#182b4b;">飲酒運転の根絶</h3>
+                    <p>「飲んだら乗らない」。飲酒運転は重大な犯罪です。代行サービス等を利用しましょう。</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="postModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head"><p class="modal-card-title">【交通部】情報投稿</p></header>
+            <section class="modal-card-body">
+                <div class="field"><label class="label">担当部署（例：交機A、大山署）</label><input class="input" type="text" id="author" placeholder="交通機動隊"></div>
+                <div class="field"><label class="label">投稿用パスワード</label><input class="input" type="password" id="password"></div>
+                <div class="field"><label class="label">規制内容・場所</label><textarea class="textarea" id="content" placeholder="例：国道1号線 大山駅前交差点 事故のため片側交互通行"></textarea></div>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-warning" id="submitPost" style="font-weight:bold;">規制配信</button>
+                <button class="button" id="cancelModal">閉じる</button>
+            </footer>
+        </div>
+    </div>
+
+    <footer class="footer has-background-dark has-text-white py-5">
+        <div class="content has-text-centered"><p>&copy; 2026 大山県警察本部</p></div>
+    </footer>
+
+    <script>
+        const MASTER_PW = "OyamaTraffic110"; // 交通部専用パスワード（任意に変更してください）
+        
+        // ★重要：交通部専用に作成した新しいGASのURLに書き換えてください
+        const GAS_URL = "ここに交通部専用のGAS_URLを貼ってください";
+
+        window.onload = loadTraffic;
+
+        async function loadTraffic() {
+            const trafficList = document.getElementById('trafficList');
+            if(GAS_URL === "ここに交通部専用のGAS_URLを貼ってください") {
+                trafficList.innerHTML = "<p style='text-align:center; color:red;'>[設定エラー] 交通部専用のGAS URLが未設定です。広報係に問い合わせてください。</p>";
+                return;
+            }
+            trafficList.innerHTML = "<p style='text-align:center;'>情報取得中...</p>";
+            try {
+                const res = await fetch(GAS_URL);
+                const data = await res.json();
+                trafficList.innerHTML = "";
+                data.reverse().forEach((item) => {
+                    const li = document.createElement('li');
+                    li.className = 'traffic-info-item';
+                    li.innerHTML = `
+                        <div class="traffic-icon">🚨</div>
+                        <div class="traffic-body">
+                            <div class="traffic-date">${item.date} 配信 [${item.author}]</div>
+                            <div class="traffic-text">${item.content}</div>
+                        </div>
+                        <button class="delete-btn" onclick="deletePost(${item.id})">×</button>
+                    `;
+                    trafficList.appendChild(li);
+                });
+            } catch (e) { trafficList.innerHTML = "<p style='text-align:center;'>現在、表示可能な情報はありません。</p>"; }
+        }
+
+        document.getElementById('openModal').onclick = () => document.getElementById('postModal').classList.add('is-active');
+        document.getElementById('cancelModal').onclick = () => document.getElementById('postModal').classList.remove('is-active');
+
+        document.getElementById('submitPost').onclick = async () => {
+            const author = document.getElementById('author').value;
+            const pass = document.getElementById('password').value;
+            const content = document.getElementById('content').value;
+            if(pass !== MASTER_PW) return alert('パスワードが違います');
+            
+            const dateStr = new Date().toLocaleString('ja-JP', {month:'2nd', day:'2nd', hour:'2nd', minute:'2nd'});
+            const postData = { date: dateStr, content: content, author: author, pw: pass, action: "post" };
+
+            await fetch(GAS_URL, { method: "POST", body: JSON.stringify(postData), mode: 'no-cors' });
+            alert('交通規制情報を配信しました。');
+            location.reload();
+        };
+
+        async function deletePost(rowId) {
+            const pass = prompt("パスワードを入力");
+            if(pass !== MASTER_PW) return alert("認証エラー");
+            const deleteData = { pw: pass, action: "delete", lineRow: rowId };
+            await fetch(GAS_URL, { method: "POST", body: JSON.stringify(deleteData), mode: 'no-cors' });
+            location.reload();
+        }
+    </script>
+</body>
+</html>
