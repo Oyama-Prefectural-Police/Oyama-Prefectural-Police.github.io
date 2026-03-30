@@ -8,10 +8,11 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Noto Sans JP', sans-serif; background-color: #ffffff; margin: 0; }
 
-        /* ナビゲーション・ヒーロー等（前回同様） */
+        /* ナビゲーション */
         .police-nav { background-color: #182b4b; height: 60px; display: flex; align-items: center; padding: 0 20px; position: sticky; top: 0; z-index: 1000; }
         .nav-container { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; }
         .nav-logo-link { position: absolute; left: 0; display: flex; align-items: center; }
@@ -20,6 +21,7 @@
         .nav-item { color: white; text-decoration: none; padding: 0 20px; font-size: 0.9rem; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.4); white-space: nowrap; }
         .nav-item:last-child { border-right: none; }
 
+        /* メインビジュアル */
         .main-hero { position: relative; width: 100%; height: 500px; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('jikosyori.png') no-repeat center center; background-size: cover; display: flex; align-items: center; justify-content: center; }
         .hero-text { color: white; font-family: 'Shippori Mincho', serif; font-size: 4.5rem; letter-spacing: 0.8rem; text-shadow: 3px 3px 12px rgba(0,0,0,0.6); font-weight: 700; }
 
@@ -27,7 +29,6 @@
         .news-section { padding: 40px 20px 20px; background-color: #f9f9f9; }
         .news-container { max-width: 1000px; margin: 0 auto; }
         
-        /* 投稿ボタン（四角い枠） */
         .post-trigger {
             border: 2px dashed #182b4b;
             background: #fff;
@@ -38,27 +39,40 @@
             font-weight: bold;
             cursor: pointer;
             margin-bottom: 20px;
-            transition: all 0.3s;
+            transition: 0.3s;
         }
-        .post-trigger:hover {
-            background-color: #eef2f6;
-        }
+        .post-trigger:hover { background-color: #eef2f6; }
 
-        .news-list { background: #fff; border: 1px solid #ddd; padding: 0; list-style: none; }
+        .news-list { background: #fff; border: 1px solid #ddd; padding: 0; list-style: none; min-height: 50px; }
         .news-item { padding: 15px 20px; border-bottom: 1px solid #eee; display: flex; align-items: center; }
         .news-item:last-child { border-bottom: none; }
         .news-date { font-weight: bold; color: #666; margin-right: 20px; min-width: 100px; }
         .news-tag { background: #182b4b; color: #fff; font-size: 0.75rem; padding: 2px 8px; margin-right: 15px; border-radius: 3px; }
 
-        /* 目的別メニューセクション */
+        /* 目的別メニュー */
         .menu-section { padding: 40px 20px 60px; background-color: #fff; }
         .menu-container { max-width: 1000px; margin: 0 auto; }
         .section-title { text-align: center; font-size: 1.6rem; font-weight: bold; color: #333; margin-bottom: 30px; }
+        
         .grid-menu { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-        .grid-item { border: 1px solid #e0e0e0; background-color: #fff; display: flex; align-items: center; justify-content: center; height: 80px; padding: 10px; text-align: center; font-size: 1rem; font-weight: bold; color: #333; text-decoration: none; transition: all 0.2s ease; }
+        .grid-item {
+            border: 1px solid #e0e0e0;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            padding: 10px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
         .grid-item:hover { background-color: #182b4b; color: #fff; border-color: #182b4b; }
 
-        /* 投稿用UI（モーダル） */
+        /* モーダル設定 */
         .modal-card-head { background-color: #182b4b; }
         .modal-card-title { color: #fff; font-weight: bold; }
 
@@ -72,7 +86,9 @@
 
     <nav class="police-nav">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo-link"><img src="ooyamapolice.webp" alt="Home" class="nav-logo-icon"></a>
+            <a href="index.html" class="nav-logo-link">
+                <img src="ooyamapolice.webp" alt="大山県警ロゴ" class="nav-logo-icon">
+            </a>
             <div class="nav-menu">
                 <a href="#" class="nav-item">大山県警のご紹介</a>
                 <a href="#" class="nav-item">安全・安心な暮らし</a>
@@ -92,23 +108,9 @@
     <section class="news-section">
         <div class="news-container">
             <div class="section-title">お知らせ</div>
-            
-            <div class="post-trigger" id="openModal">
-                ＋ お知らせを投稿する
-            </div>
-
+            <div class="post-trigger" id="openModal">＋ お知らせを投稿する</div>
             <ul class="news-list" id="newsList">
-                <li class="news-item">
-                    <span class="news-date">2026.03.30</span>
-                    <span class="news-tag">重要</span>
-                    <span class="news-title">春の全国交通安全運動の実施について</span>
-                </li>
-                <li class="news-item">
-                    <span class="news-date">2026.03.25</span>
-                    <span class="news-tag">広報</span>
-                    <span class="news-title">大山県警公式アプリを公開しました</span>
-                </li>
-            </ul>
+                </ul>
         </div>
     </section>
 
@@ -137,30 +139,24 @@
         <div class="modal-card">
             <header class="modal-card-head">
                 <p class="modal-card-title">お知らせの投稿</p>
-                <button class="delete" aria-label="close" id="closeModal"></button>
+                <button class="delete" id="closeModal"></button>
             </header>
             <section class="modal-card-body">
                 <div class="field">
                     <label class="label">投稿者名</label>
-                    <div class="control">
-                        <input class="input" type="text" id="author" placeholder="氏名または部署名">
-                    </div>
+                    <input class="input" type="text" id="author" placeholder="部署名など">
                 </div>
                 <div class="field">
                     <label class="label">パスワード</label>
-                    <div class="control">
-                        <input class="input" type="password" id="password" placeholder="投稿用PWを入力">
-                    </div>
+                    <input class="input" type="password" id="password">
                 </div>
                 <div class="field">
-                    <label class="label">お知らせ内容</label>
-                    <div class="control">
-                        <textarea class="textarea" id="content" placeholder="お知らせしたい内容を入力してください"></textarea>
-                    </div>
+                    <label class="label">内容</label>
+                    <textarea class="textarea" id="content" placeholder="お知らせ内容を入力"></textarea>
                 </div>
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-link police-bg" id="submitPost" style="background-color: #182b4b;">投稿する</button>
+                <button class="button is-link" id="submitPost" style="background-color: #182b4b;">投稿する</button>
                 <button class="button" id="cancelModal">キャンセル</button>
             </footer>
         </div>
@@ -174,57 +170,66 @@
 
     <script>
         const modal = document.getElementById('postModal');
-        const openBtn = document.getElementById('openModal');
-        const closeBtn = document.getElementById('closeModal');
-        const cancelBtn = document.getElementById('cancelModal');
-        const submitBtn = document.getElementById('submitPost');
         const newsList = document.getElementById('newsList');
+        
+        // パスワード設定
+        const MASTER_PW = "OyamaKouhouPolice";
+        
+        // GASのウェブアプリURL
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzyJCPhAE73GxJK5JB0et-JSkpBzHppAhA4K-5iyo43td1CA8HhMacNtfcDahZezKdT/exec";
 
-        // モーダルを開く
-        openBtn.onclick = () => modal.classList.add('is-active');
-        // モーダルを閉じる
-        const closeModalFunc = () => modal.classList.remove('is-active');
-        closeBtn.onclick = closeModalFunc;
-        cancelBtn.onclick = closeModalFunc;
+        // データの読み込み
+        window.onload = async () => {
+            try {
+                const response = await fetch(GAS_URL);
+                const data = await response.json();
+                data.reverse().forEach(item => renderNews(item));
+            } catch (e) {
+                console.error("お知らせの取得に失敗しました");
+            }
+        };
 
-        // 投稿処理（簡易版）
-        submitBtn.onclick = () => {
+        // モーダル操作
+        document.getElementById('openModal').onclick = () => modal.classList.add('is-active');
+        const close = () => modal.classList.remove('is-active');
+        document.getElementById('closeModal').onclick = close;
+        document.getElementById('cancelModal').onclick = close;
+
+        function renderNews(item) {
+            const li = document.createElement('li');
+            li.className = 'news-item';
+            li.innerHTML = `
+                <span class="news-date">${item.date}</span>
+                <span class="news-tag">NEW</span>
+                <span class="news-title">${item.content}</span>
+            `;
+            newsList.appendChild(li);
+        }
+
+        // 投稿処理
+        document.getElementById('submitPost').onclick = async () => {
             const author = document.getElementById('author').value;
             const pass = document.getElementById('password').value;
             const content = document.getElementById('content').value;
 
-            if(!author || !pass || !content) {
-                alert('すべての項目を入力してください');
-                return;
-            }
+            if(pass !== MASTER_PW) return alert('パスワードが正しくありません');
+            if(!content) return alert('内容を入力してください');
 
-            // 簡易的なパスワードチェック（例：1234）
-            if(pass !== "1234") { 
-                alert('パスワードが違います');
-                return;
-            }
-
-            // 今日の日付を取得
             const now = new Date();
-            const dateStr = now.getFullYear() + '.' + ('0' + (now.getMonth() + 1)).slice(-2) + '.' + ('0' + now.getDate()).slice(-2);
+            const dateStr = `${now.getFullYear()}.${('0'+(now.getMonth()+1)).slice(-2)}.${('0'+now.getDate()).slice(-2)}`;
 
-            // リストに新しく追加
-            const newItem = document.createElement('li');
-            newItem.className = 'news-item';
-            newItem.innerHTML = `
-                <span class="news-date">${dateStr}</span>
-                <span class="news-tag">NEW</span>
-                <span class="news-title">${content}</span>
-            `;
-            
-            newsList.prepend(newItem); // 先頭に追加
-            alert('お知らせを投稿しました');
-            closeModalFunc();
+            const postData = { date: dateStr, content: content, author: author, pw: pass };
 
-            // 入力リセット
-            document.getElementById('author').value = "";
-            document.getElementById('password').value = "";
-            document.getElementById('content').value = "";
+            try {
+                await fetch(GAS_URL, {
+                    method: "POST",
+                    body: JSON.stringify(postData)
+                });
+                alert('お知らせを公開しました');
+                location.reload();
+            } catch (e) {
+                alert('通信エラーが発生しました');
+            }
         };
     </script>
 </body>
