@@ -16,7 +16,7 @@
             margin: 0;
         }
 
-        /* トップバー設定: #182b4b */
+        /* トップバー: #182b4b */
         .police-nav {
             background-color: #182b4b;
             height: 60px;
@@ -31,14 +31,13 @@
         .nav-container {
             display: flex;
             align-items: center;
-            justify-content: center; /* 中央揃え */
+            justify-content: center;
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
         }
 
-        /* ロゴを左端に配置しつつリンク化 */
         .nav-logo-link {
             position: absolute;
             left: 0;
@@ -48,12 +47,10 @@
 
         .nav-logo-icon {
             height: 45px;
-            cursor: pointer;
         }
 
         .nav-menu {
             display: flex;
-            align-items: center;
         }
 
         .nav-item {
@@ -70,11 +67,11 @@
             border-right: none;
         }
 
-        /* メインビジュアル: 背景 jikosyori.png */
+        /* メインビジュアル: jikosyori.png */
         .main-hero {
             position: relative;
             width: 100%;
-            height: 550px;
+            height: 500px;
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('jikosyori.png') no-repeat center center;
             background-size: cover;
             display: flex;
@@ -93,63 +90,61 @@
 
         /* 目的別メニューセクション */
         .menu-section {
-            padding: 50px 0;
+            padding: 60px 20px;
             background-color: #fff;
         }
 
         .menu-container {
-            max-width: 1100px;
+            max-width: 1000px; /* 中央にまとめるための幅 */
             margin: 0 auto;
-            display: flex;
-            gap: 20px;
         }
 
-        /* 左側の大きなバナー（赤白ストライプ枠） */
-        .online-banner {
-            flex: 1;
-            border: 8px solid;
-            border-image: repeating-linear-gradient(-45deg, #d00, #d00 10px, #fff 10px, #fff 20px) 8;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            min-height: 400px;
-        }
-
-        /* 右側のグリッドメニュー */
+        /* グリッドメニュー: 4列配置 */
         .grid-menu {
-            flex: 2;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            gap: 15px;
         }
 
+        /* 各項目をリンクとして設定 */
         .grid-item {
-            border: 1px solid #eee;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #ddd;
+            background-color: #fff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 15px 5px;
+            padding: 25px 10px;
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             font-weight: bold;
             color: #333;
-            transition: transform 0.2s;
-            cursor: pointer;
+            text-decoration: none; /* リンクの下線を消す */
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .grid-item:hover {
+            background-color: #f0f4f8;
+            border-color: #182b4b;
+            color: #182b4b;
             transform: translateY(-3px);
-            background-color: #f9f9f9;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .grid-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .grid-menu {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-text {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -178,31 +173,48 @@
     </section>
 
     <section class="menu-section">
-        <div class="has-text-centered mb-5">
-            <h3 class="title is-4">目的別メニュー</h3>
-        </div>
         <div class="menu-container">
-            <div class="online-banner">
-                <p class="subtitle is-6 mb-1">警察行政手続</p>
-                <h4 class="title is-4">オンライン申請・届出</h4>
-                <div class="mt-4">
-                    <span class="tag is-info is-medium">パソコンで申請・届出ができます！</span>
-                </div>
+            <div class="has-text-centered mb-6">
+                <h3 class="title is-4" style="border-bottom: 2px solid #182b4b; display: inline-block; padding-bottom: 5px;">目的別メニュー</h3>
             </div>
-
+            
             <div class="grid-menu">
-                <div class="grid-item"><span>🪪</span><br>運転免許関係</div>
-                <div class="grid-item"><span>📝</span><br>各種申請・手続き</div>
-                <div class="grid-item"><span>👥</span><br>採用情報</div>
-                <div class="grid-item"><span>📜</span><br>犯罪経歴証明書</div>
-                <div class="grid-item"><span>📊</span><br>各種統計資料</div>
-                <div class="grid-item"><span>👮</span><br>大山県警の公表</div>
-                <div class="grid-item"><span>💬</span><br>ご相談窓口</div>
-                <div class="grid-item"><span>📩</span><br>情報受付窓口</div>
-                <div class="grid-item"><span>📱</span><br>公式SNS</div>
-                <div class="grid-item"><span>📰</span><br>警察広報資料</div>
-                <div class="grid-item"><span>⛱️</span><br>落とし物・忘れ物</div>
-                <div class="grid-item"><span>📋</span><br>窓口一覧</div>
+                <a href="license.html" class="grid-item">
+                    <span class="grid-icon">🪪</span>運転免許関係
+                </a>
+                <a href="application.html" class="grid-item">
+                    <span class="grid-icon">📝</span>各種申請・手続き
+                </a>
+                <a href="recruit.html" class="grid-item">
+                    <span class="grid-icon">👥</span>採用情報
+                </a>
+                <a href="record.html" class="grid-item">
+                    <span class="grid-icon">📜</span>犯罪経歴証明書
+                </a>
+                <a href="stats.html" class="grid-item">
+                    <span class="grid-icon">📊</span>各種統計資料
+                </a>
+                <a href="public.html" class="grid-item">
+                    <span class="grid-icon">👮</span>大山県警の公表
+                </a>
+                <a href="consultation.html" class="grid-item">
+                    <span class="grid-icon">💬</span>ご相談窓口
+                </a>
+                <a href="report.html" class="grid-item">
+                    <span class="grid-icon">📩</span>情報受付窓口
+                </a>
+                <a href="sns.html" class="grid-item">
+                    <span class="grid-icon">📱</span>公式SNS
+                </a>
+                <a href="pr.html" class="grid-item">
+                    <span class="grid-icon">📰</span>警察広報資料
+                </a>
+                <a href="lost.html" class="grid-item">
+                    <span class="grid-icon">⛱️</span>落とし物・忘れ物
+                </a>
+                <a href="contact.html" class="grid-item">
+                    <span class="grid-icon">📋</span>窓口一覧
+                </a>
             </div>
         </div>
     </section>
