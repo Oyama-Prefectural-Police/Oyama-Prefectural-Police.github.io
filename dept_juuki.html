@@ -10,70 +10,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 全体をダークモード（濃いネイビー）に統一 --- */
-        body { font-family: 'Noto Sans JP', sans-serif; background-color: #0c111d; color: #f1f5f9; margin: 0; padding: 0; }
+        /* 他の部署と共通の標準スタイル */
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f4f7f9; color: #333; margin: 0; padding: 0; }
         
-        /* --- 共通ナビ（黄色ホバー） --- */
-        .police-nav { background-color: #0c111d; min-height: 70px; padding: 0 30px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; border-bottom: 1px solid #1e293b; }
+        /* --- 共通ナビ（全ページ統一） --- */
+        .police-nav { background-color: #182b4b; min-height: 70px; padding: 0 30px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1400px; margin: 0 auto; }
         .nav-brand { display: flex; align-items: center; }
         .nav-logo-icon { height: 55px; width: auto; margin-right: 15px; }
         .nav-menu { display: flex; align-items: center; }
-        .nav-item { color: #f1f5f9; text-decoration: none; padding: 10px 18px; font-size: 0.9rem; font-weight: bold; border-right: 1px solid #1e293b; transition: 0.3s; }
-        .nav-item:hover { background-color: rgba(255, 255, 255, 0.05); color: #ffd700; text-decoration: none; }
+        .nav-item { color: white; text-decoration: none; padding: 10px 18px; font-size: 0.9rem; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.2); transition: 0.3s; }
+        .nav-item:hover { background-color: rgba(255, 255, 255, 0.1); color: #ffd700; text-decoration: none; }
 
-        /* --- ヘッダー（画像のデザインを再現：濃いグレーグラデ） --- */
-        .dept-header { background: linear-gradient(130deg, #1f2937 0%, #111827 100%); color: white; padding: 60px 20px; text-align: center; border-bottom: 2px solid #b91c1c; }
-        .dept-title { font-family: 'Shippori Mincho', serif; font-size: 2.5rem; letter-spacing: 0.5rem; color: #f1f5f9; }
-        .dept-subtitle { font-size: 1rem; color: #94a3b8; letter-spacing: 0.2rem; }
+        /* --- ヘッダー（銃器対策部のテーマカラー：ダークグレー） --- */
+        .dept-header { background: #2d3748; color: white; padding: 50px 20px; text-align: center; border-bottom: 4px solid #1a202c; }
+        .dept-title { font-family: 'Shippori Mincho', serif; font-size: 2.2rem; letter-spacing: 0.3rem; }
 
         /* --- メインコンテンツ --- */
-        .main-container { max-width: 1000px; margin: 40px auto; padding: 0 20px; padding-bottom: 60px; }
+        .main-container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
         
-        /* 情報カード（画像のように、背景より少し明るいグレーに） */
-        .info-card { background: #1f2937; padding: 40px; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); margin-bottom: 40px; }
+        .info-card { background: white; padding: 30px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 40px; border-top: 5px solid #2d3748; }
+        .section-label { font-weight: bold; color: #2d3748; border-left: 4px solid #2d3748; padding-left: 12px; margin-bottom: 15px; display: block; font-size: 1.1rem; }
+        .info-text { font-size: 1rem; color: #4a5568; line-height: 1.8; margin-bottom: 25px; }
+        .info-list { list-style: none; padding-left: 10px; margin-bottom: 20px; }
+        .info-list li { position: relative; padding-left: 20px; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; }
+        .info-list li::before { content: "■"; color: #2d3748; position: absolute; left: 0; font-size: 0.8rem; top: 4px; }
         
-        /* 赤い縦線付きの見出し（画像を再現） */
-        .section-label { font-weight: bold; color: #ef4444; border-left: 4px solid #b91c1c; padding-left: 15px; margin-bottom: 20px; display: block; font-size: 1.2rem; margin-top: 30px; }
-        .section-label:first-child { margin-top: 0; }
+        /* お知らせ掲示板 */
+        .board-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        .board-title { font-family: 'Shippori Mincho', serif; font-size: 1.5rem; color: #182b4b; margin: 0; }
+        .post-open-btn { background: white; border: 1px solid #2d3748; color: #2d3748; padding: 5px 15px; border-radius: 2px; font-weight: bold; cursor: pointer; font-size: 0.85rem; transition: 0.2s; }
+        .post-open-btn:hover { background: #2d3748; color: white; }
 
-        .info-text { font-size: 1rem; color: #cbd5e1; line-height: 1.9; margin-bottom: 25px; }
-        
-        /* 赤い▲のリストマーク（画像を再現） */
-        .info-list { list-style: none; padding-left: 0; margin-bottom: 20px; }
-        .info-list li { position: relative; padding-left: 25px; margin-bottom: 12px; border-bottom: 1px solid #374151; padding-bottom: 10px; color: #e2e8f0; }
-        .info-list li::before { content: "▲"; color: #ef4444; position: absolute; left: 0; font-size: 0.8rem; top: 3px; }
-        
-        /* リスト内のタイトル部分を少し明るく */
-        .info-list li strong { color: #f1f5f9; font-weight: bold; }
-
-        /* --- お知らせ掲示板（ダークモード仕様に調整） --- */
-        .board-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; border-bottom: 2px solid #374151; padding-bottom: 10px; }
-        .board-title { font-family: 'Shippori Mincho', serif; font-size: 1.5rem; color: #ef4444; margin: 0; }
-        .post-open-btn { background: transparent; border: 1px solid #ef4444; color: #ef4444; padding: 5px 15px; border-radius: 2px; font-weight: bold; cursor: pointer; font-size: 0.85rem; transition: 0.2s; }
-        .post-open-btn:hover { background: #b91c1c; color: white; border-color: #b91c1c; }
-
-        .news-item { background: #111827; border: 1px solid #374151; padding: 20px; margin-bottom: 15px; border-radius: 4px; }
+        .news-item { background: #fff; border: 1px solid #e2e8f0; padding: 20px; margin-bottom: 15px; border-radius: 4px; }
         .news-header { display: flex; align-items: center; margin-bottom: 10px; gap: 12px; }
-        .news-date { color: #94a3b8; font-size: 0.9rem; }
-        .news-tag { background: #450a0a; color: #f87171; font-size: 0.7rem; padding: 2px 8px; border-radius: 2px; font-weight: bold; border: 1px solid #b91c1c; }
-        .news-content { font-size: 1rem; line-height: 1.8; color: #e2e8f0; white-space: pre-wrap; }
-        .news-author { text-align: right; font-size: 0.8rem; color: #64748b; margin-top: 10px; }
-
-        /* モーダルもダークモードに */
-        .modal-card-head { background-color: #111827; border-bottom: 1px solid #374151; }
-        .modal-card-title { color: #f1f5f9; }
-        .modal-card-body { background-color: #1f2937; color: #f1f5f9; }
-        .modal-card-foot { background-color: #111827; border-top: 1px solid #374151; }
-        .modal .label { color: #cbd5e1; }
-        .modal .input, .modal .textarea { background-color: #0c111d; border-color: #374151; color: #f1f5f9; }
-        .modal .input::placeholder, .modal .textarea::placeholder { color: #64748b; }
+        .news-tag { background: #f7fafc; color: #4a5568; font-size: 0.7rem; padding: 2px 8px; border-radius: 2px; font-weight: bold; border: 1px solid #e2e8f0; }
+        .news-content { font-size: 1rem; line-height: 1.8; color: #334155; white-space: pre-wrap; }
 
         @media (max-width: 768px) {
             .nav-menu { display: none; }
             .board-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .dept-title { font-size: 2rem; letter-spacing: 0.2rem; }
-            .info-card { padding: 20px; }
         }
     </style>
 </head>
@@ -97,7 +73,7 @@
 
     <header class="dept-header">
         <h1 class="dept-title">銃器対策部</h1>
-        <p class="dept-subtitle">TACTICAL RESPONSE UNIT</p>
+        <p>FIREARMS CONTROL DIVISION</p>
     </header>
 
     <main class="main-container">
@@ -129,7 +105,7 @@
         </div>
 
         <div id="deptNewsList" class="news-list">
-            <p style="text-align:center; color:#94a3b8; padding: 40px;">最新の情報を取得中...</p>
+            <p style="text-align:center; color:#999; padding: 40px;">最新の情報を取得中...</p>
         </div>
     </main>
 
@@ -154,18 +130,17 @@
                 </div>
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-danger" id="submitBtn" style="background-color: #b91c1c;">投稿を実行</button>
+                <button class="button is-dark" id="submitBtn">投稿を実行</button>
                 <button class="button" id="closeModalBtn">キャンセル</button>
             </footer>
         </div>
     </div>
 
-    <footer class="footer py-5" style="background-color: #0c111d; color: #64748b; border-top: 1px solid #1e293b;">
+    <footer class="footer has-background-dark has-text-white py-5">
         <div class="content has-text-centered"><p>&copy; 2026 大山県警察本部 銃器対策部</p></div>
     </footer>
 
     <script>
-        // GAS URL
         const JUUKI_GAS_URL = "https://script.google.com/macros/s/AKfycbymqc3TI8bfcYH3u1yS2oMf-0OBI1_mf3Koj9ct_Zqs-ceUvRVC3h3NNzJRE5TsBK_RNA/exec"; 
 
         const modal = document.getElementById('postModal');
@@ -189,7 +164,7 @@
                 alert("送信完了しました。");
                 location.reload();
             } catch (e) {
-                alert("通信エラー。");
+                alert("通信エラーが発生しました。");
                 btn.classList.remove('is-loading');
             }
         };
@@ -200,7 +175,7 @@
                 const res = await fetch(JUUKI_GAS_URL);
                 const data = await res.json();
                 if(!data || data.length === 0) {
-                    list.innerHTML = "<p style='text-align:center; padding:40px; color:#94a3b8;'>現在、お知らせはありません。</p>";
+                    list.innerHTML = "<p style='text-align:center; padding:40px; color:#999;'>現在、お知らせはありません。</p>";
                     return;
                 }
                 list.innerHTML = "";
@@ -213,12 +188,12 @@
                             <span class="news-tag">公示</span>
                         </div>
                         <div class="news-content">${item.content}</div>
-                        <div class="news-author">発信：${item.author}</div>
+                        <div style="text-align:right; font-size:0.8rem; color:#94a3b8; margin-top:10px;">発信：${item.author}</div>
                     `;
                     list.appendChild(div);
                 });
             } catch (e) {
-                list.innerHTML = "<p style='text-align:center; padding:40px; color:#ef4444;'>情報の取得に失敗しました。</p>";
+                list.innerHTML = "<p style='text-align:center; padding:40px;'>情報の取得に失敗しました。</p>";
             }
         }
         window.onload = loadNews;
