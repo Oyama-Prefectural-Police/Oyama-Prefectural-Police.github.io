@@ -16,28 +16,39 @@
             margin: 0;
         }
 
-        /* 指定カラー #182b4b を使用したトップバー */
+        /* トップバー設定: #182b4b */
         .police-nav {
             background-color: #182b4b;
             height: 60px;
             display: flex;
             align-items: center;
             padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .nav-container {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* 中央揃え */
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
         }
 
-        /* 左端のアイコン */
+        /* ロゴを左端に配置しつつリンク化 */
+        .nav-logo-link {
+            position: absolute;
+            left: 0;
+            display: flex;
+            align-items: center;
+        }
+
         .nav-logo-icon {
-            height: 40px; /* バーの高さに合わせて調整 */
-            margin-right: auto; /* これでアイコンを左端に寄せる */
+            height: 45px;
+            cursor: pointer;
         }
 
         .nav-menu {
@@ -48,8 +59,8 @@
         .nav-item {
             color: white;
             text-decoration: none;
-            padding: 0 25px;
-            font-size: 0.95rem;
+            padding: 0 20px;
+            font-size: 0.9rem;
             font-weight: bold;
             border-right: 1px solid rgba(255, 255, 255, 0.4);
             white-space: nowrap;
@@ -59,49 +70,86 @@
             border-right: none;
         }
 
-        /* メインビジュアル（スクリーンショット風） */
+        /* メインビジュアル: 背景 jikosyori.png */
         .main-hero {
             position: relative;
             width: 100%;
-            height: 500px; /* 高さは適宜調整 */
-            background: url('hero.jpg') no-repeat center center; /* メイン画像をhero.jpgとして指定 */
+            height: 550px;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('jikosyori.png') no-repeat center center;
             background-size: cover;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* 画像がない場合のバックアップカラー */
-        .main-hero {
-            background-color: #ddd;
-        }
-
         .hero-text {
             color: white;
-            font-family: 'Shippori Mincho', serif; /* 日本の警察サイト風の明朝体 */
-            font-size: 4rem;
-            letter-spacing: 0.5rem;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            font-family: 'Shippori Mincho', serif;
+            font-size: 4.5rem;
+            letter-spacing: 0.8rem;
+            text-shadow: 3px 3px 12px rgba(0,0,0,0.6);
             font-weight: 700;
         }
 
-        /* バナーエリア */
-        .banner-section {
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        /* 目的別メニューセクション */
+        .menu-section {
+            padding: 50px 0;
+            background-color: #fff;
         }
 
-        .banner-item {
-            width: 300px;
-            height: 100px;
-            border: 1px solid #ccc;
+        .menu-container {
+            max-width: 1100px;
+            margin: 0 auto;
             display: flex;
+            gap: 20px;
+        }
+
+        /* 左側の大きなバナー（赤白ストライプ枠） */
+        .online-banner {
+            flex: 1;
+            border: 8px solid;
+            border-image: repeating-linear-gradient(-45deg, #d00, #d00 10px, #fff 10px, #fff 20px) 8;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            min-height: 400px;
+        }
+
+        /* 右側のグリッドメニュー */
+        .grid-menu {
+            flex: 2;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .grid-item {
+            border: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 5px;
+            text-align: center;
+            font-size: 0.85rem;
             font-weight: bold;
+            color: #333;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-3px);
+            background-color: #f9f9f9;
+        }
+
+        .grid-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -109,29 +157,61 @@
 
     <nav class="police-nav">
         <div class="nav-container">
-            <img src="ooyamapolice.webp" alt="Logo" class="nav-logo-icon">
+            <a href="index.html" class="nav-logo-link">
+                <img src="ooyamapolice.webp" alt="Home" class="nav-logo-icon">
+            </a>
             
             <div class="nav-menu">
-                <a href="#" class="nav-item">大山県警のご紹介</a>
-                <a href="#" class="nav-item">安全・安心な暮らし</a>
-                <a href="#" class="nav-item">交通安全</a>
-                <a href="#" class="nav-item">各種申請・手続き</a>
-                <a href="#" class="nav-item">ご相談窓口</a>
-                <a href="#" class="nav-item">採用案内</a>
-                <a href="#" class="nav-item">新着情報</a>
+                <a href="intro.html" class="nav-item">大山県警のご紹介</a>
+                <a href="safety.html" class="nav-item">安全・安心な暮らし</a>
+                <a href="traffic.html" class="nav-item">交通安全</a>
+                <a href="application.html" class="nav-item">各種申請・手続き</a>
+                <a href="consultation.html" class="nav-item">ご相談窓口</a>
+                <a href="recruit.html" class="nav-item">採用案内</a>
+                <a href="news.html" class="nav-item">新着情報</a>
             </div>
         </div>
     </nav>
 
     <section class="main-hero">
-        <h2 class="hero-text">安全で安心な大山県の実現</h2>
+        <h2 class="hero-text">「市民と共に」</h2>
     </section>
 
-    <section class="banner-section">
-        <div class="banner-item" style="background-color: black; color: gold; border: 3px solid gold;">技術流出の防止</div>
-        <div class="banner-item" style="background-color: white; color: red; border: 2px solid red;">STOP! 痴漢</div>
-        <div class="banner-item" style="background-color: #3498db; color: white;">I'm CLEAN（大麻対策）</div>
+    <section class="menu-section">
+        <div class="has-text-centered mb-5">
+            <h3 class="title is-4">目的別メニュー</h3>
+        </div>
+        <div class="menu-container">
+            <div class="online-banner">
+                <p class="subtitle is-6 mb-1">警察行政手続</p>
+                <h4 class="title is-4">オンライン申請・届出</h4>
+                <div class="mt-4">
+                    <span class="tag is-info is-medium">パソコンで申請・届出ができます！</span>
+                </div>
+            </div>
+
+            <div class="grid-menu">
+                <div class="grid-item"><span>🪪</span><br>運転免許関係</div>
+                <div class="grid-item"><span>📝</span><br>各種申請・手続き</div>
+                <div class="grid-item"><span>👥</span><br>採用情報</div>
+                <div class="grid-item"><span>📜</span><br>犯罪経歴証明書</div>
+                <div class="grid-item"><span>📊</span><br>各種統計資料</div>
+                <div class="grid-item"><span>👮</span><br>大山県警の公表</div>
+                <div class="grid-item"><span>💬</span><br>ご相談窓口</div>
+                <div class="grid-item"><span>📩</span><br>情報受付窓口</div>
+                <div class="grid-item"><span>📱</span><br>公式SNS</div>
+                <div class="grid-item"><span>📰</span><br>警察広報資料</div>
+                <div class="grid-item"><span>⛱️</span><br>落とし物・忘れ物</div>
+                <div class="grid-item"><span>📋</span><br>窓口一覧</div>
+            </div>
+        </div>
     </section>
+
+    <footer class="footer has-background-dark has-text-white">
+        <div class="content has-text-centered">
+            <p>&copy; 2026 大山県警察本部</p>
+        </div>
+    </footer>
 
 </body>
 </html>
