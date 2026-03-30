@@ -27,35 +27,28 @@
         /* お知らせセクション */
         .news-section { padding: 30px 15px; background-color: #f4f7f9; }
         .news-container { max-width: 900px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; color: #182b4b; }
         
         .post-trigger { border: 1px dashed #182b4b; background: #fff; color: #182b4b; width: 100%; padding: 10px; text-align: center; font-size: 0.8rem; cursor: pointer; margin-bottom: 15px; border-radius: 4px; font-weight: bold; }
         .post-trigger:hover { background-color: #eef2f6; }
 
-        .news-list { background: #fff; border: 1px solid #ddd; list-style: none; padding: 0; border-radius: 4px; overflow: hidden; }
+        .news-list { background: #fff; border: 1px solid #ddd; list-style: none; padding: 0; border-radius: 4px; overflow: hidden; min-height: 50px; }
         .news-item { padding: 15px; border-bottom: 1px solid #eee; display: flex; flex-direction: column; position: relative; transition: 0.2s; }
         .news-item:hover { background-color: #fafafa; }
         .news-header { display: flex; align-items: center; margin-bottom: 5px; gap: 10px; }
         .news-date { font-weight: bold; color: #666; font-size: 0.85rem; }
         .news-tag { background: #d9534f; color: #fff; font-size: 0.65rem; padding: 2px 6px; border-radius: 2px; font-weight: bold; }
-        .news-content { font-size: 0.95rem; color: #333; margin-bottom: 8px; padding-right: 30px; white-space: pre-wrap; }
+        .news-content { font-size: 0.95rem; color: #333; margin-bottom: 8px; padding-right: 35px; white-space: pre-wrap; }
         .news-footer { display: flex; justify-content: flex-end; font-size: 0.75rem; color: #888; border-top: 1px solid #f9f9f9; padding-top: 5px; }
         
         /* 削除ボタン (×) */
         .delete-btn { position: absolute; top: 12px; right: 12px; color: #ddd; cursor: pointer; border: none; background: none; font-size: 1.2rem; line-height: 1; }
         .delete-btn:hover { color: #d9534f; }
 
-        /* コンテンツ配置 - スマホは縦、PCは横 */
+        /* メインレイアウト */
         .main-content { max-width: 1200px; margin: 30px auto; display: flex; gap: 20px; padding: 0 15px; flex-direction: column; }
         @media (min-width: 769px) { .main-content { flex-direction: row; } }
 
-        /* オンライン申請バナー */
-        .online-banner { flex: 0 0 300px; border: 4px solid #d9534f; border-style: repeating-linear-gradient(45deg, #d9534f, #d9534f 10px, #fff 10px, #fff 20px); padding: 5px; height: fit-content; }
-        .banner-inner { background: #fff; padding: 20px; text-align: center; border: 1px solid #ddd; }
-        .banner-main { font-size: 1.3rem; font-weight: bold; color: #333; margin: 10px 0; }
-        .banner-btn { background: #4a90e2; color: white; padding: 8px 15px; border-radius: 4px; font-size: 0.8rem; display: inline-block; font-weight: bold; }
-
-        /* 目的別メニュー - 既存デザイン維持 */
+        /* 目的別メニュー */
         .menu-grid { flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         @media (min-width: 480px) { .menu-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (min-width: 1024px) { .menu-grid { grid-template-columns: repeat(4, 1fr); } }
@@ -73,40 +66,26 @@
 
     <nav class="police-nav">
         <div class="nav-container">
-            <a href="index.html"><img src="ooyamapolice.webp" alt="大山県警" class="nav-logo-icon"></a>
+            <a href="index.html"><img src="ooyamapolice.webp" alt="ロゴ" class="nav-logo-icon"></a>
             <div class="nav-menu">
                 <a href="#" class="nav-item">大山県警紹介</a>
                 <a href="#" class="nav-item">安全な暮らし</a>
                 <a href="#" class="nav-item">交通安全</a>
-                <a href="#" class="nav-item">申請・手続き</a>
-                <a href="#" class="nav-item">相談窓口</a>
                 <a href="#" class="nav-item">採用案内</a>
             </div>
         </div>
     </nav>
 
-    <section class="main-hero">
-        <h2 class="hero-text">「市民と共に」</h2>
-    </section>
+    <section class="main-hero"><h2 class="hero-text">「市民と共に」</h2></section>
 
     <section class="news-section">
         <div class="news-container">
-            <div class="section-title">お知らせ</div>
-            <div class="post-trigger" id="openModal">＋ 職員用：お知らせを投稿する</div>
-            <ul class="news-list" id="newsList">
-                </ul>
+            <div class="post-trigger" id="openModal">＋ 職員専用：お知らせを投稿する</div>
+            <ul class="news-list" id="newsList"></ul>
         </div>
     </section>
 
     <div class="main-content">
-        <div class="online-banner">
-            <div class="banner-inner">
-                <div style="font-size: 0.8rem; font-weight: bold;">警察行政手続</div>
-                <div class="banner-main">オンライン申請・届出</div>
-                <div class="banner-btn">詳しくはこちら</div>
-            </div>
-        </div>
-
         <div class="menu-grid">
             <a href="#" class="menu-card">運転免許関係</a>
             <a href="#" class="menu-card">各種申請・手続き</a>
@@ -128,28 +107,25 @@
         <div class="modal-card">
             <header class="modal-card-head"><p class="modal-card-title">お知らせ新規投稿</p></header>
             <section class="modal-card-body">
-                <div class="field"><label class="label">部署・担当者名</label><input class="input" type="text" id="author" placeholder="例：広報課 イシカワ"></div>
+                <div class="field"><label class="label">部署・担当者名</label><input class="input" type="text" id="author" placeholder="例：広報課 佐藤"></div>
                 <div class="field"><label class="label">パスワード</label><input class="input" type="password" id="password"></div>
-                <div class="field"><label class="label">内容</label><textarea class="textarea" id="content" placeholder="お知らせしたい内容を入力"></textarea></div>
+                <div class="field"><label class="label">内容</label><textarea class="textarea" id="content"></textarea></div>
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-link" id="submitPost" style="background-color: #182b4b;">投稿を公開</button>
-                <button class="button" id="cancelModal">キャンセル</button>
+                <button class="button is-link" id="submitPost" style="background-color: #182b4b;">公開する</button>
+                <button class="button" id="cancelModal">閉じる</button>
             </footer>
         </div>
     </div>
 
     <footer class="footer has-background-dark has-text-white mt-6">
-        <div class="content has-text-centered">
-            <p>&copy; 2026 大山県警察本部</p>
-        </div>
+        <div class="content has-text-centered"><p>&copy; 2026 大山県警察本部</p></div>
     </footer>
 
     <script>
         const MASTER_PW = "OyamaKouhouPolice";
-        const GAS_URL = "https://script.google.com/macros/s/AKfycbzB-fPkuAMnJGq8jxZXIq3PZqBaLLT4LqZlQw4i-_qD2m-mHfXvHJo5kYkfxcdWBPNO/exec";
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzNPG3HTc8qmTp8M4xDRuqNZUu_H5FVpheKjj9JkQE8-O2VYXDcDYHrGCpSCyUHs2Q/exec";
 
-        // ページ読み込み時
         window.onload = loadNews;
 
         async function loadNews() {
@@ -159,61 +135,52 @@
                 const res = await fetch(GAS_URL);
                 const data = await res.json();
                 newsList.innerHTML = "";
-                // 新しい順に表示
+                if(data.length === 0) {
+                    newsList.innerHTML = "<p style='text-align:center; padding:20px; color:#888;'>現在お知らせはありません</p>";
+                    return;
+                }
                 data.reverse().forEach((item) => {
                     const li = document.createElement('li');
                     li.className = 'news-item';
                     li.innerHTML = `
-                        <div class="news-header">
-                            <span class="news-date">${item.date}</span>
-                            <span class="news-tag">NEW</span>
-                        </div>
+                        <div class="news-header"><span class="news-date">${item.date}</span><span class="news-tag">NEW</span></div>
                         <div class="news-content">${item.content}</div>
-                        <div class="news-footer">配信元：${item.author || "大山県警本部"}</div>
-                        <button class="delete-btn" onclick="deleteNews()">×</button>
+                        <div class="news-footer">担当：${item.author || "大山県警"}</div>
+                        <button class="delete-btn" onclick="deleteNews(${item.id})">×</button>
                     `;
                     newsList.appendChild(li);
                 });
-            } catch (e) { 
-                newsList.innerHTML = "<p style='text-align:center; padding:20px;'>お知らせはありません</p>";
-            }
+            } catch (e) { newsList.innerHTML = "<p style='text-align:center; padding:20px;'>お知らせの取得に失敗しました</p>"; }
         }
 
-        // モーダル表示
         document.getElementById('openModal').onclick = () => document.getElementById('postModal').classList.add('is-active');
         document.getElementById('cancelModal').onclick = () => document.getElementById('postModal').classList.remove('is-active');
 
-        // 投稿ボタン
         document.getElementById('submitPost').onclick = async () => {
             const author = document.getElementById('author').value;
             const pass = document.getElementById('password').value;
             const content = document.getElementById('content').value;
-
             if(pass !== MASTER_PW) return alert('パスワードが違います');
             if(!content) return alert('内容を入力してください');
 
             const dateStr = new Date().toLocaleDateString('ja-JP').replace(/\//g, '.');
-            const postData = { date: dateStr, content: content, author: author, pw: pass };
+            const postData = { date: dateStr, content: content, author: author, pw: pass, action: "post" };
 
-            try {
-                await fetch(GAS_URL, { method: "POST", body: JSON.stringify(postData), mode: 'no-cors' });
-                alert('投稿リクエストを送信しました。反映されるまで数秒お待ちください。');
-                document.getElementById('postModal').classList.remove('is-active');
-                setTimeout(() => { location.reload(); }, 2000);
-            } catch (e) {
-                alert('送信に失敗しました');
-            }
+            await fetch(GAS_URL, { method: "POST", body: JSON.stringify(postData), mode: 'no-cors' });
+            alert('送信しました。反映されるまでお待ちください。');
+            location.reload();
         };
 
-        // 削除ボタン (簡易フロントエンド機能)
-        function deleteNews() {
-            const pass = prompt("パスワードを入力してください");
-            if(pass === MASTER_PW) {
-                alert("管理用スプレッドシートから該当の行を削除してください。");
-                // セキュリティ上、フロントからスプレッドシートの行を直接消すのは危険なため、案内のみ
-            } else {
-                alert("パスワードが違います");
-            }
+        async function deleteNews(rowId) {
+            const pass = prompt("管理者パスワードを入力してください");
+            if(pass !== MASTER_PW) return alert("パスワードが違います");
+
+            const deleteData = { pw: pass, action: "delete", lineRow: rowId };
+            try {
+                await fetch(GAS_URL, { method: "POST", body: JSON.stringify(deleteData), mode: 'no-cors' });
+                alert('表示を消去しました（スプレッドシートに履歴は残ります）');
+                location.reload();
+            } catch (e) { alert('削除エラー'); }
         }
     </script>
 </body>
