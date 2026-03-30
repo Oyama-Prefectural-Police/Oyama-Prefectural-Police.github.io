@@ -26,22 +26,26 @@
         .traffic-hero { background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('pato1.webp') no-repeat center center; background-size: cover; height: 45vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
         .traffic-copy { font-family: 'Shippori Mincho', serif; font-size: calc(1.8rem + 1.5vw); font-weight: 700; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); letter-spacing: 0.3rem; }
 
-        /* --- 交通規制・事故情報エリア --- */
+        /* --- メインエリア --- */
         .traffic-main { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
         .section-title { text-align: center; font-family: 'Shippori Mincho', serif; font-size: 2rem; margin-bottom: 40px; color: #182b4b; position: relative; padding-bottom: 10px; }
         .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background-color: #ffdd57; }
 
-        /* 交通部専用投稿ボタン（オレンジ系で差別化） */
-        .post-trigger { border: 2px dashed #f39c12; background: #fff; color: #e67e22; width: 100%; padding: 15px; text-align: center; font-size: 1rem; cursor: pointer; margin-bottom: 25px; border-radius: 8px; font-weight: bold; }
+        /* 交通部専用投稿ボタン */
+        .post-trigger { border: 2px dashed #f39c12; background: #fff; color: #e67e22; width: 100%; padding: 15px; text-align: center; font-size: 1rem; cursor: pointer; margin-bottom: 25px; border-radius: 8px; font-weight: bold; transition: 0.3s; }
         .post-trigger:hover { background: #fffaf0; border-style: solid; }
         
+        /* 事故情報リスト */
         .traffic-info-list { list-style: none; padding: 0; margin-bottom: 60px; }
-        .traffic-info-item { background: #fff5f5; border: 1px solid #feb2b2; padding: 20px; border-radius: 6px; margin-bottom: 15px; position: relative; display: flex; align-items: flex-start; }
+        .traffic-info-item { background: #fff5f5; border: 1px solid #feb2b2; padding: 20px; border-radius: 6px; margin-bottom: 15px; position: relative; display: flex; align-items: flex-start; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         .traffic-icon { font-size: 1.5rem; margin-right: 15px; color: #e74c3c; }
         .traffic-body { flex: 1; }
         .traffic-date { font-size: 0.8rem; font-weight: bold; color: #c0392b; margin-bottom: 5px; }
         .traffic-text { font-weight: bold; color: #333; line-height: 1.5; white-space: pre-wrap; }
         .delete-btn { position: absolute; top: 10px; right: 10px; color: #ccc; cursor: pointer; border: none; background: none; font-size: 1.2rem; }
+        .delete-btn:hover { color: #e74c3c; }
 
         @media (max-width: 1024px) {
             .nav-container { flex-direction: column; padding: 10px 0; }
@@ -79,18 +83,18 @@
         
         <ul class="traffic-info-list" id="trafficList"></ul>
 
-        <h2 class="section-title">交通安全のポイント</h2>
-        <div class="columns is-multiline mt-4">
+        <h2 class="section-title">交通安全啓発</h2>
+        <div class="columns is-multiline">
             <div class="column is-6">
                 <div class="box">
-                    <h3 class="has-text-weight-bold" style="color:#182b4b;">交通事故防止</h3>
-                    <p>夕暮れ時は早めのライト点灯を。歩行者は反射材の着用をお願いします。</p>
+                    <h3 class="has-text-weight-bold" style="color:#182b4b;">交通事故防止の徹底</h3>
+                    <p>早めのライト点灯、横断歩道での歩行者優先を徹底しましょう。</p>
                 </div>
             </div>
             <div class="column is-6">
                 <div class="box">
                     <h3 class="has-text-weight-bold" style="color:#182b4b;">飲酒運転の根絶</h3>
-                    <p>「飲んだら乗らない」。飲酒運転は重大な犯罪です。代行サービス等を利用しましょう。</p>
+                    <p>飲酒運転は犯罪です。「乗るなら飲まない」を合言葉に。</p>
                 </div>
             </div>
         </div>
@@ -99,14 +103,14 @@
     <div class="modal" id="postModal">
         <div class="modal-background"></div>
         <div class="modal-card">
-            <header class="modal-card-head"><p class="modal-card-title">【交通部】情報投稿</p></header>
+            <header class="modal-card-head"><p class="modal-card-title">交通部：規制情報配信</p></header>
             <section class="modal-card-body">
-                <div class="field"><label class="label">担当部署（例：交機A、大山署）</label><input class="input" type="text" id="author" placeholder="交通機動隊"></div>
-                <div class="field"><label class="label">投稿用パスワード</label><input class="input" type="password" id="password"></div>
-                <div class="field"><label class="label">規制内容・場所</label><textarea class="textarea" id="content" placeholder="例：国道1号線 大山駅前交差点 事故のため片側交互通行"></textarea></div>
+                <div class="field"><label class="label">担当ユニット名</label><input class="input" type="text" id="author" placeholder="交通機動隊 A分隊"></div>
+                <div class="field"><label class="label">パスワード</label><input class="input" type="password" id="password"></div>
+                <div class="field"><label class="label">内容（場所・事案種別など）</label><textarea class="textarea" id="content" placeholder="例：大山ジャンクションにて多重事故発生。現在、全車線通行止め。"></textarea></div>
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-warning" id="submitPost" style="font-weight:bold;">規制配信</button>
+                <button class="button is-warning" id="submitPost" style="font-weight:bold;">緊急配信</button>
                 <button class="button" id="cancelModal">閉じる</button>
             </footer>
         </div>
@@ -117,24 +121,25 @@
     </footer>
 
     <script>
-        const MASTER_PW = "OyamaTraffic110"; // 交通部専用パスワード（任意に変更してください）
-        
-        // ★重要：交通部専用に作成した新しいGASのURLに書き換えてください
-        const GAS_URL = "ここに交通部専用のGAS_URLを貼ってください";
+        // 設定値
+        const MASTER_PW = "OyamaKoutuu";
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbxClFjU9huiobdIkLx-lrv6oPsc65DlcFck2y7YewvrWS-muYK4Xx42vwNvcJm7K4qP/exec";
 
         window.onload = loadTraffic;
 
         async function loadTraffic() {
             const trafficList = document.getElementById('trafficList');
-            if(GAS_URL === "ここに交通部専用のGAS_URLを貼ってください") {
-                trafficList.innerHTML = "<p style='text-align:center; color:red;'>[設定エラー] 交通部専用のGAS URLが未設定です。広報係に問い合わせてください。</p>";
-                return;
-            }
             trafficList.innerHTML = "<p style='text-align:center;'>情報取得中...</p>";
             try {
                 const res = await fetch(GAS_URL);
                 const data = await res.json();
                 trafficList.innerHTML = "";
+                
+                if (data.length === 0) {
+                    trafficList.innerHTML = "<p style='text-align:center;'>現在、交通情報はありません。</p>";
+                    return;
+                }
+
                 data.reverse().forEach((item) => {
                     const li = document.createElement('li');
                     li.className = 'traffic-info-item';
@@ -148,7 +153,9 @@
                     `;
                     trafficList.appendChild(li);
                 });
-            } catch (e) { trafficList.innerHTML = "<p style='text-align:center;'>現在、表示可能な情報はありません。</p>"; }
+            } catch (e) { 
+                trafficList.innerHTML = "<p style='text-align:center;'>現在、交通情報はありません。</p>"; 
+            }
         }
 
         document.getElementById('openModal').onclick = () => document.getElementById('postModal').classList.add('is-active');
@@ -158,22 +165,34 @@
             const author = document.getElementById('author').value;
             const pass = document.getElementById('password').value;
             const content = document.getElementById('content').value;
-            if(pass !== MASTER_PW) return alert('パスワードが違います');
             
-            const dateStr = new Date().toLocaleString('ja-JP', {month:'2nd', day:'2nd', hour:'2nd', minute:'2nd'});
-            const postData = { date: dateStr, content: content, author: author, pw: pass, action: "post" };
+            if(pass !== MASTER_PW) return alert('パスワードが違います');
+            if(!content) return alert('内容を入力してください');
+            
+            const dateStr = new Date().toLocaleString('ja-JP', {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit'});
+            const postData = { date: dateStr, content: content, author: author || "交通部", pw: pass, action: "post" };
 
-            await fetch(GAS_URL, { method: "POST", body: JSON.stringify(postData), mode: 'no-cors' });
-            alert('交通規制情報を配信しました。');
-            location.reload();
+            try {
+                await fetch(GAS_URL, { method: "POST", body: JSON.stringify(postData), mode: 'no-cors' });
+                alert('交通情報を配信しました。');
+                location.reload();
+            } catch (e) {
+                alert('送信に失敗しました。URLの設定を確認してください。');
+            }
         };
 
         async function deletePost(rowId) {
-            const pass = prompt("パスワードを入力");
-            if(pass !== MASTER_PW) return alert("認証エラー");
+            const pass = prompt("パスワードを入力してください");
+            if(pass !== MASTER_PW) return alert("パスワードが一致しません");
+            
             const deleteData = { pw: pass, action: "delete", lineRow: rowId };
-            await fetch(GAS_URL, { method: "POST", body: JSON.stringify(deleteData), mode: 'no-cors' });
-            location.reload();
+            try {
+                await fetch(GAS_URL, { method: "POST", body: JSON.stringify(deleteData), mode: 'no-cors' });
+                alert('投稿を削除しました。');
+                location.reload();
+            } catch (e) {
+                alert('削除に失敗しました。');
+            }
         }
     </script>
 </body>
