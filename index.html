@@ -12,7 +12,7 @@
     <style>
         body { font-family: 'Noto Sans JP', sans-serif; background-color: #ffffff; margin: 0; color: #333; line-height: 1.6; }
         
-        /* --- 修正済みトップバー (全ページ統一) --- */
+        /* --- 固定トップバー --- */
         .police-nav { 
             background-color: #182b4b; 
             min-height: 70px; 
@@ -27,26 +27,15 @@
         .nav-container { 
             display: flex; 
             align-items: center; 
-            justify-content: space-between; /* ロゴを左、メニューを右に飛ばす */
+            justify-content: space-between; 
             width: 100%;
             max-width: 1400px; 
             margin: 0 auto; 
         }
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-        }
-        .nav-logo-icon { 
-            height: 50px; /* ロゴを少し大きく */
-            width: auto;
-            margin-right: 15px;
-        }
-        .nav-menu { 
-            display: flex; 
-            align-items: center;
-            flex-wrap: nowrap; /* PCでは折り返さない */
-        }
+        .nav-brand { display: flex; align-items: center; flex-shrink: 0; }
+        .nav-logo-icon { height: 55px; width: auto; margin-right: 15px; }
+        
+        .nav-menu { display: flex; align-items: center; }
         .nav-item { 
             color: white; 
             text-decoration: none; 
@@ -54,54 +43,80 @@
             font-size: 0.9rem; 
             font-weight: bold; 
             border-right: 1px solid rgba(255,255,255,0.2); 
-            transition: background 0.3s;
         }
-        .nav-item:hover {
-            background-color: rgba(255,255,255,0.1);
-            color: #ffdd57; /* ホバー時に少し色を変える（警察サイト風） */
-        }
+        .nav-item:hover { background-color: rgba(255,255,255,0.1); color: #ffdd57; }
         .nav-item:last-child { border-right: none; }
 
-        /* スマホ用調整 */
-        @media (max-width: 1024px) {
-            .police-nav { padding: 10px; }
-            .nav-container { flex-direction: column; }
-            .nav-menu { width: 100%; justify-content: center; margin-top: 10px; overflow-x: auto; }
-            .nav-item { font-size: 0.75rem; padding: 5px 10px; }
+        /* --- ヒーロー画像（拡大版） --- */
+        .main-hero { 
+            width: 100%; 
+            height: 60vh; 
+            min-height: 400px; 
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('jikosyori.png') no-repeat center center; 
+            background-size: cover; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .hero-text { 
+            color: white; 
+            font-family: 'Shippori Mincho', serif; 
+            font-size: calc(2.2rem + 2.5vw); 
+            letter-spacing: 0.8rem; 
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.7); 
+            font-weight: 700; 
+            text-align: center; 
         }
 
-        /* --- コンテンツスタイル --- */
-        .main-hero { width: 100%; height: 40vh; min-height: 250px; background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('jikosyori.png') no-repeat center center; background-size: cover; display: flex; align-items: center; justify-content: center; }
-        .hero-text { color: white; font-family: 'Shippori Mincho', serif; font-size: calc(1.8rem + 2vw); letter-spacing: 0.5rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); font-weight: 700; text-align: center; }
-
-        .news-section { padding: 30px 15px; background-color: #f4f7f9; }
+        /* --- お知らせエリア --- */
+        .news-section { padding: 40px 15px; background-color: #f4f7f9; }
         .news-container { max-width: 900px; margin: 0 auto; }
-        .post-trigger { border: 1px dashed #182b4b; background: #fff; color: #182b4b; width: 100%; padding: 10px; text-align: center; font-size: 0.8rem; cursor: pointer; margin-bottom: 15px; border-radius: 4px; font-weight: bold; }
+        .post-trigger { border: 1px dashed #182b4b; background: #fff; color: #182b4b; width: 100%; padding: 12px; text-align: center; font-size: 0.85rem; cursor: pointer; margin-bottom: 15px; border-radius: 4px; font-weight: bold; }
         
-        .news-list { background: #fff; border: 1px solid #ddd; list-style: none; padding: 0; border-radius: 4px; overflow: hidden; }
+        .news-list { background: #fff; border: 1px solid #ddd; list-style: none; padding: 0; border-radius: 4px; overflow: hidden; min-height: 50px; }
         .news-item { padding: 15px; border-bottom: 1px solid #eee; display: flex; flex-direction: column; position: relative; }
         .news-header { display: flex; align-items: center; margin-bottom: 5px; gap: 10px; }
         .news-date { font-weight: bold; color: #666; font-size: 0.85rem; }
         .news-tag { background: #d9534f; color: #fff; font-size: 0.65rem; padding: 2px 6px; border-radius: 2px; }
-        .news-content { font-size: 0.95rem; color: #333; margin-bottom: 8px; padding-right: 35px; white-space: pre-wrap; }
+        .news-content { font-size: 0.95rem; color: #333; margin-bottom: 8px; padding-right: 40px; white-space: pre-wrap; }
         .news-footer { display: flex; justify-content: flex-end; font-size: 0.75rem; color: #888; border-top: 1px solid #f9f9f9; padding-top: 5px; }
-        
         .delete-btn { position: absolute; top: 12px; right: 12px; color: #ddd; cursor: pointer; border: none; background: none; font-size: 1.2rem; }
-        .delete-btn:hover { color: #d9534f; }
 
-        .main-content { max-width: 1200px; margin: 30px auto; display: flex; gap: 20px; padding: 0 15px; flex-direction: column; }
+        /* --- 目的別メニュー --- */
+        .main-content { max-width: 1200px; margin: 40px auto; display: flex; gap: 25px; padding: 0 15px; flex-direction: column; }
         @media (min-width: 769px) { .main-content { flex-direction: row; } }
 
-        .menu-grid { flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .menu-grid { flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         @media (min-width: 480px) { .menu-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (min-width: 1024px) { .menu-grid { grid-template-columns: repeat(4, 1fr); } }
         
-        .menu-card { border: 1px solid #eee; background: #fff; padding: 15px 5px; text-align: center; text-decoration: none; color: #333; font-weight: bold; font-size: 0.85rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80px; border-radius: 4px; }
-        .menu-card:hover { background: #182b4b; color: #fff; }
+        .menu-card { 
+            border: 1px solid #eee; 
+            background: #fff; 
+            padding: 20px 10px; 
+            text-align: center; 
+            text-decoration: none; 
+            color: #333; 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 90px; 
+            border-radius: 4px; 
+            transition: all 0.2s;
+        }
+        .menu-card:hover { background: #182b4b; color: #fff; transform: translateY(-2px); }
 
-        .modal-card { width: 90%; max-width: 500px; }
-        .modal-card-head { background-color: #182b4b; }
-        .modal-card-title { color: #fff; font-weight: bold; }
+        /* モーダル */
+        .modal-card { width: 95%; max-width: 500px; }
+        
+        @media (max-width: 1024px) {
+            .nav-container { flex-direction: column; padding: 10px 0; }
+            .nav-menu { margin-top: 10px; flex-wrap: wrap; justify-content: center; }
+            .nav-item { border: none; font-size: 0.8rem; }
+        }
     </style>
 </head>
 <body>
@@ -114,18 +129,19 @@
                 </a>
             </div>
             <div class="nav-menu">
-                <a href="#" class="nav-item">大山県警のご紹介</a>
-                <a href="#" class="nav-item">安全・安心な暮らし</a>
-                <a href="#" class="nav-item">交通安全</a>
-                <a href="#" class="nav-item">各種申請・手続き</a>
-                <a href="#" class="nav-item">ご相談窓口</a>
-                <a href="#" class="nav-item">採用案内</a>
-                <a href="#" class="nav-item">新着情報</a>
+                <a href="about.html" class="nav-item">大山県警のご紹介</a>
+                <a href="safety.html" class="nav-item">安全・安心な暮らし</a>
+                <a href="traffic.html" class="nav-item">交通安全</a>
+                <a href="procedures.html" class="nav-item">各種申請・手続き</a>
+                <a href="contact.html" class="nav-item">ご相談窓口</a>
+                <a href="recruit.html" class="nav-item">採用案内</a>
             </div>
         </div>
     </nav>
 
-    <section class="main-hero"><h2 class="hero-text">「市民と共に」</h2></section>
+    <section class="main-hero">
+        <h2 class="hero-text">「市民と共に」</h2>
+    </section>
 
     <section class="news-section">
         <div class="news-container">
@@ -136,27 +152,27 @@
 
     <div class="main-content">
         <div class="menu-grid">
-            <a href="#" class="menu-card">運転免許関係</a>
-            <a href="#" class="menu-card">各種申請・手続き</a>
-            <a href="#" class="menu-card">採用情報</a>
-            <a href="#" class="menu-card">犯罪経歴証明書</a>
-            <a href="#" class="menu-card">各種統計資料</a>
-            <a href="#" class="menu-card">大山県警の公表</a>
-            <a href="#" class="menu-card">ご相談窓口</a>
-            <a href="#" class="menu-card">情報受付窓口</a>
-            <a href="#" class="menu-card">公式SNS</a>
-            <a href="#" class="menu-card">警察広報資料</a>
-            <a href="#" class="menu-card">落とし物・忘れ物</a>
-            <a href="#" class="menu-card">窓口一覧</a>
+            <a href="license.html" class="menu-card">運転免許関係</a>
+            <a href="application.html" class="menu-card">各種申請・手続き</a>
+            <a href="recruit_info.html" class="menu-card">採用情報</a>
+            <a href="criminal_record.html" class="menu-card">犯罪経歴証明書</a>
+            <a href="statistics.html" class="menu-card">各種統計資料</a>
+            <a href="public_info.html" class="menu-card">大山県警の公表</a>
+            <a href="consultation.html" class="menu-card">ご相談窓口</a>
+            <a href="tip_line.html" class="menu-card">情報受付窓口</a>
+            <a href="sns.html" class="menu-card">公式SNS</a>
+            <a href="publicity.html" class="menu-card">警察広報資料</a>
+            <a href="lost_found.html" class="menu-card">落とし物・忘れ物</a>
+            <a href="stations.html" class="menu-card">窓口一覧</a>
         </div>
     </div>
 
     <div class="modal" id="postModal">
         <div class="modal-background"></div>
         <div class="modal-card">
-            <header class="modal-card-head"><p class="modal-card-title">お知らせ投稿</p></header>
+            <header class="modal-card-head"><p class="modal-card-title">お知らせ新規投稿</p></header>
             <section class="modal-card-body">
-                <div class="field"><label class="label">部署・担当者名</label><input class="input" type="text" id="author" placeholder="例：広報課 港湾係"></div>
+                <div class="field"><label class="label">部署・担当者名</label><input class="input" type="text" id="author" placeholder="例：交通機動隊"></div>
                 <div class="field"><label class="label">パスワード</label><input class="input" type="password" id="password"></div>
                 <div class="field"><label class="label">内容</label><textarea class="textarea" id="content"></textarea></div>
             </section>
@@ -167,7 +183,7 @@
         </div>
     </div>
 
-    <footer class="footer has-background-dark has-text-white mt-6">
+    <footer class="footer has-background-dark has-text-white">
         <div class="content has-text-centered"><p>&copy; 2026 大山県警察本部</p></div>
     </footer>
 
@@ -210,9 +226,9 @@
             const dateStr = new Date().toLocaleDateString('ja-JP').replace(/\//g, '.');
             const postData = { date: dateStr, content: content, author: author, pw: pass, action: "post" };
 
-            await fetch(GAS_URL, { method: "POST", body: JSON.stringify(postData), mode: 'no-cors' });
-            alert('投稿しました');
-            location.reload();
+                await fetch(GAS_URL, { method: "POST", body: JSON.stringify(postData), mode: 'no-cors' });
+                alert('投稿しました。反映されるまでお待ちください。');
+                location.reload();
         };
 
         async function deleteNews(rowId) {
@@ -222,7 +238,7 @@
             const deleteData = { pw: pass, action: "delete", lineRow: rowId };
             try {
                 await fetch(GAS_URL, { method: "POST", body: JSON.stringify(deleteData), mode: 'no-cors' });
-                alert('表示を消去しました');
+                alert('表示を消去しました（スプレッドシートに履歴は残ります）');
                 location.reload();
             } catch (e) { alert('通信エラー'); }
         }
