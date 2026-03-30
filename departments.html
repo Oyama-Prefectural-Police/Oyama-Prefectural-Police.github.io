@@ -18,45 +18,58 @@
         .nav-brand { display: flex; align-items: center; }
         .nav-logo-icon { height: 55px; width: auto; margin-right: 15px; }
         .nav-menu { display: flex; align-items: center; }
-        .nav-item { color: white; text-decoration: none; padding: 10px 18px; font-size: 0.9rem; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.3); }
-        .nav-item:hover { background-color: rgba(255,255,255,0.1); color: #ffdd57; }
-        .nav-item:last-child { border-right: none; }
+        .nav-item { color: white; text-decoration: none; padding: 10px 18px; font-size: 0.9rem; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.2); }
+        .nav-item:hover { background-color: rgba(255,255,255,0.1); color: #ffffff; text-decoration: underline; }
 
         /* --- ヘッダー --- */
-        .page-header { background: #182b4b; color: white; padding: 50px 20px; text-align: center; border-bottom: 5px solid #ffdd57; }
+        .page-header { background: #182b4b; color: white; padding: 50px 20px; text-align: center; border-bottom: 4px solid #101d33; }
         .page-title { font-family: 'Shippori Mincho', serif; font-size: 2.2rem; letter-spacing: 0.3rem; }
 
         /* --- 部署カード --- */
         .dept-section { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         .dept-card { 
             background: white; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+            border-radius: 4px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
             margin-bottom: 40px; 
             overflow: hidden; 
             display: flex;
             flex-direction: column;
+            border-left: 8px solid #182b4b;
         }
         .dept-header { 
-            background: #1e3a8a; 
-            color: white; 
+            background: #f8fafc; 
             padding: 15px 25px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
+            border-bottom: 1px solid #e2e8f0;
         }
-        .dept-name { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: bold; }
-        .dept-code { font-size: 1rem; opacity: 0.8; font-weight: bold; letter-spacing: 1px; }
+        .dept-name { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: bold; color: #182b4b; }
+        .dept-code { font-size: 0.9rem; color: #64748b; font-weight: bold; }
         
         .dept-body { padding: 25px; display: grid; grid-template-columns: 1fr; gap: 20px; }
         @media (min-width: 769px) { .dept-body { grid-template-columns: 1fr 1fr; } }
 
-        .info-box { border-bottom: 1px solid #edf2f7; padding-bottom: 10px; }
-        .info-box:last-child { border-bottom: none; }
-        .info-label { font-weight: bold; color: #1e3a8a; display: block; margin-bottom: 5px; font-size: 0.9rem; border-left: 4px solid #ffdd57; padding-left: 10px; }
-        .info-content { font-size: 0.95rem; color: #4a5568; padding-left: 14px; }
+        .info-label { font-weight: bold; color: #182b4b; display: block; margin-bottom: 5px; font-size: 0.85rem; border-left: 3px solid #182b4b; padding-left: 10px; }
+        .info-content { font-size: 0.95rem; color: #4a5568; padding-left: 13px; margin-bottom: 15px; }
         
-        .vehicle-tag { display: inline-block; background: #ebf8ff; color: #2b6cb0; padding: 2px 8px; border-radius: 4px; margin: 2px; font-size: 0.85rem; border: 1px solid #bee3f8; }
+        .vehicle-tag { display: inline-block; background: #f1f5f9; color: #475569; padding: 2px 8px; border-radius: 2px; margin: 2px; font-size: 0.85rem; border: 1px solid #cbd5e1; }
+
+        /* リンクボタン */
+        .dept-footer { background: #f8fafc; padding: 10px 25px; text-align: right; border-top: 1px solid #e2e8f0; }
+        .view-more-btn { 
+            display: inline-block; 
+            background: #182b4b; 
+            color: white; 
+            padding: 8px 20px; 
+            border-radius: 2px; 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            font-weight: bold; 
+            transition: background 0.2s;
+        }
+        .view-more-btn:hover { background: #2a4365; color: white; }
 
         @media (max-width: 1024px) {
             .nav-container { flex-direction: column; padding: 10px 0; }
@@ -104,15 +117,16 @@
                 </div>
                 <div>
                     <span class="info-label">主要装備・車両</span>
-                    <div class="info-content">
-                        <span class="vehicle-tag">各種公用車</span>
-                    </div>
+                    <div class="info-content"><span class="vehicle-tag">各種公用車</span></div>
                 </div>
+            </div>
+            <div class="dept-footer">
+                <a href="dept_kanri.html" class="view-more-btn">管理部 専有ページへ</a>
             </div>
         </div>
 
         <div class="dept-card">
-            <div class="dept-header" style="background: #2563eb;">
+            <div class="dept-header">
                 <div class="dept-name">地域部</div>
                 <div class="dept-code">COMMUNITY POLICE / CPD</div>
             </div>
@@ -126,16 +140,17 @@
                 <div>
                     <span class="info-label">主要装備・車両</span>
                     <div class="info-content">
-                        <span class="vehicle-tag">21クラウンロイヤル</span>
-                        <span class="vehicle-tag">17クラウン</span>
-                        <span class="vehicle-tag">クラウンコンフォード</span>
+                        <span class="vehicle-tag">21クラウンロイヤル</span> <span class="vehicle-tag">17クラウン</span> <span class="vehicle-tag">クラウンコンフォード</span>
                     </div>
                 </div>
+            </div>
+            <div class="dept-footer">
+                <a href="dept_tiiki.html" class="view-more-btn">地域部 専有ページへ</a>
             </div>
         </div>
 
         <div class="dept-card">
-            <div class="dept-header" style="background: #dc2626;">
+            <div class="dept-header">
                 <div class="dept-name">刑事部</div>
                 <div class="dept-code">CRIMINAL INVESTIGATION / CID</div>
             </div>
@@ -149,17 +164,17 @@
                 <div>
                     <span class="info-label">主要装備・車両</span>
                     <div class="info-content">
-                        <span class="vehicle-tag">カムリ</span> <span class="vehicle-tag">インプレッサ</span>
-                        <span class="vehicle-tag">スウィフト</span> <span class="vehicle-tag">ティアナ</span>
-                        <span class="vehicle-tag">コンフォード</span> <span class="vehicle-tag">21クラウン</span>
-                        <span class="vehicle-tag">B4レガシィ</span>
+                        <span class="vehicle-tag">カムリ</span> <span class="vehicle-tag">インプレッサ</span> <span class="vehicle-tag">21クラウン</span> <span class="vehicle-tag">B4レガシィ</span>
                     </div>
                 </div>
+            </div>
+            <div class="dept-footer">
+                <a href="dept_keiji.html" class="view-more-btn">刑事部 専有ページへ</a>
             </div>
         </div>
 
         <div class="dept-card">
-            <div class="dept-header" style="background: #059669;">
+            <div class="dept-header">
                 <div class="dept-name">交通部</div>
                 <div class="dept-code">TRAFFIC DIVISION / TD</div>
             </div>
@@ -173,15 +188,17 @@
                 <div>
                     <span class="info-label">主要装備・車両</span>
                     <div class="info-content">
-                        <span class="vehicle-tag">21クラウンアスリート</span>
-                        <span class="vehicle-tag">スカイライン</span>
+                        <span class="vehicle-tag">21クラウンアスリート</span> <span class="vehicle-tag">スカイライン</span>
                     </div>
                 </div>
+            </div>
+            <div class="dept-footer">
+                <a href="dept_koutsu.html" class="view-more-btn">交通部 専有ページへ</a>
             </div>
         </div>
 
         <div class="dept-card">
-            <div class="dept-header" style="background: #111827;">
+            <div class="dept-header">
                 <div class="dept-name">銃器対策部</div>
                 <div class="dept-code">FIREARMS DIVISION / FD</div>
             </div>
@@ -195,11 +212,12 @@
                 <div>
                     <span class="info-label">主要装備・車両</span>
                     <div class="info-content">
-                        <span class="vehicle-tag">防弾B4レガシィ</span>
-                        <span class="vehicle-tag">防弾ランドクルーザー</span>
-                        <span class="vehicle-tag">銃器対策警備車</span>
+                        <span class="vehicle-tag">防弾B4レガシィ</span> <span class="vehicle-tag">防弾ランドクルーザー</span> <span class="vehicle-tag">銃器対策警備車</span>
                     </div>
                 </div>
+            </div>
+            <div class="dept-footer">
+                <a href="dept_juuki.html" class="view-more-btn">銃器対策部 専有ページへ</a>
             </div>
         </div>
 
