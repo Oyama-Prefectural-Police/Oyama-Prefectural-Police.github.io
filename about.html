@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大山県警のご紹介 | 大山県警察本部</title>
+    <link rel="icon" href="ooyamapolice.webp" type="image/webp">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #ffffff; margin: 0; color: #333; line-height: 1.8; }
+        
+        /* --- 【全ページ共通】統一トップバー --- */
+        .police-nav { 
+            background-color: #182b4b; 
+            min-height: 70px; 
+            padding: 0 30px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .nav-container { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            width: 100%;
+            max-width: 1400px; 
+            margin: 0 auto; 
+        }
+        .nav-brand { display: flex; align-items: center; flex-shrink: 0; }
+        .nav-logo-icon { height: 55px; width: auto; margin-right: 15px; }
+        
+        .nav-menu { display: flex; align-items: center; }
+        .nav-item { 
+            color: white; 
+            text-decoration: none; 
+            padding: 10px 18px; 
+            font-size: 0.9rem; 
+            font-weight: bold; 
+            border-right: 1px solid rgba(255,255,255,0.3); 
+            transition: background 0.3s;
+        }
+        .nav-item:hover { background-color: rgba(255,255,255,0.1); color: #ffdd57; }
+        .nav-item:last-child { border-right: none; }
+
+        /* --- ヒーロービジュアル --- */
+        .about-hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('pato1.webp') no-repeat center center;
+            background-size: cover;
+            height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .about-copy { 
+            font-family: 'Shippori Mincho', serif; 
+            font-size: calc(1.8rem + 1.5vw); 
+            font-weight: 700; 
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.8);
+            letter-spacing: 0.3rem;
+        }
+
+        /* --- メインコンテンツ --- */
+        .about-main { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+        
+        .section-title { 
+            text-align: center; 
+            font-family: 'Shippori Mincho', serif; 
+            font-size: 2rem; 
+            margin-bottom: 40px; 
+            color: #182b4b;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-title::after {
+            content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 3px; background-color: #ffdd57;
+        }
+
+        .message-box {
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 4px;
+            border-left: 5px solid #182b4b;
+            margin-bottom: 60px;
+        }
+        .message-title { font-weight: bold; font-size: 1.4rem; color: #182b4b; margin-bottom: 20px; }
+        
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .policy-card {
+            text-align: center;
+            padding: 30px;
+            background: #fff;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .policy-card h3 { font-weight: bold; font-size: 1.2rem; color: #182b4b; margin-bottom: 15px; }
+
+        @media (max-width: 1024px) {
+            .nav-container { flex-direction: column; padding: 10px 0; }
+            .nav-menu { margin-top: 10px; flex-wrap: wrap; justify-content: center; }
+            .nav-item { border: none; font-size: 0.8rem; padding: 5px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="police-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <img src="ooyamapolice.webp" alt="大山県警ロゴ" class="nav-logo-icon">
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="about.html" class="nav-item">大山県警のご紹介</a>
+                <a href="safety.html" class="nav-item">安全・安心な暮らし</a>
+                <a href="traffic.html" class="nav-item">交通安全</a>
+                <a href="procedures.html" class="nav-item">各種申請・手続き</a>
+                <a href="contact.html" class="nav-item">ご相談窓口</a>
+                <a href="recruit.html" class="nav-item">採用案内</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="about-hero">
+        <h1 class="about-copy">大山県警察の概要</h1>
+    </section>
+
+    <main class="about-main">
+        <h2 class="section-title">本部長挨拶</h2>
+        <div class="message-box">
+            <p class="message-title">県民の皆様の安全と平穏を守るために</p>
+            <p>
+                大山県警察のホームページをご覧いただき、ありがとうございます。<br><br>
+                我々大山県警察は、「市民と共に」というスローガンのもと、日々変化する社会情勢や犯罪情勢に的確に対応し、県民の皆様が安全に、そして安心して暮らせる社会の実現を目指しております。<br><br>
+                悪質な犯罪の徹底した検挙、交通事故の抑止、そして地域に密着したパトロール活動を通じて、信頼される警察組織として全力を尽くしてまいります。
+            </p>
+            <p style="text-align: right; font-weight: bold; margin-top: 20px;">大山県警察 広報係</p>
+        </div>
+
+        <h2 class="section-title">基本方針</h2>
+        <div class="policy-grid">
+            <div class="policy-card">
+                <h3>正義の追求</h3>
+                <p>いかなる困難にも屈せず、法と証拠に基づき、犯人を逃さない徹底した捜査を行います。</p>
+            </div>
+            <div class="policy-card">
+                <h3>地域への貢献</h3>
+                <p>県民の皆様の声に真摯に耳を傾け、身近な不安を解消するための活動を推進します。</p>
+            </div>
+            <div class="policy-card">
+                <h3>誠実かつ公正</h3>
+                <p>高い倫理観を持ち、常に公正・中立な立場で職務を遂行し、信頼に応えます。</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer has-background-dark has-text-white py-5">
+        <div class="content has-text-centered">
+            <p>&copy; 2026 大山県警察本部</p>
+        </div>
+    </footer>
+
+</body>
+</html>
