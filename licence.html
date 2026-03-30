@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>運転免許関連 | 大山県警察本部</title>
+    <link rel="icon" href="ooyamapolice.webp" type="image/webp">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 港湾局の例を参考に、背景を白基調に。トップバーはネイビーを維持 */
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: white; color: #333; margin: 0; padding: 0; }
+        
+        /* --- 共通ナビ（トップバー） --- */
+        .police-nav { background-color: #182b4b; min-height: 70px; padding: 0 30px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1400px; margin: 0 auto; }
+        .nav-brand { display: flex; align-items: center; }
+        .nav-logo-icon { height: 55px; width: auto; margin-right: 15px; }
+        .nav-menu { display: flex; align-items: center; }
+        .nav-item { color: white; text-decoration: none; padding: 10px 18px; font-size: 0.9rem; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.2); transition: 0.3s; }
+        .nav-item:hover { background-color: rgba(255, 255, 255, 0.1); color: #ffd700; text-decoration: none; }
+
+        /* --- ヘッダー（公的な明るいグレーに） --- */
+        .dept-header { background: #f1f5f9; color: #182b4b; padding: 50px 20px; text-align: center; border-bottom: 2px solid #cbd5e1; }
+        .dept-title { font-family: 'Shippori Mincho', serif; font-size: 2.2rem; letter-spacing: 0.3rem; }
+        .dept-subtitle { font-size: 1rem; color: #64748b; margin-top: 5px; }
+
+        /* --- メインコンテンツ --- */
+        .main-container { max-width: 1000px; margin: 40px auto; padding: 0 20px; padding-bottom: 60px; }
+        
+        /* 混雑状況のお知らせ（他のデザインに合わせる） */
+        .info-box { background: #ebf8ff; border: 1px solid #bee3f8; padding: 15px; border-radius: 4px; margin-bottom: 40px; border-left: 5px solid #2b6cb0; font-size: 0.9rem; color: #2c5282; }
+
+        /* メニューリスト（港湾局風フラットレイアウト） */
+        .license-list { list-style: none; padding: 0; }
+        
+        .license-item { display: flex; align-items: flex-start; padding: 25px 0; border-bottom: 1px solid #e2e8f0; transition: 0.2s; cursor: pointer; text-decoration: none; color: inherit; }
+        .license-item:hover { background-color: #f7fafc; }
+        
+        /* 港湾局の例のように、ネイビーのフラットなアイコン */
+        .item-icon { width: 40px; height: 40px; margin-right: 20px; margin-top: 3px; display: flex; justify-content: center; align-items: center; }
+        .item-icon img { width: 100%; height: 100%; opacity: 0.9; } /* svgアイコンを想定 */
+
+        /* テキスト部分 */
+        .item-content { flex: 1; }
+        
+        /* 港湾局の見出し文字のような、太くて少し大きな文字 */
+        .item-title { font-weight: bold; font-size: 1.3rem; color: #182b4b; margin-bottom: 5px; font-family: 'Noto Sans JP', sans-serif; }
+        
+        .item-desc { font-size: 0.95rem; color: #555; line-height: 1.6; }
+        
+        /* 矢印 */
+        .item-arrow { color: #cbd5e1; font-size: 1.2rem; margin-left: 15px; align-self: center; }
+
+        /* 免許センター情報 */
+        .center-info { margin-top: 50px; background-color: #f8fafc; padding: 30px; border-radius: 4px; border: 1px solid #e2e8f0; }
+        .center-title { font-family: 'Shippori Mincho', serif; font-size: 1.4rem; color: #182b4b; margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .license-item { flex-direction: column; padding: 20px 0; }
+            .item-icon { margin-right: 0; margin-bottom: 10px; }
+            .item-arrow { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="police-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html"><img src="ooyamapolice.webp" alt="ロゴ" class="nav-logo-icon"></a>
+            </div>
+            <div class="nav-menu">
+                <a href="about.html" class="nav-item">大山県警のご紹介</a>
+                <a href="safety.html" class="nav-item">安全・安心な暮らし</a>
+                <a href="traffic.html" class="nav-item">交通安全</a>
+                <a href="procedures.html" class="nav-item">各種申請・手続き</a>
+                <a href="contact.html" class="nav-item">ご相談窓口</a>
+                <a href="recruit.html" class="nav-item">採用案内</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="dept-header">
+        <h1 class="dept-title">運転免許関連</h1>
+        <p class="dept-subtitle">DRIVER'S LICENSE SERVICES</p>
+    </header>
+
+    <main class="main-container">
+
+        <div class="info-box">
+            <span>📢 免許センターでの更新手続きは混雑緩和のため事前予約制を導入しています。来場前に予約サイトをご確認ください。</span>
+        </div>
+
+        <div class="license-list">
+            
+            <a href="#" class="license-item">
+                <div class="item-icon"><img src="icon_renew.svg" alt="更新"></div>
+                <div class="item-content">
+                    <div class="item-title">免許証の更新</div>
+                    <p class="item-desc">有効期間が満了する方の更新手続き。優良・一般・違反運転者講習の区分や手数料について。</p>
+                </div>
+                <div class="item-arrow">→</div>
+            </a>
+
+            <a href="#" class="license-item">
+                <div class="item-icon"><img src="icon_test.svg" alt="試験"></div>
+                <div class="item-content">
+                    <div class="item-title">新規取得・試験</div>
+                    <p class="item-desc">初めて免許を取得される方、他の免許を追加される方の学科・技能試験、受付時間のご案内。</p>
+                </div>
+                <div class="item-arrow">→</div>
+            </a>
+
+            <a href="#" class="license-item">
+                <div class="item-icon"><img src="icon_address.svg" alt="変更"></div>
+                <div class="item-content">
+                    <div class="item-title">記載事項の変更</div>
+                    <p class="item-desc">住所、氏名、本籍地の変更手続き。マイナンバーカード等の必要書類について。</p>
+                </div>
+                <div class="item-arrow">→</div>
+            </a>
+
+            <a href="#" class="license-item">
+                <div class="item-icon"><img src="icon_reissue.svg" alt="再交付"></div>
+                <div class="item-content">
+                    <div class="item-title">再交付の手続き</div>
+                    <p class="item-desc">紛失、盗難、破損による再発行。県内各警察署での受付時間と発行までの期間について。</p>
+                </div>
+                <div class="item-arrow">→</div>
+            </a>
+
+            <a href="#" class="license-item">
+                <div class="item-icon"><img src="icon_international.svg" alt="国外"></div>
+                <div class="item-content">
+                    <div class="item-title">国外免許・切替</div>
+                    <p class="item-desc">国際運転免許証の発行、および外国免許から日本免許への切り替え審査手続き。</p>
+                </div>
+                <div class="item-arrow">→</div>
+            </a>
+
+            <a href="#" class="license-item">
+                <div class="item-icon"><img src="icon_return.svg" alt="返納"></div>
+                <div class="item-content">
+                    <div class="item-title">自主返納・支援</div>
+                    <p class="item-desc">運転に不安を感じる方の免許取消・返納手続き。運転経歴証明書の発行について。</p>
+                </div>
+                <div class="item-arrow">→</div>
+            </a>
+        </div>
+
+        <div class="center-info">
+            <h3 class="center-title">大山県運転免許センター</h3>
+            <div class="content is-small">
+                <p><strong>所在地：</strong> 大山市警察町1-1-1</p>
+                <p><strong>電話番号：</strong> 099-000-0000（免許相談ダイヤル）</p>
+                <p><strong>受付時間：</strong> 平日 8:30～11:00 / 13:00～15:30（日曜・祝日・年末年始を除く）</p>
+                <p style="color: #e53e3e;">※日曜日は事前予約者のみ、更新手続きを受け付けています。</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer has-background-dark has-text-white py-5">
+        <div class="content has-text-centered"><p>&copy; 2026 大山県警察本部 運転免許課</p></div>
+    </footer>
+
+</body>
+</html>
