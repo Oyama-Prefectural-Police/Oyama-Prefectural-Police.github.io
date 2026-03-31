@@ -1,104 +1,165 @@
-<main class="main-container">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幹部紹介 | 大山県警察本部</title>
+    <link rel="icon" href="ooyamapolice.webp" type="image/webp">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f4f7f9; color: #333; margin: 0; padding: 0; }
+        
+        /* --- トップバーのデザイン --- */
+        .police-nav { background-color: #182b4b; min-height: 70px; padding: 0 30px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1200px; margin: 0 auto; }
+        .nav-brand img { height: 50px; width: auto; }
+        .nav-menu { display: flex; gap: 10px; }
+        .nav-item { color: white; text-decoration: none; padding: 8px 15px; font-size: 0.85rem; font-weight: bold; transition: 0.3s; border-radius: 4px; }
+        .nav-item:hover { background-color: rgba(255, 255, 255, 0.1); color: #ffd700; }
+
+        /* --- ヘッダー --- */
+        .page-header { background: white; padding: 40px 20px; text-align: center; border-bottom: 3px solid #182b4b; margin-bottom: 40px; }
+        .page-title { font-family: 'Shippori Mincho', serif; font-size: 2.2rem; font-weight: 700; color: #182b4b; letter-spacing: 0.3rem; }
+
+        /* --- コンテンツ配置 --- */
+        .main-content { max-width: 1100px; margin: 0 auto; padding: 0 20px 100px; }
+        
+        /* 最高幹部カード */
+        .top-card { background: white; border: 1px solid #d1d5db; border-left: 8px solid #ffd700; padding: 30px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .rank-label { display: inline-block; background: #182b4b; color: white; padding: 3px 10px; font-size: 0.75rem; font-weight: bold; margin-bottom: 10px; }
+        .officer-name { font-family: 'Shippori Mincho', serif; font-size: 1.8rem; font-weight: bold; color: #182b4b; margin-bottom: 10px; }
+        .description { line-height: 1.8; color: #4b5563; font-size: 0.95rem; }
+
+        /* 幹部グリッド */
+        .officer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .sub-card { background: white; border: 1px solid #e5e7eb; padding: 25px; transition: 0.3s; border-top: 4px solid #182b4b; }
+        .sub-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .pr-border { border-right: 5px solid #3182ce; } /* 広報係の目印 */
+
+        @media (max-width: 768px) { .nav-menu { display: none; } }
+    </style>
+</head>
+<body>
+
+    <nav class="police-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html"><img src="ooyamapolice.webp" alt="大山県警ロゴ"></a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-item">トップ</a>
+                <a href="about.html" class="nav-item">県警紹介</a>
+                <a href="officers.html" class="nav-item">幹部紹介</a>
+                <a href="report.html" class="nav-item">ご相談窓口</a>
+                <a href="recruit.html" class="nav-item">採用案内</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="page-title">幹部職員紹介</h1>
+    </header>
+
+    <main class="main-content">
         
         <div class="columns is-multiline">
             <div class="column is-6">
-                <section class="top-officer" style="margin-bottom: 30px; border-left: 5px solid #ffd700;">
-                    <div class="officer-info" style="padding: 30px;">
-                        <span class="rank-tag">公安委員 / 教養部長</span>
-                        <h2 class="officer-name">ika012359</h2>
-                        <p class="officer-message" style="font-size: 0.9rem;">
-                            大山県警察の所有者（Co-Owner）。公安委員として組織の適正な運営を監視するとともに、教養部長として全職員の規律と技術向上を統括する。
-                        </p>
-                    </div>
-                </section>
+                <div class="top-card">
+                    <span class="rank-label">公安委員 / 教養部長</span>
+                    <h2 class="officer-name">ika012359</h2>
+                    <p class="description">大山県警察の所有者（Co-Owner）。公安委員として組織の適正な運営を監視するとともに、教養部長として全職員の規律と技術向上を統括する。</p>
+                </div>
             </div>
-
             <div class="column is-6">
-                <section class="top-officer" style="margin-bottom: 30px; border-left: 5px solid #ffd700;">
-                    <div class="officer-info" style="padding: 30px;">
-                        <span class="rank-tag">警視監 / 大山本部長</span>
-                        <h2 class="officer-name">soso</h2>
-                        <p class="officer-message" style="font-size: 0.9rem;">
-                            大山県警察の最高責任者。本部長として県警全域の指揮を執り、安全・安心な県民生活の実現に向けた全業務を総括する。
-                        </p>
-                    </div>
-                </section>
+                <div class="top-card">
+                    <span class="rank-label">警視監 / 大山本部長</span>
+                    <h2 class="officer-name">soso</h2>
+                    <p class="description">大山県警察の最高責任者。本部長として県警全域の指揮を執り、安全・安心な県民生活の実現に向けた全業務を総括する。</p>
+                </div>
             </div>
         </div>
 
         <div class="officer-grid">
-            
-            <div class="officer-card">
-                <div class="card-body">
-                    <span class="card-rank">警視 / 刑事部長・教養部</span>
-                    <h3 class="card-name">かいと</h3>
-                    <p class="card-dept">刑事部長として県内の重要事案捜査を指揮。教養部および教養課も兼務し、捜査スキルの教養を担う。</p>
-                </div>
+            <div class="sub-card">
+                <span class="rank-label" style="background:#4a5568;">警視</span>
+                <h3 class="is-size-5 has-text-weight-bold">かいと</h3>
+                <p class="is-size-7 has-text-grey">刑事部長 / 教養部・教養課</p>
+                <hr style="margin: 10px 0;">
+                <p class="description">刑事部長として県内の重要事案捜査を指揮。教養部を兼務し、捜査スキルの教養を担う。</p>
             </div>
 
-            <div class="officer-card">
-                <div class="card-body">
-                    <span class="card-rank">警視 / 警務部長・教養部</span>
-                    <h3 class="card-name">Yooyt</h3>
-                    <p class="card-dept">警務部長として人事・福利厚生等の組織基盤を管理。教養部・教養課において職員の育成・評価を統括する。</p>
-                </div>
+            <div class="sub-card">
+                <span class="rank-label" style="background:#4a5568;">警視</span>
+                <h3 class="is-size-5 has-text-weight-bold">Yooyt</h3>
+                <p class="is-size-7 has-text-grey">警務部長 / 教養部・教養課</p>
+                <hr style="margin: 10px 0;">
+                <p class="description">警務部長として組織基盤を管理。職員の育成・評価を統括する。</p>
             </div>
 
-            <div class="officer-card" style="border-right: 4px solid #3182ce;">
-                <div class="card-body">
-                    <span class="card-rank">警視 / 銃器対策部長・管理部</span>
-                    <h3 class="card-name">Kojirou07255963</h3>
-                    <p class="card-dept"><strong>【広報課 兼務】</strong><br>銃器対策および管理部を統括。広報課員として、組織の活動を広く県民に伝える役割も担う。</p>
-                </div>
+            <div class="sub-card pr-border">
+                <span class="rank-label" style="background:#4a5568;">警視</span>
+                <h3 class="is-size-5 has-text-weight-bold">Kojirou07255963</h3>
+                <p class="is-size-7 has-text-grey">銃器対策部長 / 管理部 / 広報課</p>
+                <hr style="margin: 10px 0;">
+                <p class="description">銃器対策および管理部を統括。広報課員として、組織の活動を広く伝える役割を担う。</p>
             </div>
 
-            <div class="officer-card">
-                <div class="card-body">
-                    <span class="card-rank">警視 / 交通部長・第一機捜隊長</span>
-                    <h3 class="card-name">inksans25200</h3>
-                    <p class="card-dept">交通部のトップとして交通安全を推進。第一方面機動捜査隊長を兼任し、初動捜査の指揮も執る。</p>
-                </div>
+            <div class="sub-card">
+                <span class="rank-label" style="background:#4a5568;">警視</span>
+                <h3 class="is-size-5 has-text-weight-bold">inksans25200</h3>
+                <p class="is-size-7 has-text-grey">交通部長 / 第一方面機動捜査隊長</p>
+                <hr style="margin: 10px 0;">
+                <p class="description">交通安全を推進。機動捜査隊長として初動捜査の指揮も執る。</p>
             </div>
 
-            <div class="officer-card">
-                <div class="card-body">
-                    <span class="card-rank">警視正 / 自動車警ら隊長（自ら隊）</span>
-                    <h3 class="card-name">Gapao_Rice</h3>
-                    <p class="card-dept">地域部・自ら隊の責任者。パトカーによる警ら活動を統括し、街の治安維持の最前線を指揮する。</p>
-                </div>
+            <div class="sub-card">
+                <span class="rank-label" style="background:#b82c2c;">警視正</span>
+                <h3 class="is-size-5 has-text-weight-bold">Gapao_Rice</h3>
+                <p class="is-size-7 has-text-grey">地域部 / 自動車警ら隊長</p>
+                <hr style="margin: 10px 0;">
+                <p class="description">自ら隊の責任者。パトカーによる警ら活動を統括し、治安維持の最前線を指揮する。</p>
             </div>
 
-            <div class="officer-card">
-                <div class="card-body">
-                    <span class="card-rank">警視正 / 教養部副部長・第二機捜隊長</span>
-                    <h3 class="card-name">1chococorone</h3>
-                    <p class="card-dept">教養部副部長として部長を補佐。第二方面機動捜査隊長を兼務し、広域的な捜査網を展開する。</p>
-                </div>
+            <div class="sub-card">
+                <span class="rank-label" style="background:#b82c2c;">警視正</span>
+                <h3 class="is-size-5 has-text-weight-bold">1chococorone</h3>
+                <p class="is-size-7 has-text-grey">教養部副部長 / 第二方面機動捜査隊長</p>
+                <hr style="margin: 10px 0;">
+                <p class="description">教養部副部長として部長を補佐。広域的な捜査網を展開する。</p>
             </div>
 
-            <div class="officer-card">
-                <div class="card-body">
-                    <span class="card-rank">部長 / 地域部・地域指導課長</span>
-                    <h3 class="card-name">栗田</h3>
-                    <p class="card-dept">地域部において地域指導係を統括。現場警察官への指導・育成および地域密着型の防犯活動を推進。</p>
-                </div>
+            <div class="sub-card">
+                <span class="rank-label" style="background:#2d3748;">部長</span>
+                <h3 class="is-size-5 has-text-weight-bold">栗田</h3>
+                <p class="is-size-7 has-text-grey">地域部 / 地域指導課長</p>
+                <hr style="margin: 10px 0;">
+                <p class="description">現場警察官への指導・育成および地域密着型の防犯活動を推進。</p>
             </div>
 
-            <div class="officer-card" style="border-right: 4px solid #3182ce;">
-                <div class="card-body">
-                    <span class="card-rank">巡査長 / 刑事部・広報課</span>
-                    <h3 class="card-name">みお</h3>
-                    <p class="card-dept">山口署および刑事部刑事課に所属。管理部広報課を兼務し、現場視点での広報活動を行う。</p>
-                </div>
+            <div class="sub-card pr-border">
+                <span class="rank-label" style="background:#718096;">巡査長</span>
+                <h3 class="is-size-5 has-text-weight-bold">みお</h3>
+                <p class="is-size-7 has-text-grey">山口署 / 刑事部 / 広報課</p>
+                <hr style="margin: 10px 0;">
+                <p class="description">刑事課に所属。広報課を兼務し、現場視点での広報活動を行う。</p>
             </div>
 
-            <div class="officer-card" style="border-right: 4px solid #3182ce;">
-                <div class="card-body">
-                    <span class="card-rank">巡査 / 地域部・広報課</span>
-                    <h3 class="card-name">isikawaaaa</h3>
-                    <p class="card-dept">山口署地域課および管理部に所属。広報課員として、SNSや広報誌を通じた情報発信を担当。</p>
-                </div>
+            <div class="sub-card pr-border">
+                <span class="rank-label" style="background:#718096;">巡査</span>
+                <h3 class="is-size-5 has-text-weight-bold">isikawaaaa</h3>
+                <p class="is-size-7 has-text-grey">山口署 / 地域課 / 広報課</p>
+                <hr style="margin: 10px 0;">
+                <p class="description">地域部および広報課に所属。SNSや広報誌を通じた情報発信を担当。</p>
             </div>
-
         </div>
     </main>
+
+    <footer style="background: #182b4b; color: white; text-align: center; padding: 20px; font-size: 0.8rem;">
+        &copy; 2026 大山県警察本部 (Roblox Virtual Group)
+    </footer>
+
+</body>
+</html>
