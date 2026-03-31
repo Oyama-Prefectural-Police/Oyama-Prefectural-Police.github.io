@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>人事公示 | 大山県警察本部</title>
+    <title>人事情報 | 大山県警察本部</title>
     <link rel="icon" href="ooyamapolice.webp" type="image/webp">
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -41,7 +41,7 @@
             color: #ffdd57 !important; 
         }
 
-        /* --- ヘッダー（人事公示用） --- */
+        /* --- ヘッダー（人事情報用） --- */
         .dept-header { background: #0f172a; color: white; padding: 50px 20px; text-align: center; border-bottom: 4px solid #1e293b; }
         .dept-title { font-family: 'Shippori Mincho', serif; font-size: 2.2rem; letter-spacing: 0.3rem; margin-bottom: 5px; }
         .dept-sub { font-size: 0.9rem; opacity: 0.8; letter-spacing: 0.1rem; }
@@ -60,7 +60,7 @@
         }
         .admin-trigger-area:hover { background-color: #f0f4f8; }
 
-        /* 公示カード（テキスト直接表示） */
+        /* カード（テキスト直接表示） */
         .personnel-card { 
             background: #fff; border: 1px solid #e2e8f0; padding: 25px; margin-bottom: 15px; 
             border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -98,13 +98,13 @@
     </nav>
 
     <header class="dept-header">
-        <h1 class="dept-title">人事公示</h1>
+        <h1 class="dept-title">人事情報</h1>
         <p class="dept-sub">PERSONNEL DIVISION</p>
     </header>
 
     <main class="main-container">
         <div class="board-header">
-            <h2 class="board-title">人事異動・公示情報一覧</h2>
+            <h2 class="board-title">人事異動・情報一覧</h2>
         </div>
 
         <div class="admin-trigger-area" onclick="openModal()">
@@ -124,7 +124,7 @@
             </header>
             <section class="modal-card-body">
                 <div class="field">
-                    <label class="label">公示タイトル</label>
+                    <label class="label">タイトル</label>
                     <input class="input" type="text" id="postTitle" placeholder="例：令和8年度 定期人事異動">
                 </div>
                 <div class="field">
@@ -137,7 +137,7 @@
                 </div>
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-link" id="submitBtn" style="background-color:#182b4b;">公示を実行</button>
+                <button class="button is-link" id="submitBtn" style="background-color:#182b4b;">実行</button>
                 <button class="button" onclick="closeModal()">キャンセル</button>
             </footer>
         </div>
@@ -195,7 +195,7 @@
                     <div class="personnel-card">
                         <div class="card-meta">
                             <span class="item-date">${item.date}</span>
-                            <span class="item-tag">人事公示</span>
+                            <span class="item-tag">人事情報</span>
                         </div>
                         <div class="item-title">${item.title}</div>
                         <div class="item-content">${item.content}</div>
