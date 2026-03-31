@@ -3,91 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>県内警察署一覧 | 大山県警察本部</title>
+    <title>車両・装備紹介 | 大山県警察本部</title>
     <link rel="icon" href="ooyamapolice.webp" type="image/webp">
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Noto Sans JP', sans-serif; background-color: white; color: #333; margin: 0; padding: 0; }
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f0f2f5; color: #333; }
+        .police-nav { background-color: #182b4b !important; min-height: 70px; }
+        .nav-item-custom { color: white !important; font-weight: bold; }
         
-        /* --- 共通ナビ --- */
-        .police-nav { background-color: #182b4b; min-height: 70px; padding: 0 30px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1400px; margin: 0 auto; }
-        .nav-brand { display: flex; align-items: center; }
-        .nav-logo-icon { height: 50px; width: auto; margin-right: 15px; }
-        .nav-menu { display: flex; align-items: center; }
-        .nav-item { color: white; text-decoration: none; padding: 10px 18px; font-size: 0.9rem; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.15); transition: 0.3s; }
-        .nav-item:last-child { border-right: none; }
-        .nav-item:hover { background-color: rgba(255, 255, 255, 0.1); color: #ffd700; text-decoration: none; }
+        .page-header { background: #fff; padding: 30px; text-align: center; border-bottom: 4px solid #182b4b; }
+        .page-title { font-family: 'Shippori Mincho', serif; font-size: 2rem; color: #182b4b; }
 
-        /* --- ヘッダー --- */
-        .dept-header { background: #f8fafc; color: #182b4b; padding: 60px 20px; text-align: center; border-bottom: 1px solid #e2e8f0; }
-        .dept-title { font-family: 'Shippori Mincho', serif; font-size: 2.2rem; font-weight: 700; letter-spacing: 0.3rem; }
-
-        /* --- メインコンテンツ --- */
-        .main-container { max-width: 900px; margin: 0 auto; padding: 80px 20px 150px; text-align: center; }
+        .main-content { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
         
-        /* 準備中表示のデザイン */
-        .maintenance-box { border: 2px solid #e2e8f0; padding: 60px 40px; background-color: #fcfcfc; }
-        .maintenance-title { font-family: 'Shippori Mincho', serif; font-size: 1.8rem; color: #182b4b; margin-bottom: 20px; font-weight: bold; }
-        .maintenance-text { font-size: 1.1rem; line-height: 2; color: #4b5563; margin-bottom: 40px; }
-        
-        /* 戻るボタン */
-        .btn-back { display: inline-block; background-color: #182b4b; color: white; padding: 12px 30px; text-decoration: none; font-weight: bold; border-radius: 4px; transition: 0.3s; }
-        .btn-back:hover { background-color: #2c5282; color: #ffd700; }
+        /* アコーディオン・部署セクション */
+        .dept-section { background: white; margin-bottom: 15px; border-radius: 4px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .dept-header { background: #182b4b; color: white; padding: 15px 20px; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .dept-header::after { content: '▼'; font-size: 0.8rem; }
+        .dept-header.is-active::after { content: '▲'; }
+        .dept-body { display: none; padding: 20px; }
+        .dept-body.is-open { display: block; }
 
-        @media (max-width: 768px) {
-            .nav-menu { display: none; }
-        }
+        /* 車両テーブル */
+        .vehicle-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        .vehicle-table th { background: #f8f9fa; color: #182b4b; border-bottom: 2px solid #182b4b; padding: 10px; text-align: left; }
+        .vehicle-table td { padding: 12px 10px; border-bottom: 1px solid #eee; vertical-align: middle; }
+        
+        /* 特殊ラベル */
+        .tag-spec { display: inline-block; padding: 2px 6px; font-size: 0.75rem; border-radius: 3px; margin-right: 5px; font-weight: bold; }
+        .tag-red { background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; } /* 赤灯系 */
+        .tag-blue { background: #e0f2fe; color: #0369a1; border: 1px solid #38bdf8; } /* 交通系 */
+        .tag-rare { background: #fef3c7; color: #92400e; border: 1px solid #fbbf24; } /* レア車両 */
+        .tag-dark { background: #374151; color: white; } /* 黒バイ・覆面 */
+
+        .cs-code { font-family: monospace; color: #d9534f; font-weight: bold; background: #fff5f5; padding: 2px 4px; }
     </style>
 </head>
 <body>
 
-    <nav class="police-nav">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="index.html"><img src="ooyamapolice.webp" alt="ロゴ" class="nav-logo-icon"></a>
+    <nav class="navbar police-nav">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="index.html"><img src="ooyamapolice.webp" alt="ロゴ" style="height:50px; margin: 10px;"></a>
+                <a role="button" class="navbar-burger" data-target="navMenu"><span></span><span></span><span></span></a>
             </div>
-            <div class="nav-menu">
-                <a href="about.html" class="nav-item">大山県警のご紹介</a>
-                <a href="safety.html" class="nav-item">安全・安心な暮らし</a>
-                <a href="traffic.html" class="nav-item">交通安全</a>
-                <a href="procedures.html" class="nav-item">各種申請・手続き</a>
-                <a href="contact.html" class="nav-item">ご相談窓口</a>
-                <a href="recruit.html" class="nav-item">採用案内</a>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a href="index.html" class="navbar-item nav-item-custom">トップ</a>
+                    <a href="about.html" class="navbar-item nav-item-custom">大山県警紹介</a>
+                    <a href="officers.html" class="navbar-item nav-item-custom">幹部紹介</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <header class="dept-header">
-        <h1 class="dept-title">県内警察署一覧</h1>
+    <header class="page-header">
+        <h1 class="page-title">車両・装備一覧</h1>
+        <p class="is-size-7 has-text-grey mt-2">大山県警察本部が保有する主要車両の配備状況です</p>
     </header>
 
-    <main class="main-container">
-        
-        <div class="maintenance-box">
-            <h2 class="maintenance-title">現在、情報を整理しています</h2>
-            <p class="maintenance-text">
-                大山県内の警察署一覧および管轄区域の情報については、<br>
-                現在、更新作業を行っております。<br>
-                公開まで、今しばらくお待ちください。
-            </p>
-            <a href="index.html" class="btn-back">トップページへ戻る</a>
+    <main class="main-content">
+
+        <div class="dept-section">
+            <div class="dept-header" onclick="toggleDept(this)">地域部（遊撃特別警ら隊・自動車警ら隊）</div>
+            <div class="dept-body">
+                <h3 class="subtitle is-6">■ 本部遊撃特別警ら隊</h3>
+                <table class="vehicle-table">
+                    <thead><tr><th>車種</th><th>呼出名称</th><th>備考・仕様</th></tr></thead>
+                    <tbody>
+                        <tr><td>インプレッサ</td><td class="cs-code">遊撃7</td><td><span class="tag-spec tag-red">昇降機</span> 広域警ら</td></tr>
+                        <tr><td>レガシィ</td><td class="cs-code">遊撃13, 15, 19</td><td><span class="tag-spec tag-red">昇降機</span> 専用仕様</td></tr>
+                        <tr><td>カムリ</td><td class="cs-code">遊撃74</td><td>バス警乗追尾対応</td></tr>
+                        <tr><td>コンフォード</td><td class="cs-code">遊撃92</td><td><span class="tag-spec tag-red">昇降機</span></td></tr>
+                        <tr><td>200系クラウン</td><td class="cs-code">遊撃97, 98</td><td></td></tr>
+                        <tr><td>210系クラウン</td><td class="cs-code">遊撃99</td><td></td></tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="subtitle is-6 mt-5">■ 本部自動車警ら隊</h3>
+                <table class="vehicle-table">
+                    <thead><tr><th>車種</th><th>呼出名称</th><th>備考・仕様</th></tr></thead>
+                    <tbody>
+                        <tr><td>170系クラウン</td><td class="cs-code">自ら182, 210</td><td><span class="tag-spec tag-red">昇降機</span></td></tr>
+                        <tr><td>180系クラウン</td><td class="cs-code">自ら212</td><td><span class="tag-spec tag-rare">★当署限定配備</span> <span class="tag-spec tag-red">昇降機</span></td></tr>
+                        <tr><td>200系クラウン</td><td class="cs-code">自ら213, 214</td><td><span class="tag-spec tag-red">昇降機</span></td></tr>
+                        <tr><td>210系クラウン</td><td class="cs-code">自ら216, 219</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <p style="margin-top: 40px; color: #94a3b8; font-size: 0.9rem;">
-            お急ぎの場合は、大山県警察までお問い合わせください。
-        </p>
+        <div class="dept-section">
+            <div class="dept-header" onclick="toggleDept(this)">交通部（交通機動隊・交通鑑識）</div>
+            <div class="dept-body">
+                <h3 class="subtitle is-6">■ 本部交通機動隊 (四輪)</h3>
+                <table class="vehicle-table">
+                    <thead><tr><th>車種</th><th>呼出名称</th><th>備考・仕様</th></tr></thead>
+                    <tbody>
+                        <tr><td>スカイライン</td><td class="cs-code">交機300, 301</td><td><span class="tag-spec tag-blue">レーダー搭載</span></td></tr>
+                        <tr><td>WRX</td><td class="cs-code">交機302</td><td><span class="tag-spec tag-dark">覆面</span></td></tr>
+                        <tr><td>210系アスリート</td><td class="cs-code">交機304</td><td>白黒 (昇降機なし)</td></tr>
+                        <tr><td>200系クラウン</td><td class="cs-code">交機307</td><td><span class="tag-spec tag-dark">覆面</span></td></tr>
+                    </tbody>
+                </table>
+
+                <h3 class="subtitle is-6 mt-5">■ 二輪部隊 (白バイ・黒バイ)</h3>
+                <table class="vehicle-table">
+                    <thead><tr><th>車種</th><th>呼出名称</th><th>備考・仕様</th></tr></thead>
+                    <tbody>
+                        <tr><td>GPZ900R</td><td class="cs-code">交機451</td><td>予備</td></tr>
+                        <tr><td>ニンジャ300</td><td class="cs-code">山岳452</td><td>山岳対策用</td></tr>
+                        <tr><td>FJR1300P / CB1300P</td><td class="cs-code">交機453-455</td><td>主力白バイ</td></tr>
+                        <tr><td>NT1100</td><td class="cs-code">交機456</td><td></td></tr>
+                        <tr><td>Gold Wing</td><td class="cs-code">特機467, 468</td><td>警護先導用 (通常使用不可)</td></tr>
+                        <tr><td>CB1300P 黒ヒョウ</td><td class="cs-code">黒ヒョウ476-479</td><td><span class="tag-spec tag-dark">黒バイ</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="dept-section">
+            <div class="dept-header" onclick="toggleDept(this)">刑事部（捜査一課・機動捜査隊）</div>
+            <div class="dept-body">
+                <h3 class="subtitle is-6">■ 本部機動捜査隊</h3>
+                <table class="vehicle-table">
+                    <thead><tr><th>車種</th><th>呼出名称</th><th>備考・仕様</th></tr></thead>
+                    <tbody>
+                        <tr><td>カムリ</td><td class="cs-code">機捜101 / 214</td><td>着脱式赤色灯</td></tr>
+                        <tr><td>インプレッサ</td><td class="cs-code">機捜105 / 225</td><td><span class="tag-spec tag-red">赤灯2個 (猫耳)</span></td></tr>
+                        <tr><td>WRX</td><td class="cs-code">機捜109 / 229</td><td>着脱式赤色灯</td></tr>
+                        <tr><td>210系クラウン</td><td class="cs-code">機捜116</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="dept-section">
+            <div class="dept-header" onclick="toggleDept(this)">銃器対策部・特殊部隊</div>
+            <div class="dept-body">
+                <table class="vehicle-table">
+                    <thead><tr><th>車種</th><th>呼出名称</th><th>備考・仕様</th></tr></thead>
+                    <tbody>
+                        <tr><td>特殊車両(防弾)</td><td class="cs-code">銃対820, 821</td><td>指揮官車 / 特指揮1-2</td></tr>
+                        <tr><td>ランクル (防弾)</td><td class="cs-code">銃対848</td><td>特2</td></tr>
+                        <tr><td>レガシィ銃対警備車</td><td class="cs-code">銃対847</td><td>特1</td></tr>
+                        <tr><td>ER初動車両</td><td class="cs-code">ER856, 891</td><td>特殊装備有 / 特3-4</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="dept-section">
+            <div class="dept-header" onclick="toggleDept(this)">警務部（幹部専用車・警護車）</div>
+            <div class="dept-body">
+                <table class="vehicle-table">
+                    <thead><tr><th>区分</th><th>呼出名称</th><th>CS / 役割</th></tr></thead>
+                    <tbody>
+                        <tr><td>高級幹部専用車</td><td class="cs-code">大山900, 901</td><td>賓客・委員会</td></tr>
+                        <tr><td>警護車</td><td class="cs-code">大山952</td><td><span class="tag-spec tag-dark">SC1 (先導)</span></td></tr>
+                        <tr><td>警護車</td><td class="cs-code">大山953, 954</td><td><span class="tag-spec tag-dark">SC2, SC3</span></td></tr>
+                        <tr><td>警護車</td><td class="cs-code">大山955</td><td><span class="tag-spec tag-dark">SC4 (後導)</span></td></tr>
+                        <tr><td>人員輸送車</td><td class="cs-code">大山970-975</td><td>大型輸送</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
     </main>
 
-    <footer class="footer has-background-dark has-text-white py-5">
-        <div class="content has-text-centered">
-            <p>&copy; 2026 大山県警察本部</p>
-        </div>
+    <footer class="footer has-background-dark has-text-white has-text-centered">
+        <p>&copy; 2026 大山県警察本部 装備課</p>
     </footer>
 
+    <script>
+        // アコーディオンの開閉処理
+        function toggleDept(header) {
+            header.classList.toggle('is-active');
+            const body = header.nextElementSibling;
+            body.classList.toggle('is-open');
+        }
+
+        // ハンバーガーメニュー
+        document.addEventListener('DOMContentLoaded', () => {
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            if ($navbarBurgers.length > 0) {
+                $navbarBurgers.forEach( el => {
+                    el.addEventListener('click', () => {
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
