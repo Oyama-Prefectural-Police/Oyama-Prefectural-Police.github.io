@@ -11,48 +11,20 @@
     
     <style>
         body { font-family: 'Noto Sans JP', sans-serif; background-color: #f8fafc; color: #333; margin: 0; padding: 0; }
-        
-        /* --- 共通ナビ --- */
         .police-nav { background-color: #182b4b; min-height: 70px; padding: 0 30px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1400px; margin: 0 auto; }
         .nav-brand { display: flex; align-items: center; }
         .nav-logo-icon { height: 50px; width: auto; margin-right: 15px; }
-        .nav-menu { display: flex; align-items: center; }
-        .nav-item { color: white; text-decoration: none; padding: 10px 18px; font-size: 0.9rem; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.15); transition: 0.3s; }
-        .nav-item:last-child { border-right: none; }
-        .nav-item:hover { background-color: rgba(255, 255, 255, 0.1); color: #ffd700; text-decoration: none; }
-
-        /* --- ヘッダー --- */
         .dept-header { background: white; color: #182b4b; padding: 50px 20px; text-align: center; border-bottom: 2px solid #182b4b; }
         .dept-title { font-family: 'Shippori Mincho', serif; font-size: 1.8rem; font-weight: 700; letter-spacing: 0.2rem; }
-        .dept-subtitle { margin-top: 10px; color: #64748b; font-weight: bold; font-size: 1rem; }
-
-        /* --- メインコンテンツ --- */
         .main-container { max-width: 800px; margin: 0 auto; padding: 40px 20px 100px; }
-        
         .form-wrapper { background: white; border: 1px solid #e2e8f0; padding: 40px; border-radius: 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        
-        .form-intro { font-size: 0.95rem; line-height: 1.8; color: #4a5568; margin-bottom: 30px; padding-bottom: 25px; border-bottom: 1px dashed #cbd5e1; }
-
-        /* フォーム要素 */
         .field-label { font-weight: bold; font-size: 1rem; color: #182b4b; margin-bottom: 8px; display: block; }
         .required-tag { background: #c53030; color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 2px; margin-left: 8px; vertical-align: middle; }
-        
-        .input-box, .textarea-box { width: 100%; border: 1px solid #cbd5e1; padding: 12px; border-radius: 4px; font-size: 1rem; margin-bottom: 25px; outline: none; transition: 0.2s; }
-        .input-box:focus, .textarea-box:focus { border-color: #182b4b; box-shadow: 0 0 0 3px rgba(24, 43, 75, 0.1); }
-
+        .input-box, .textarea-box { width: 100%; border: 1px solid #cbd5e1; padding: 12px; border-radius: 4px; font-size: 1rem; margin-bottom: 25px; outline: none; }
         .btn-submit { background-color: #182b4b; color: white; width: 100%; padding: 18px; font-weight: bold; border: none; border-radius: 4px; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
-        .btn-submit:hover { background-color: #2c5282; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-
-        /* 免責事項 */
+        .btn-submit:disabled { background-color: #94a3b8; cursor: not-allowed; }
         .rp-disclaimer { margin-top: 50px; padding: 25px; background-color: #fff5f5; border: 1px solid #feb2b2; text-align: center; }
-        .rp-disclaimer h4 { color: #c53030; font-weight: bold; margin-bottom: 10px; }
-        .rp-disclaimer p { font-size: 0.85rem; color: #742a2a; line-height: 1.7; }
-
-        @media (max-width: 768px) {
-            .nav-menu { display: none; }
-            .form-wrapper { padding: 25px 20px; }
-        }
     </style>
 </head>
 <body>
@@ -62,70 +34,134 @@
             <div class="nav-brand">
                 <a href="index.html"><img src="ooyamapolice.webp" alt="ロゴ" class="nav-logo-icon"></a>
             </div>
-            <div class="nav-menu">
-                <a href="about.html" class="nav-item">大山県警のご紹介</a>
-                <a href="safety.html" class="nav-item">安全・安心な暮らし</a>
-                <a href="traffic.html" class="nav-item">交通安全</a>
-                <a href="procedures.html" class="nav-item">各種申請・手続き</a>
-                <a href="contact.html" class="nav-item">ご相談窓口</a>
-                <a href="recruit.html" class="nav-item">採用案内</a>
-            </div>
         </div>
     </nav>
 
     <header class="dept-header">
         <h1 class="dept-title">職員の職務執行に関する苦情・ご意見</h1>
-        <p class="dept-subtitle">管理部 監察課</p>
+        <p style="color: #64748b; font-weight: bold;">管理部 監察課</p>
     </header>
 
     <main class="main-container">
-
         <div class="form-wrapper">
-            <div class="form-intro">
-                大山県警察職員の職務執行における不適切な対応、言動、または警察業務全般に関する改善要望を受け付けています。<br>
-                お寄せいただいた内容は、管理部監察課にて調査を行い、適正に処理させていただきます。
-            </div>
-
-            <form action="#">
+            <form id="reportForm">
                 <label class="field-label">お名前（Robloxユーザー名等） <span class="required-tag">必須</span></label>
-                <input type="text" class="input-box" placeholder="例：Oyama_Taro">
+                <input type="text" id="formName" class="input-box" required placeholder="例：Oyama_Taro">
 
-                <label class="field-label">ご連絡先（Discord ID等） <span class="required-tag">必須</span></label>
-                <input type="text" class="input-box" placeholder="例：oyama#1234">
+                <label class="field-label">メールアドレス または Discord ID <span class="required-tag">必須</span></label>
+                <input type="text" id="formContact" class="input-box" required placeholder="連絡の取れるメアド、またはDiscord IDを入力">
 
                 <label class="field-label">事案発生日時・場所</label>
-                <input type="text" class="input-box" placeholder="例：2026/03/31 15:00頃 大山警察署前">
+                <input type="text" id="formDateTime" class="input-box" placeholder="例：2026/03/31 15:00頃 大山警察署前">
 
-                <label class="field-label">対象の職員名・部署（不明な場合は空欄可）</label>
-                <input type="text" class="input-box" placeholder="例：交通課 巡査部長 ○○">
+                <label class="field-label">対象の職員名・部署</label>
+                <input type="text" id="formTarget" class="input-box" placeholder="例：交通課 巡査部長 ○○">
 
                 <label class="field-label">内容詳細 <span class="required-tag">必須</span></label>
-                <textarea class="textarea-box" rows="8" placeholder="具体的な状況をできるだけ詳しくご記入ください"></textarea>
+                <textarea id="formContent" class="textarea-box" rows="8" required placeholder="具体的な状況をご記入ください"></textarea>
 
-                <button type="button" class="btn-submit">上記の内容で送信する（確認画面へ）</button>
+                <button type="submit" id="submitBtn" class="btn-submit">送信する</button>
+                <p id="statusMsg" style="margin-top:15px; text-align:center; font-weight:bold;"></p>
             </form>
-
-            <p style="margin-top: 25px; font-size: 0.85rem; color: #718096; line-height: 1.6;">
-                ※送信いただいた内容は、管理部監察課の担当職員のみが閲覧し、プライバシーは厳守されます。虚偽の報告や嫌がらせ目的の投稿はご遠慮ください。
-            </p>
         </div>
 
-        <section class="rp-disclaimer">
-            <h4>【重要なお知らせ】</h4>
-            <p>
-                当窓口は、<strong>Roblox上の仮想警察組織（ロールプレイグループ）</strong>における活動を対象としたものです。<br>
-                実在の警察官や行政機関に対する苦情、および現実世界での事件・事故の報告は一切受け付けておりません。<br>
-                現実のトラブルについては、必ず<strong>実在する各都道府県警察の窓口</strong>へお問い合わせください。
-            </p>
+        <hr style="margin: 50px 0;">
+        <section id="adminSection" style="text-align: center;">
+            <button id="showDataBtn" class="button is-ghost" style="color: #64748b;">＋ 過去の相談内容を表示する（管理者用）</button>
+            <div id="pwArea" style="display: none; max-width: 300px; margin: 20px auto;">
+                <input type="password" id="adminPw" class="input is-small mb-2" placeholder="合言葉を入力">
+                <button onclick="unlockData()" class="button is-small is-dark is-fullwidth">認証</button>
+            </div>
+            <div id="adminDataList" style="display: none; margin-top: 30px; text-align: left; background: #fff; border: 1px solid #e2e8f0; padding: 20px;">
+                <h3 class="title is-5" style="border-bottom: 2px solid #182b4b; padding-bottom: 10px;">受信データ一覧</h3>
+                <div id="listContents"></div>
+            </div>
         </section>
 
+        <section class="rp-disclaimer">
+            <h4 style="color: #c53030; font-weight: bold; margin-bottom: 10px;">【重要なお知らせ】</h4>
+            <p style="font-size: 0.85rem; color: #742a2a; line-height: 1.7;">
+                当窓口は、Roblox上の仮想警察組織における活動を対象としたものです。実在の警察組織とは関係ありません。現実のトラブルは実際の警察（110番等）へご相談ください。
+            </p>
+        </section>
     </main>
 
-    <footer class="footer has-background-dark has-text-white py-5">
-        <div class="content has-text-centered">
-            <p>&copy; 2026 大山県警察 (Roblox Virtual Group)</p>
-        </div>
-    </footer>
+    <script>
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbwDJi_4Huoga8NySs2ihDyuh7KIGEefyPuQSkq5DJpGXN5rrjsr-YFi4l0RPVLbOxEw/exec";
+        const ADMIN_PW = "oyama2026"; // 必要に応じて変更してください
 
+        // --- 送信処理 ---
+        document.getElementById('reportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const msg = document.getElementById('statusMsg');
+            
+            const data = {
+                name: document.getElementById('formName').value,
+                contact: document.getElementById('formContact').value,
+                datetime: document.getElementById('formDateTime').value,
+                target: document.getElementById('formTarget').value,
+                content: document.getElementById('formContent').value
+            };
+
+            btn.disabled = true;
+            btn.innerText = "送信中...";
+
+            fetch(GAS_URL, {
+                method: "POST",
+                body: JSON.stringify(data)
+            })
+            .then(res => {
+                msg.innerText = "送信が完了しました。";
+                msg.style.color = "#16a34a";
+                let timeLeft = 180; // 3分間タイムアウト
+                const timer = setInterval(() => {
+                    timeLeft--;
+                    btn.innerText = `再送信まであと ${timeLeft} 秒`;
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        btn.disabled = false;
+                        btn.innerText = "送信する";
+                    }
+                }, 1000);
+            })
+            .catch(err => {
+                msg.innerText = "送信エラー。時間を置いて再度お試しください。";
+                msg.style.color = "#c53030";
+                btn.disabled = false;
+                btn.innerText = "送信する";
+            });
+        });
+
+        // --- 管理者表示処理 ---
+        document.getElementById('showDataBtn').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('pwArea').style.display = 'block';
+        });
+
+        function unlockData() {
+            if (document.getElementById('adminPw').value === ADMIN_PW) {
+                document.getElementById('pwArea').style.display = 'none';
+                document.getElementById('adminDataList').style.display = 'block';
+                fetchData();
+            } else { alert("合言葉が違います。"); }
+        }
+
+        function fetchData() {
+            const container = document.getElementById('listContents');
+            container.innerHTML = "読み込み中...";
+            fetch(GAS_URL).then(res => res.json()).then(data => {
+                container.innerHTML = "";
+                data.reverse().forEach(item => {
+                    container.insertAdjacentHTML('beforeend', `
+                        <div style="border-bottom: 1px solid #edf2f7; padding: 10px 0; font-size: 0.9rem;">
+                            <div style="color: #718096; font-size: 0.7rem;">受信: ${item.timestamp} | 送信者: ${item.name} (${item.contact})</div>
+                            <div><strong>内容:</strong> ${item.content}</div>
+                        </div>
+                    `);
+                });
+            });
+        }
+    </script>
 </body>
 </html>
