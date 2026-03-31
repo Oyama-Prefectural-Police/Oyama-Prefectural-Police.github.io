@@ -10,156 +10,166 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f4f7f9; color: #333; margin: 0; padding: 0; }
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f4f7f9; color: #333; margin: 0; }
         
-        /* --- トップバーのデザイン --- */
-        .police-nav { background-color: #182b4b; min-height: 70px; padding: 0 30px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1200px; margin: 0 auto; }
-        .nav-brand img { height: 50px; width: auto; }
-        .nav-menu { display: flex; gap: 10px; }
-        .nav-item { color: white; text-decoration: none; padding: 8px 15px; font-size: 0.85rem; font-weight: bold; transition: 0.3s; border-radius: 4px; }
-        .nav-item:hover { background-color: rgba(255, 255, 255, 0.1); color: #ffd700; }
+        /* --- トップバー (indexと共通) --- */
+        .police-nav { background-color: #182b4b !important; min-height: 70px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .navbar-brand { min-height: 70px; display: flex; align-items: center; padding: 0 20px; }
+        .nav-logo-icon { height: 50px; width: auto; }
+        .navbar-burger { color: white !important; height: 70px !important; width: 70px !important; }
+        .navbar-menu { background-color: #182b4b !important; }
+        .nav-item-custom { color: white !important; font-size: 0.9rem; font-weight: bold; padding: 15px 20px; display: flex; align-items: center; transition: 0.3s; }
+        .nav-item-custom:hover { background-color: rgba(255,255,255,0.1) !important; color: #ffdd57 !important; }
 
         /* --- ヘッダー --- */
         .page-header { background: white; padding: 40px 20px; text-align: center; border-bottom: 3px solid #182b4b; margin-bottom: 40px; }
         .page-title { font-family: 'Shippori Mincho', serif; font-size: 2.2rem; font-weight: 700; color: #182b4b; letter-spacing: 0.3rem; }
 
-        /* --- コンテンツ配置 --- */
+        /* --- コンテンツ --- */
         .main-content { max-width: 1100px; margin: 0 auto; padding: 0 20px 100px; }
+        .section-title { font-family: 'Shippori Mincho', serif; font-size: 1.5rem; border-left: 5px solid #182b4b; padding-left: 15px; margin: 40px 0 20px; color: #182b4b; }
         
-        /* 最高幹部カード */
-        .top-card { background: white; border: 1px solid #d1d5db; border-left: 8px solid #ffd700; padding: 30px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .rank-label { display: inline-block; background: #182b4b; color: white; padding: 3px 10px; font-size: 0.75rem; font-weight: bold; margin-bottom: 10px; }
-        .officer-name { font-family: 'Shippori Mincho', serif; font-size: 1.8rem; font-weight: bold; color: #182b4b; margin-bottom: 10px; }
-        .description { line-height: 1.8; color: #4b5563; font-size: 0.95rem; }
-
-        /* 幹部グリッド */
-        .officer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-        .sub-card { background: white; border: 1px solid #e5e7eb; padding: 25px; transition: 0.3s; border-top: 4px solid #182b4b; }
-        .sub-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .pr-border { border-right: 5px solid #3182ce; } /* 広報係の目印 */
-
-        @media (max-width: 768px) { .nav-menu { display: none; } }
+        /* カードデザイン */
+        .top-card { background: white; border-left: 8px solid #ffd700; padding: 30px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .sub-card { background: white; border-top: 4px solid #182b4b; padding: 25px; height: 100%; transition: 0.3s; }
+        .pr-card { border-top: 4px solid #3182ce; background: #f0f7ff; } /* 広報用カラー */
+        
+        .rank-label { display: inline-block; background: #182b4b; color: white; padding: 3px 10px; font-size: 0.75rem; font-weight: bold; margin-bottom: 10px; border-radius: 2px; }
+        .officer-name { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: bold; color: #182b4b; margin-bottom: 5px; }
+        .dept-text { font-size: 0.85rem; color: #666; margin-bottom: 15px; font-weight: bold; }
+        .description { line-height: 1.7; color: #4b5563; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-    <nav class="police-nav">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="index.html"><img src="ooyamapolice.webp" alt="大山県警ロゴ"></a>
+    <nav class="navbar police-nav">
+        <div class="container" style="max-width: 1400px;">
+            <div class="navbar-brand">
+                <a href="index.html"><img src="ooyamapolice.webp" alt="ロゴ" class="nav-logo-icon"></a>
+                <a role="button" class="navbar-burger" data-target="navMenu">
+                    <span></span><span></span><span></span>
+                </a>
             </div>
-            <div class="nav-menu">
-                <a href="index.html" class="nav-item">トップ</a>
-                <a href="about.html" class="nav-item">県警紹介</a>
-                <a href="officers.html" class="nav-item">幹部紹介</a>
-                <a href="report.html" class="nav-item">ご相談窓口</a>
-                <a href="recruit.html" class="nav-item">採用案内</a>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a href="about.html" class="navbar-item nav-item-custom">大山県警のご紹介</a>
+                    <a href="safety.html" class="navbar-item nav-item-custom">安全・安心な暮らし</a>
+                    <a href="traffic.html" class="navbar-item nav-item-custom">交通安全</a>
+                    <a href="procedures.html" class="navbar-item nav-item-custom">各種申請・手続き</a>
+                    <a href="contact.html" class="navbar-item nav-item-custom">ご相談窓口</a>
+                    <a href="recruit.html" class="navbar-item nav-item-custom">採用案内</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <header class="page-header">
-        <h1 class="page-title">幹部職員紹介</h1>
+        <h1 class="page-title">幹部・担当職員紹介</h1>
     </header>
 
     <main class="main-content">
-        
         <div class="columns is-multiline">
             <div class="column is-6">
                 <div class="top-card">
                     <span class="rank-label">公安委員 / 教養部長</span>
                     <h2 class="officer-name">ika012359</h2>
-                    <p class="description">大山県警察の所有者（Co-Owner）。公安委員として組織の適正な運営を監視するとともに、教養部長として全職員の規律と技術向上を統括する。</p>
+                    <p class="dept-text">大山県警察 所有者</p>
+                    <p class="description">教養部長として全職員の規律と技術向上を統括。組織の適正な運営を監視する重責を担う。</p>
                 </div>
             </div>
             <div class="column is-6">
                 <div class="top-card">
                     <span class="rank-label">警視監 / 大山本部長</span>
                     <h2 class="officer-name">soso</h2>
-                    <p class="description">大山県警察の最高責任者。本部長として県警全域の指揮を執り、安全・安心な県民生活の実現に向けた全業務を総括する。</p>
+                    <p class="dept-text">大山県警察 最高責任者</p>
+                    <p class="description">本部長として県警全域の指揮を執る。行政および警備運営の全てを総括し、県民の安全を守る。</p>
                 </div>
             </div>
         </div>
 
-        <div class="officer-grid">
-            <div class="sub-card">
-                <span class="rank-label" style="background:#4a5568;">警視</span>
-                <h3 class="is-size-5 has-text-weight-bold">かいと</h3>
-                <p class="is-size-7 has-text-grey">刑事部長 / 教養部・教養課</p>
-                <hr style="margin: 10px 0;">
-                <p class="description">刑事部長として県内の重要事案捜査を指揮。教養部を兼務し、捜査スキルの教養を担う。</p>
+        <h2 class="section-title">幹部職員 (警視以上)</h2>
+        <div class="columns is-multiline">
+            <div class="column is-4">
+                <div class="sub-card">
+                    <span class="rank-label">警視</span>
+                    <h3 class="officer-name is-size-5">かいと</h3>
+                    <p class="dept-text">刑事部長 / 教養部</p>
+                    <p class="description">刑事部のトップとして重要事件の捜査を指揮。教養部を兼務し、若手の捜査能力向上を図る。</p>
+                </div>
             </div>
-
-            <div class="sub-card">
-                <span class="rank-label" style="background:#4a5568;">警視</span>
-                <h3 class="is-size-5 has-text-weight-bold">Yooyt</h3>
-                <p class="is-size-7 has-text-grey">警務部長 / 教養部・教養課</p>
-                <hr style="margin: 10px 0;">
-                <p class="description">警務部長として組織基盤を管理。職員の育成・評価を統括する。</p>
+            <div class="column is-4">
+                <div class="sub-card">
+                    <span class="rank-label">警視</span>
+                    <h3 class="officer-name is-size-5">Yooyt</h3>
+                    <p class="dept-text">警務部長 / 教養部</p>
+                    <p class="description">警務部長として人事を統括。組織の基盤となる管理業務と職員教育を指揮する。</p>
+                </div>
             </div>
-
-            <div class="sub-card pr-border">
-                <span class="rank-label" style="background:#4a5568;">警視</span>
-                <h3 class="is-size-5 has-text-weight-bold">Kojirou07255963</h3>
-                <p class="is-size-7 has-text-grey">銃器対策部長 / 管理部 / 広報課</p>
-                <hr style="margin: 10px 0;">
-                <p class="description">銃器対策および管理部を統括。広報課員として、組織の活動を広く伝える役割を担う。</p>
+            <div class="column is-4">
+                <div class="sub-card" style="border-right: 5px solid #3182ce;">
+                    <span class="rank-label">警視</span>
+                    <h3 class="officer-name is-size-5">Kojirou07255963</h3>
+                    <p class="dept-text">銃器対策部長 / 管理部 / 広報課</p>
+                    <p class="description">銃対部長として特殊事案に対処。広報課員として組織の活動を広く伝える役割も担う。</p>
+                </div>
             </div>
-
-            <div class="sub-card">
-                <span class="rank-label" style="background:#4a5568;">警視</span>
-                <h3 class="is-size-5 has-text-weight-bold">inksans25200</h3>
-                <p class="is-size-7 has-text-grey">交通部長 / 第一方面機動捜査隊長</p>
-                <hr style="margin: 10px 0;">
-                <p class="description">交通安全を推進。機動捜査隊長として初動捜査の指揮も執る。</p>
+            <div class="column is-4">
+                <div class="sub-card">
+                    <span class="rank-label">警視</span>
+                    <h3 class="officer-name is-size-5">inksans25200</h3>
+                    <p class="dept-text">交通部長 / 第一方面機動捜査隊長</p>
+                    <p class="description">交通秩序の維持と、機動的な初動捜査の両面で指揮を執る実力派幹部。</p>
+                </div>
             </div>
-
-            <div class="sub-card">
-                <span class="rank-label" style="background:#b82c2c;">警視正</span>
-                <h3 class="is-size-5 has-text-weight-bold">Gapao_Rice</h3>
-                <p class="is-size-7 has-text-grey">地域部 / 自動車警ら隊長</p>
-                <hr style="margin: 10px 0;">
-                <p class="description">自ら隊の責任者。パトカーによる警ら活動を統括し、治安維持の最前線を指揮する。</p>
+            <div class="column is-4">
+                <div class="sub-card">
+                    <span class="rank-label">警視正</span>
+                    <h3 class="officer-name is-size-5">YAMA</h3>
+                    <p class="dept-text">装備部 / 運営</p>
+                    <p class="description">警視正として装備資機材の管理を統括。運営メンバーとして組織のインフラを支える。</p>
+                </div>
             </div>
+        </div>
 
-            <div class="sub-card">
-                <span class="rank-label" style="background:#b82c2c;">警視正</span>
-                <h3 class="is-size-5 has-text-weight-bold">1chococorone</h3>
-                <p class="is-size-7 has-text-grey">教養部副部長 / 第二方面機動捜査隊長</p>
-                <hr style="margin: 10px 0;">
-                <p class="description">教養部副部長として部長を補佐。広域的な捜査網を展開する。</p>
+        <h2 class="section-title">広報担当職員</h2>
+        <div class="columns is-multiline">
+            <div class="column is-6">
+                <div class="sub-card pr-card">
+                    <span class="rank-label" style="background:#3182ce;">巡査長</span>
+                    <h3 class="officer-name is-size-5">みお</h3>
+                    <p class="dept-text">刑事部刑事課 / 管理部広報課</p>
+                    <p class="description">刑事としての現場経験を活かし、広報課員としてリアリティのある情報発信を行う。</p>
+                </div>
             </div>
-
-            <div class="sub-card">
-                <span class="rank-label" style="background:#2d3748;">部長</span>
-                <h3 class="is-size-5 has-text-weight-bold">栗田</h3>
-                <p class="is-size-7 has-text-grey">地域部 / 地域指導課長</p>
-                <hr style="margin: 10px 0;">
-                <p class="description">現場警察官への指導・育成および地域密着型の防犯活動を推進。</p>
-            </div>
-
-            <div class="sub-card pr-border">
-                <span class="rank-label" style="background:#718096;">巡査長</span>
-                <h3 class="is-size-5 has-text-weight-bold">みお</h3>
-                <p class="is-size-7 has-text-grey">山口署 / 刑事部 / 広報課</p>
-                <hr style="margin: 10px 0;">
-                <p class="description">刑事課に所属。広報課を兼務し、現場視点での広報活動を行う。</p>
-            </div>
-
-            <div class="sub-card pr-border">
-                <span class="rank-label" style="background:#718096;">巡査</span>
-                <h3 class="is-size-5 has-text-weight-bold">isikawaaaa</h3>
-                <p class="is-size-7 has-text-grey">山口署 / 地域課 / 広報課</p>
-                <hr style="margin: 10px 0;">
-                <p class="description">地域部および広報課に所属。SNSや広報誌を通じた情報発信を担当。</p>
+            <div class="column is-6">
+                <div class="sub-card pr-card">
+                    <span class="rank-label" style="background:#3182ce;">巡査長</span>
+                    <h3 class="officer-name is-size-5">ishikawaaaaa</h3>
+                    <p class="dept-text">地域部地域課 / 管理部広報課</p>
+                    <p class="description">山口署地域課に所属。広報担当として県民と警察を繋ぐ架け橋となる活動に従事。</p>
+                </div>
             </div>
         </div>
     </main>
 
     <footer style="background: #182b4b; color: white; text-align: center; padding: 20px; font-size: 0.8rem;">
-        &copy; 2026 大山県警察本部 (Roblox Virtual Group)
+        &copy; 2026 大山県警察本部
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            if ($navbarBurgers.length > 0) {
+                $navbarBurgers.forEach( el => {
+                    el.addEventListener('click', () => {
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
