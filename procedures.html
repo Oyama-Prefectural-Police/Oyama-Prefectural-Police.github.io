@@ -33,20 +33,15 @@
         .guidance-box { background: #f1f5f9; padding: 25px; border-radius: 2px; margin-bottom: 40px; border-left: 5px solid #182b4b; }
         .guidance-text { font-size: 0.95rem; line-height: 1.8; color: #1e293b; }
 
-        /* リスト（クリックで警察署一覧へ） */
+        /* リスト（クリック不可・装飾排除） */
         .proc-list { border-top: 2px solid #182b4b; }
-        .proc-item { display: block; padding: 35px 15px; border-bottom: 1px solid #e2e8f0; text-decoration: none; color: inherit; transition: 0.2s; position: relative; }
-        .proc-item:hover { background-color: #f9fafb; }
-        .proc-item:hover .item-title { color: #2563eb; text-decoration: underline; }
+        .proc-item { display: block; padding: 35px 15px; border-bottom: 1px solid #e2e8f0; color: inherit; }
         
         .item-title { font-size: 1.4rem; font-weight: 700; color: #182b4b; margin-bottom: 12px; display: block; }
-        .item-desc { font-size: 1rem; color: #4b5563; line-height: 1.7; margin-bottom: 15px; padding-right: 30px; }
+        .item-desc { font-size: 1rem; color: #4b5563; line-height: 1.7; margin-bottom: 15px; }
         
         /* 窓口案内タグ */
         .window-info { display: inline-block; background: #e2e8f0; color: #475569; font-size: 0.85rem; padding: 4px 12px; border-radius: 2px; font-weight: bold; }
-
-        /* 右側の矢印 */
-        .item-arrow { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #cbd5e1; font-size: 1.5rem; }
 
         /* 下部案内 */
         .footer-guidance { margin-top: 80px; padding: 40px; border: 2px solid #182b4b; text-align: center; background-color: #f8fafc; }
@@ -57,7 +52,6 @@
         @media (max-width: 768px) {
             .nav-menu { display: none; }
             .item-title { font-size: 1.2rem; }
-            .item-arrow { display: none; }
         }
     </style>
 </head>
@@ -88,53 +82,47 @@
         <div class="guidance-box">
             <p class="guidance-text">
                 各手続きの必要書類、受付時間、手数料等の詳細については、<strong>管轄の警察署窓口</strong>へお問い合わせください。<br>
-                項目を選択すると、県内の警察署一覧ページへ移動します。
+                県内の警察署の所在地や連絡先は、ページ下部の「県内警察署一覧」よりご確認いただけます。
             </p>
         </div>
 
         <div class="proc-list">
             
-            <a href="about.html#stations" class="proc-item">
+            <div class="proc-item">
                 <span class="item-title">車庫証明・自動車関連の手続き</span>
                 <p class="item-desc">自動車保管場所証明の申請、保管場所届出など。車庫の場所を管轄する警察署が窓口です。</p>
                 <span class="window-info">窓口：各警察署 交通課</span>
-                <span class="item-arrow">›</span>
-            </a>
+            </div>
 
-            <a href="about.html#stations" class="proc-item">
+            <div class="proc-item">
                 <span class="item-title">道路使用許可の申請</span>
                 <p class="item-desc">工事、作業、行事開催など。当該道路を管轄する警察署にて申請を受け付けています。</p>
                 <span class="window-info">窓口：各警察署 交通課</span>
-                <span class="item-arrow">›</span>
-            </a>
+            </div>
 
-            <a href="about.html#stations" class="proc-item">
+            <div class="proc-item">
                 <span class="item-title">遺失物（落とし物・忘れ物）の手続き</span>
                 <p class="item-desc">落とし物をした際や拾った際の届出。最寄りの警察署または交番・駐在所へお越しください。</p>
                 <span class="window-info">窓口：最寄りの警察署・交番</span>
-                <span class="item-arrow">›</span>
-            </a>
+            </div>
 
-            <a href="about.html#stations" class="proc-item">
+            <div class="proc-item">
                 <span class="item-title">古物営業・風俗営業等の許可申請</span>
                 <p class="item-desc">古物商、飲食店、営業許可など。営業所の所在地を管轄する警察署が窓口です。</p>
                 <span class="window-info">窓口：各警察署 生活安全課</span>
-                <span class="item-arrow">›</span>
-            </a>
+            </div>
 
-            <a href="about.html#stations" class="proc-item">
+            <div class="proc-item">
                 <span class="item-title">銃砲刀剣類・火薬類等の所持許可</span>
                 <p class="item-desc">猟銃・空気銃の所持、火薬類の譲受申請など。住所地を管轄する警察署へご相談ください。</p>
                 <span class="window-info">窓口：各警察署 生活安全課</span>
-                <span class="item-arrow">›</span>
-            </a>
+            </div>
 
-            <a href="about.html#stations" class="proc-item">
+            <div class="proc-item">
                 <span class="item-title">情報公開・個人情報開示の手続き</span>
                 <p class="item-desc">警察保有情報の公開、個人情報の開示請求。警察本部または各警察署にて受け付けています。</p>
                 <span class="window-info">窓口：警察本部・各警察署 警務課</span>
-                <span class="item-arrow">›</span>
-            </a>
+            </div>
 
         </div>
 
@@ -142,7 +130,7 @@
             <h2>管轄の警察署をお探しの方</h2>
             <p style="line-height: 1.8; margin-bottom: 30px;">
                 大山県内の警察署の所在地、電話番号、管轄区域については<br>
-                「警察署一覧」よりご確認いただけます。
+                以下の「警察署一覧」よりご確認いただけます。
             </p>
             <a href="stations.html" class="btn-station-list">県内警察署一覧を表示する</a>
         </section>
