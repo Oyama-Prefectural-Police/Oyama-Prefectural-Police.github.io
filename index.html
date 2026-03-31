@@ -12,40 +12,42 @@
     <style>
         body { font-family: 'Noto Sans JP', sans-serif; background-color: #ffffff; margin: 0; color: #333; line-height: 1.6; }
         
-        /* --- 固定トップバー --- */
+        /* --- 固定トップバー (Bulma Navbar 拡張) --- */
         .police-nav { 
-            background-color: #182b4b; 
+            background-color: #182b4b !important; 
             min-height: 70px; 
-            padding: 0 30px; 
             position: sticky; 
             top: 0; 
             z-index: 1000; 
-            display: flex;
-            align-items: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
-        .nav-container { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            width: 100%;
-            max-width: 1400px; 
-            margin: 0 auto; 
-        }
-        .nav-brand { display: flex; align-items: center; flex-shrink: 0; }
-        .nav-logo-icon { height: 55px; width: auto; margin-right: 15px; }
         
-        .nav-menu { display: flex; align-items: center; }
-        .nav-item { 
-            color: white; 
-            text-decoration: none; 
-            padding: 10px 15px; 
+        .navbar-brand { min-height: 70px; display: flex; align-items: center; padding: 0 20px; }
+        .nav-logo-icon { height: 50px; width: auto; }
+        
+        /* ハンバーガーメニュー (スマホ用三本線) */
+        .navbar-burger { color: white !important; height: 70px !important; width: 70px !important; }
+        .navbar-burger:hover { background-color: rgba(255,255,255,0.1) !important; }
+
+        /* メニュー項目 */
+        .navbar-menu { background-color: #182b4b !important; } /* スマホ展開時の背景 */
+        .nav-item-custom { 
+            color: white !important; 
             font-size: 0.9rem; 
             font-weight: bold; 
-            border-right: 1px solid rgba(255,255,255,0.2); 
+            padding: 15px 20px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
         }
-        .nav-item:hover { background-color: rgba(255,255,255,0.1); color: #ffdd57; }
-        .nav-item:last-child { border-right: none; }
+        
+        @media (min-width: 1024px) {
+            .nav-item-custom { 
+                border-right: 1px solid rgba(255,255,255,0.2); 
+            }
+            .nav-item-custom:last-child { border-right: none; }
+        }
+        .nav-item-custom:hover { background-color: rgba(255,255,255,0.1) !important; color: #ffdd57 !important; }
 
         /* --- ヒーロー画像 --- */
         .main-hero { 
@@ -83,19 +85,15 @@
         .delete-btn { position: absolute; top: 12px; right: 12px; color: #ddd; cursor: pointer; border: none; background: none; font-size: 1.2rem; }
 
         /* --- 目的別メニュー --- */
-        .main-content { max-width: 1200px; margin: 40px auto; display: flex; gap: 25px; padding: 0 15px; flex-direction: column; }
-        @media (min-width: 769px) { .main-content { flex-direction: row; } }
-
-        .menu-grid { flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        @media (min-width: 480px) { .menu-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (min-width: 1024px) { .menu-grid { grid-template-columns: repeat(4, 1fr); } }
+        .main-content { max-width: 1200px; margin: 40px auto; padding: 0 15px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
         
         .menu-card { 
             border: 1px solid #eee; 
             background: #fff; 
             padding: 20px 10px; 
             text-align: center; 
-            text-decoration: none; 
+            text-decoration: none !important;
             color: #333; 
             font-weight: bold; 
             font-size: 0.9rem; 
@@ -111,30 +109,32 @@
 
         /* モーダル */
         .modal-card { width: 95%; max-width: 500px; }
-        
-        @media (max-width: 1024px) {
-            .nav-container { flex-direction: column; padding: 10px 0; }
-            .nav-menu { margin-top: 10px; flex-wrap: wrap; justify-content: center; }
-            .nav-item { border: none; font-size: 0.8rem; }
-        }
     </style>
 </head>
 <body>
 
-    <nav class="police-nav">
-        <div class="nav-container">
-            <div class="nav-brand">
+    <nav class="navbar police-nav" role="navigation" aria-label="main navigation">
+        <div class="container" style="max-width: 1400px;">
+            <div class="navbar-brand">
                 <a href="index.html">
                     <img src="ooyamapolice.webp" alt="大山県警ロゴ" class="nav-logo-icon">
                 </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="policeNavbar">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
             </div>
-            <div class="nav-menu">
-                <a href="about.html" class="nav-item">大山県警のご紹介</a>
-                <a href="safety.html" class="nav-item">安全・安心な暮らし</a>
-                <a href="traffic.html" class="nav-item">交通安全</a>
-                <a href="procedures.html" class="nav-item">各種申請・手続き</a>
-                <a href="contact.html" class="nav-item">ご相談窓口</a>
-                <a href="recruit.html" class="nav-item">採用案内</a>
+
+            <div id="policeNavbar" class="navbar-menu">
+                <div class="navbar-end">
+                    <a href="about.html" class="navbar-item nav-item-custom">大山県警のご紹介</a>
+                    <a href="safety.html" class="navbar-item nav-item-custom">安全・安心な暮らし</a>
+                    <a href="traffic.html" class="navbar-item nav-item-custom">交通安全</a>
+                    <a href="procedures.html" class="navbar-item nav-item-custom">各種申請・手続き</a>
+                    <a href="contact.html" class="navbar-item nav-item-custom">ご相談窓口</a>
+                    <a href="recruit.html" class="navbar-item nav-item-custom">採用案内</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -168,7 +168,7 @@
     </div>
 
     <div class="modal" id="postModal">
-        <div class="modal-background"></div>
+        <div class="modal-background" id="closeModalBg"></div>
         <div class="modal-card">
             <header class="modal-card-head"><p class="modal-card-title">お知らせ新規投稿</p></header>
             <section class="modal-card-body">
@@ -188,6 +188,22 @@
     </footer>
 
     <script>
+        // --- 1. ハンバーガーメニューの制御 ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            if ($navbarBurgers.length > 0) {
+                $navbarBurgers.forEach( el => {
+                    el.addEventListener('click', () => {
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+                    });
+                });
+            }
+        });
+
+        // --- 2. お知らせ機能 (GAS連携) ---
         const MASTER_PW = "OyamaKouhouPolice";
         const GAS_URL = "https://script.google.com/macros/s/AKfycbzNPG3HTc8qmTp8M4xDRuqNZUu_H5FVpheKjj9JkQE8-O2VYXDcDYHrGCpSCyUHs2Q/exec";
 
@@ -214,21 +230,28 @@
             } catch (e) { newsList.innerHTML = "<p style='text-align:center; padding:20px;'>お知らせはありません</p>"; }
         }
 
-        document.getElementById('openModal').onclick = () => document.getElementById('postModal').classList.add('is-active');
-        document.getElementById('cancelModal').onclick = () => document.getElementById('postModal').classList.remove('is-active');
+        // モーダル操作
+        const postModal = document.getElementById('postModal');
+        document.getElementById('openModal').onclick = () => postModal.classList.add('is-active');
+        document.getElementById('cancelModal').onclick = () => postModal.classList.remove('is-active');
+        document.getElementById('closeModalBg').onclick = () => postModal.classList.remove('is-active');
 
+        // 投稿処理
         document.getElementById('submitPost').onclick = async () => {
             const author = document.getElementById('author').value;
             const pass = document.getElementById('password').value;
             const content = document.getElementById('content').value;
             if(pass !== MASTER_PW) return alert('パスワードが違います');
+            
             const dateStr = new Date().toLocaleDateString('ja-JP').replace(/\//g, '.');
             const postData = { date: dateStr, content: content, author: author, pw: pass, action: "post" };
+            
             await fetch(GAS_URL, { method: "POST", body: JSON.stringify(postData), mode: 'no-cors' });
             alert('投稿しました。反映されるまでお待ちください。');
             location.reload();
         };
 
+        // 削除処理
         async function deleteNews(rowId) {
             const pass = prompt("管理者パスワードを入力してください");
             if(pass !== MASTER_PW) return alert("パスワードが違います");
