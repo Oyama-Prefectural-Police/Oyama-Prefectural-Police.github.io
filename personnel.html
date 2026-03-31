@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人事異動情報 | 大山県警察本部</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f4f7f9; }
+        .police-nav { background-color: #182b4b !important; margin-bottom: 2rem; }
+        .main-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        
+        /* 画像のスタイルを再現：点線枠の投稿ボタン */
+        .admin-trigger {
+            width: 100%;
+            background: transparent;
+            border: 1px dashed #182b4b; /* 濃紺の点線 */
+            padding: 15px;
+            color: #182b4b;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .admin-trigger:hover {
+            background-color: rgba(24, 43, 75, 0.05);
+            border-style: solid;
+        }
+
+        /* 入力パネル */
+        #post-panel {
+            display: none; /* 初期状態は非表示 */
+            background: #fff;
+            padding: 25px;
+            border: 1px solid #d1d5db;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 閲覧用リスト（画像の下の白いボックス） */
+        .info-box {
+            background: white;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            min-height: 100px;
+        }
+        .personnel-item { 
+            display: flex; justify-content: space-between; padding: 18px 15px; 
+            border-bottom: 1px solid #f0f0f0; text-decoration: none; color: #333; 
+        }
+        .personnel-item:last-child { border-bottom: none; }
+        .personnel-item:hover { background: #f9fafb; }
+        .item-date { font-size: 0.85rem; color: #6b7280; width: 110px; }
+        .item-title { font-weight: 500; flex-grow: 1; }
+        .pdf-label { color: #b91c1c; font-weight: bold; font-size: 0.75rem; margin-left: 10px; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar police-nav">
+    <div class="container">
+        <div class="navbar-brand"><a class="navbar-item has-text-white" href="index.html">大山県警察本部</a></div>
+    </div>
+</nav>
+
+<div class="main-container">
+    
+    <button class="admin-trigger" onclick="togglePanel()">
+        + 職員専用：人事情報を追加する
+    </button>
+
+    <div id="post-panel">
+        <h3 class="title is-6">人事公示システム（職員認証）</h3>
+        <div class="columns is-multiline">
+            <div class="column is-4">
+                <div class="field">
+                    <label class="label is-small">パスワード</label>
+                    <input id="post-pw" class="input is-small" type="password" placeholder="OoyamaJinji">
+                </div>
+            </div>
+            <div class="column is-8">
+                <div class="field">
+                    <label class="label is-small">公示タイトル</label>
+                    <input id="post-title" class="input is-small" type="text" placeholder="令和8年度 春季人事異動（第一次）について">
+                </div>
+            </div>
+            <div class="column is-12">
+                <div class="field">
+                    <label class="label is-small">リンク先 (PDF名 / URL)</label>
+                    <input id="post-url" class="input is-small" type="text" placeholder="personnel_r8_01.pdf">
+                </div>
+                <button class="button is-dark is-small is-fullwidth mt-2" onclick="submitPersonnel()">
+                    この内容で公示を実行する
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <div id="list-container">
+            <p class="has-text-centered py-5">読み込み中...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const GAS_URL = "あなたのGASウェブアプリURL"; // ←ここにデプロイしたURLを貼る
+
+    // データの読み込み
+    async function loadList() {
+        try {
+            const res = await fetch(GAS_URL);
+            const data = await res.json();
+            const container = document.getElementById('list-container');
+            
+            if (data.length === 0) {
+                container.innerHTML = '<p class="has-text-centered py-5">現在、公示されている情報はありません。</p>';
+                return;
+            }
+
+            container.innerHTML = data.map(item => `
+                <a href="${item.url}" class="personnel-item" target="_blank">
+                    <span class="item-date">${item.date}</span>
+                    <span class="item-title">${item.title}</span>
+                    <span class="pdf-label">[PDF]</span>
+                </a>
+            `).join('');
+        } catch(e) {
+            document.getElementById('list-container').innerHTML = '<p class="has-text-centered py-5">データの取得に失敗しました。</p>';
+        }
+    }
+
+    // パネルの表示/非表示
+    function togglePanel() {
+        const panel = document.getElementById('post-panel');
+        panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // 投稿送信
+    async function submitPersonnel() {
+        const title = document.getElementById('post-title').value;
+        const url = document.getElementById('post-url').value;
+        const pw = document.getElementById('post-pw').value;
+
+        if(!title || !url || !pw) return alert("すべての項目を入力してください。");
+
+        const payload = { pw, title, url };
+
+        try {
+            const res = await fetch(GAS_URL, {
+                method: "POST",
+                mode: "no-cors", // CORSエラー回避
+                body: JSON.stringify(payload)
+            });
+            
+            alert("送信リクエストを送信しました。シートを確認してください。");
+            location.reload();
+        } catch(e) {
+            alert("エラーが発生しました。");
+        }
+    }
+
+    // 初回読み込み
+    loadList();
+</script>
+
+</body>
+</html>
