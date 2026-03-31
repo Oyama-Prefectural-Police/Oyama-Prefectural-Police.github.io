@@ -10,19 +10,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f4f7f9; color: #333; line-height: 1.8; }
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f4f7f9; color: #333; line-height: 1.8; margin: 0; padding: 0; }
         
-        /* --- 共通ナビ --- */
-        .police-nav { background-color: #182b4b; min-height: 70px; padding: 0 30px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1400px; margin: 0 auto; }
-        .nav-brand { display: flex; align-items: center; }
-        .nav-logo-icon { height: 55px; width: auto; margin-right: 15px; }
-        .nav-menu { display: flex; align-items: center; }
-        .nav-item { color: white; text-decoration: none; padding: 10px 18px; font-size: 0.9rem; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.2); }
-        .nav-item:hover { background-color: rgba(255,255,255,0.1); color: #ffffff; text-decoration: underline; }
+        /* --- 共通ナビ（ゴールドホバー＆ハンバーガー） --- */
+        .police-nav { background-color: #182b4b !important; min-height: 70px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .navbar-brand { min-height: 70px; display: flex; align-items: center; padding: 0 20px; }
+        .nav-logo-icon { height: 50px; width: auto; }
+        .navbar-burger { color: white !important; height: 70px !important; width: 70px !important; }
+        .navbar-menu { background-color: #182b4b !important; }
+        .nav-item-custom { 
+            color: white !important; font-size: 0.9rem; font-weight: bold; 
+            padding: 15px 18px !important; transition: 0.3s; display: flex; align-items: center;
+        }
+        @media screen and (min-width: 1024px) {
+            .nav-item-custom { border-right: 1px solid rgba(255,255,255,0.2); }
+        }
+        .nav-item-custom:hover { background-color: rgba(255,255,255,0.1) !important; color: #ffd700 !important; text-decoration: none; }
 
         /* --- ヘッダー --- */
-        .page-header { background: #182b4b; color: white; padding: 60px 20px; text-align: center; border-bottom: 4px solid #101d33; }
+        .page-header { background: #0f172a; color: white; padding: 60px 20px; text-align: center; border-bottom: 4px solid #1e293b; }
         .page-title { font-family: 'Shippori Mincho', serif; font-size: 2.5rem; letter-spacing: 0.3rem; }
 
         /* --- 階級リストエリア --- */
@@ -46,36 +52,43 @@
         .rank-name { font-family: 'Shippori Mincho', serif; font-size: 1.5rem; font-weight: bold; color: #182b4b; }
         .rank-badges { display: flex; gap: 10px; }
         .badge { font-size: 0.75rem; padding: 3px 12px; border-radius: 2px; font-weight: bold; border: 1px solid #ccc; }
-        .badge-arrest { background: #fff; color: #d32f2f; border-color: #d32f2f; } /* 逮捕状 */
-        .badge-car { background: #fff; color: #2e7d32; border-color: #2e7d32; }    /* 車両 */
-        .badge-none { background: #f1f5f9; color: #64748b; border-color: #cbd5e1; }   /* 権限なし */
+        .badge-arrest { background: #fff; color: #d32f2f; border-color: #d32f2f; }
+        .badge-car { background: #fff; color: #2e7d32; border-color: #2e7d32; }
+        .badge-none { background: #f1f5f9; color: #64748b; border-color: #cbd5e1; }
 
         .rank-body { padding: 20px 25px; }
         .rank-desc-title { font-weight: bold; color: #475569; font-size: 0.85rem; margin-bottom: 5px; display: block; border-left: 3px solid #182b4b; padding-left: 10px; }
         .rank-desc-text { font-size: 1rem; color: #334155; margin-left: 13px; }
 
-        /* 幹部クラスの装飾（シルバーに変更） */
+        /* 幹部クラスの装飾（シルバー） */
         .rank-kanbu { border-left-color: #64748b; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1023px) {
             .rank-header { flex-direction: column; align-items: flex-start; gap: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="police-nav">
-        <div class="nav-container">
-            <div class="nav-brand">
+    <nav class="navbar police-nav">
+        <div class="container" style="max-width: 1400px;">
+            <div class="navbar-brand">
                 <a href="index.html"><img src="ooyamapolice.webp" alt="ロゴ" class="nav-logo-icon"></a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="policeNavbar">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
             </div>
-            <div class="nav-menu">
-                <a href="about.html" class="nav-item">大山県警のご紹介</a>
-                <a href="safety.html" class="nav-item">安全・安心な暮らし</a>
-                <a href="traffic.html" class="nav-item">交通安全</a>
-                <a href="procedures.html" class="nav-item">各種申請・手続き</a>
-                <a href="contact.html" class="nav-item">ご相談窓口</a>
-                <a href="recruit.html" class="nav-item">採用案内</a>
+            <div id="policeNavbar" class="navbar-menu">
+                <div class="navbar-end">
+                    <a href="about.html" class="navbar-item nav-item-custom">大山県警のご紹介</a>
+                    <a href="safety.html" class="navbar-item nav-item-custom">安全・安心な暮らし</a>
+                    <a href="traffic.html" class="navbar-item nav-item-custom">交通安全</a>
+                    <a href="procedures.html" class="navbar-item nav-item-custom">各種申請・手続き</a>
+                    <a href="contact.html" class="navbar-item nav-item-custom">ご相談窓口</a>
+                    <a href="recruit.html" class="navbar-item nav-item-custom">採用案内</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -89,7 +102,7 @@
 
         <div class="rank-card rank-kanbu">
             <div class="rank-header">
-                <div class="rank-name">警視庁</div>
+                <div class="rank-name">警視監</div>
                 <div class="rank-badges">
                     <span class="badge badge-arrest">逮捕状請求権：あり</span>
                     <span class="badge badge-car">車両使用：可能</span>
@@ -97,7 +110,21 @@
             </div>
             <div class="rank-body">
                 <span class="rank-desc-title">階級概要</span>
-                <p class="rank-desc-text">幹部職員の最高階級。ほとんどの管理権限を有しており、大規模警察署の署長の役割を付与される。</p>
+                <p class="rank-desc-text">警察組織の最上位層。警察庁の主要局長や大規模府県警察本部の本部長を務める超エリート階級。広域的な指揮管理権限を有する。</p>
+            </div>
+        </div>
+
+        <div class="rank-card rank-kanbu">
+            <div class="rank-header">
+                <div class="rank-name">警視長</div>
+                <div class="rank-badges">
+                    <span class="badge badge-arrest">逮捕状請求権：あり</span>
+                    <span class="badge badge-car">車両使用：可能</span>
+                </div>
+            </div>
+            <div class="rank-body">
+                <span class="rank-desc-title">階級概要</span>
+                <p class="rank-desc-text">幹部職員の上位階級。大規模警察署の署長や、本部の各部長級の役割を担う。組織全体の運営に関わる重要な意思決定を行う。</p>
             </div>
         </div>
 
@@ -111,7 +138,7 @@
             </div>
             <div class="rank-body">
                 <span class="rank-desc-title">階級概要</span>
-                <p class="rank-desc-text">警視で経験を積んだ後に功績が認められた場合に昇格する。本部長などの役割を与えられ、車両管理など様々な本部業務を行う。</p>
+                <p class="rank-desc-text">警視で顕著な功績を挙げた者が昇格する。本部の課長や中小規模警察署の署長等を務め、高度な管理業務を行う。</p>
             </div>
         </div>
 
@@ -125,7 +152,7 @@
             </div>
             <div class="rank-body">
                 <span class="rank-desc-title">階級概要</span>
-                <p class="rank-desc-text">現場での経験を積み、能力が高いと見なされた職員が推薦でのみなることができる。主に本部での管理業務や警察署長を担う。</p>
+                <p class="rank-desc-text">現場と管理職の橋渡し役。能力の高い実務者が推薦を経て到達する階級であり、警察署の副署長や本部の管理官などを担当する。</p>
             </div>
         </div>
 
@@ -139,7 +166,7 @@
             </div>
             <div class="rank-body">
                 <span class="rank-desc-title">階級概要</span>
-                <p class="rank-desc-text">通常の職員の中で1番上の階級。基本的な権限を全て有し、現場の最高指揮権を持つ。</p>
+                <p class="rank-desc-text">実務における最高責任者。警察署の課長などを務め、重大事件発生時には現場の最高指揮権を行使する。</p>
             </div>
         </div>
 
@@ -153,7 +180,7 @@
             </div>
             <div class="rank-body">
                 <span class="rank-desc-title">階級概要</span>
-                <p class="rank-desc-text">本部職員として勤務可能。現場経験が豊富であり、現場の指揮権を有している。</p>
+                <p class="rank-desc-text">「現場の要」とされる階級。警察署の係長として、実務の直接的な指揮や若手の指導にあたる。</p>
             </div>
         </div>
 
@@ -167,7 +194,7 @@
             </div>
             <div class="rank-body">
                 <span class="rank-desc-title">階級概要</span>
-                <p class="rank-desc-text">基本的な現場の指揮権を持つ。巡査、巡査長の教育を行う立場にある。</p>
+                <p class="rank-desc-text">初級幹部として現場のリーダーを務める。巡査・巡査長を直接指導し、模範となる行動が求められる。</p>
             </div>
         </div>
 
@@ -181,7 +208,7 @@
             </div>
             <div class="rank-body">
                 <span class="rank-desc-title">階級概要</span>
-                <p class="rank-desc-text">巡査の教育などを行う。単独またはペアでの警ら活動が可能。</p>
+                <p class="rank-desc-text">実務経験を積んだ巡査の中から選抜される。単独でのパトロールが許可され、若手巡査へのアドバイスも行う。</p>
             </div>
         </div>
 
@@ -195,7 +222,7 @@
             </div>
             <div class="rank-body">
                 <span class="rank-desc-title">階級概要</span>
-                <p class="rank-desc-text">警察学校卒業後の階級。交番勤務や他階級との警らを行う。※バディに巡査長以上がいる場合のみ車両使用可。</p>
+                <p class="rank-desc-text">警察官としての第一歩。交番等に勤務し、上官の指導の下で地域の安全を守る活動に従事する。※巡査長以上の同乗がある場合のみ運転可。</p>
             </div>
         </div>
 
@@ -205,5 +232,21 @@
         <div class="content has-text-centered"><p>&copy; 2026 大山県警察本部</p></div>
     </footer>
 
+    <script>
+        // ハンバーガーメニュー制御
+        document.addEventListener('DOMContentLoaded', () => {
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            if ($navbarBurgers.length > 0) {
+                $navbarBurgers.forEach( el => {
+                    el.addEventListener('click', () => {
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
