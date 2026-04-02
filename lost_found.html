@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>落とし物・忘れ物 | 大山県警察本部</title>
+    <link rel="icon" href="ooyamapolice.webp" type="image/webp">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f4f7f9; color: #333; margin: 0; padding: 0; }
+        
+        /* --- 共通ナビ（ゴールドホバー＆ハンバーガー） --- */
+        .police-nav { background-color: #182b4b !important; min-height: 70px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .navbar-brand { min-height: 70px; display: flex; align-items: center; padding: 0 20px; }
+        .nav-logo-icon { height: 50px; width: auto; }
+        .navbar-burger { color: white !important; height: 70px !important; width: 70px !important; }
+        .navbar-menu { background-color: #182b4b !important; }
+        .nav-item-custom { 
+            color: white !important; font-size: 0.9rem; font-weight: bold; 
+            padding: 15px 18px !important; transition: 0.3s; display: flex; align-items: center;
+        }
+        @media screen and (min-width: 1024px) {
+            .nav-item-custom { border-right: 1px solid rgba(255,255,255,0.2); }
+        }
+        .nav-item-custom:hover { background-color: rgba(255,255,255,0.1) !important; color: #ffd700 !important; }
+
+        /* --- ヘッダー --- */
+        .page-header { background: #0f172a; color: white; padding: 50px 20px; text-align: center; border-bottom: 4px solid #1e293b; }
+        .page-title { font-family: 'Shippori Mincho', serif; font-size: 2.2rem; letter-spacing: 0.3rem; margin-bottom: 5px; }
+        .page-sub { font-size: 0.9rem; opacity: 0.8; letter-spacing: 0.1rem; }
+
+        /* --- メインコンテンツ --- */
+        .main-container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
+        
+        .contact-card { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 4px; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08); 
+            text-align: center;
+            border-top: 6px solid #182b4b;
+        }
+
+        .icon-box { font-size: 3rem; margin-bottom: 20px; color: #182b4b; }
+        
+        .main-message { 
+            font-family: 'Shippori Mincho', serif; 
+            font-size: 1.6rem; 
+            color: #182b4b; 
+            margin-bottom: 25px; 
+        }
+
+        .sub-message { 
+            font-size: 1.1rem; 
+            line-height: 2; 
+            margin-bottom: 30px; 
+            text-align: left;
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 4px;
+        }
+
+        .btn-list {
+            display: inline-block;
+            background: #182b4b;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-list:hover { background: #ffd700; color: #182b4b; }
+
+        .notice-text { font-size: 0.85rem; color: #64748b; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar police-nav">
+        <div class="container" style="max-width: 1400px;">
+            <div class="navbar-brand">
+                <a href="index.html"><img src="ooyamapolice.webp" alt="ロゴ" class="nav-logo-icon"></a>
+                <a role="button" class="navbar-burger" data-target="policeNavbar">
+                    <span></span><span></span><span></span>
+                </a>
+            </div>
+            <div id="policeNavbar" class="navbar-menu">
+                <div class="navbar-end">
+                    <a href="about.html" class="navbar-item nav-item-custom">大山県警のご紹介</a>
+                    <a href="safety.html" class="navbar-item nav-item-custom">安全・安心な暮らし</a>
+                    <a href="traffic.html" class="navbar-item nav-item-custom">交通安全</a>
+                    <a href="procedures.html" class="navbar-item nav-item-custom">各種申請・手続き</a>
+                    <a href="contact.html" class="navbar-item nav-item-custom">ご相談窓口</a>
+                    <a href="recruit.html" class="navbar-item nav-item-custom">採用案内</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="page-title">落とし物・忘れ物</h1>
+        <p class="page-sub">LOST AND FOUND</p>
+    </header>
+
+    <main class="main-container">
+        <div class="contact-card">
+            <div class="icon-box">🔍</div>
+            <h2 class="main-message">落とし物をされた方、拾われた方へ</h2>
+            
+            <div class="sub-message">
+                落とし物に関するお問い合わせや届出については、<br>
+                <strong>お近くの警察署、または交番・駐在所</strong>までお越しください。<br><br>
+                遺失物の検索や具体的な手続き方法についても、各窓口にてご案内しております。
+            </div>
+
+            <a href="contact.html" class="btn-list">県内の警察署一覧はこちら</a>
+            
+            <p class="notice-text">※お電話でのお問い合わせも各警察署の代表番号にて承っております。</p>
+        </div>
+    </main>
+
+    <footer class="footer has-background-dark has-text-white has-text-centered py-5">
+        <p>&copy; 2026 大山県警察本部</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            if ($navbarBurgers.length > 0) {
+                $navbarBurgers.forEach( el => {
+                    el.addEventListener('click', () => {
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
