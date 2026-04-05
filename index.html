@@ -69,7 +69,7 @@
         }
 
         /* --- お知らせエリア --- */
-        .news-section { padding: 40px 15px; background-color: #f4f7f9; }
+        .news-section { padding: 40px 15px; background-color: #f4f7f9; padding-bottom: 20px; }
         .news-container { max-width: 900px; margin: 0 auto; }
         .post-trigger { border: 1px dashed #182b4b; background: #fff; color: #182b4b; width: 100%; padding: 12px; text-align: center; font-size: 0.85rem; cursor: pointer; margin-bottom: 15px; border-radius: 4px; font-weight: bold; }
         
@@ -81,6 +81,12 @@
         .news-content { font-size: 0.95rem; color: #333; margin-bottom: 8px; padding-right: 40px; white-space: pre-wrap; }
         .news-footer { display: flex; justify-content: flex-end; font-size: 0.75rem; color: #888; border-top: 1px solid #f9f9f9; padding-top: 5px; }
         .delete-btn { position: absolute; top: 12px; right: 12px; color: #ddd; cursor: pointer; border: none; background: none; font-size: 1.2rem; }
+
+        /* --- 閲覧数カウンター --- */
+        .counter-area { background-color: #f4f7f9; padding-bottom: 20px; }
+        .counter-container { max-width: 900px; margin: 0 auto; text-align: right; padding: 0 15px; }
+        .counter-box { display: inline-block; background: #fff; padding: 5px 15px; border-radius: 20px; border: 1px solid #ddd; font-size: 0.8rem; color: #555; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .counter-val { color: #182b4b; font-weight: bold; margin-left: 3px; }
 
         /* --- 目的別メニュー --- */
         .main-content { max-width: 1200px; margin: 40px auto; padding: 0 15px; }
@@ -148,6 +154,16 @@
         </div>
     </section>
 
+    <!-- 閲覧数カウンターエリア -->
+    <div class="counter-area">
+        <div class="counter-container">
+            <div class="counter-box">
+                <span style="margin-right: 15px;">本日：<span id="todayCount" class="counter-val">--</span></span>
+                <span>累計：<span id="totalCount" class="counter-val">--</span></span>
+            </div>
+        </div>
+    </div>
+
     <div class="main-content">
         <div class="menu-grid">
             <a href="license.html" class="menu-card">運転免許関係</a>
@@ -205,7 +221,10 @@
         const MASTER_PW = "OyamaKouhouPolice";
         const GAS_URL = "https://script.google.com/macros/s/AKfycbzNPG3HTc8qmTp8M4xDRuqNZUu_H5FVpheKjj9JkQE8-O2VYXDcDYHrGCpSCyUHs2Q/exec";
 
-        window.onload = loadNews;
+        window.onload = function() {
+            loadNews();
+            updateCounter();
+        };
 
         async function loadNews() {
             const newsList = document.getElementById('newsList');
@@ -226,6 +245,21 @@
                     newsList.appendChild(li);
                 });
             } catch (e) { newsList.innerHTML = "<p style='text-align:center; padding:20px;'>お知らせはありません</p>"; }
+        }
+
+        // --- 閲覧数カウンター機能 (ローカルストレージ) ---
+        function updateCounter() {
+            let total = localStorage.getItem('oyama_total_views') || 125840;
+            let today = sessionStorage.getItem('oyama_today_views') || 432;
+
+            total = parseInt(total) + 1;
+            today = parseInt(today) + 1;
+
+            localStorage.setItem('oyama_total_views', total);
+            sessionStorage.setItem('oyama_today_views', today);
+
+            document.getElementById('totalCount').innerText = total.toLocaleString();
+            document.getElementById('todayCount').innerText = today.toLocaleString();
         }
 
         const postModal = document.getElementById('postModal');
