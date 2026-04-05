@@ -158,8 +158,8 @@
     <div class="counter-area">
         <div class="counter-container">
             <div class="counter-box">
-                <span style="margin-right: 15px;">本日：<span id="todayCount" class="counter-val">--</span></span>
-                <span>累計：<span id="totalCount" class="counter-val">--</span></span>
+                <span style="margin-right: 15px;">本日：<span id="todayCount" class="counter-val">0</span></span>
+                <span>累計：<span id="totalCount" class="counter-val">0</span></span>
             </div>
         </div>
     </div>
@@ -202,8 +202,19 @@
     </footer>
 
     <script>
-        // --- ハンバーガーメニューの制御用スクリプト ---
-        document.addEventListener('DOMContentLoaded', () => {
+        // --- 初期設定 ---
+        const MASTER_PW = "OyamaKouhouPolice";
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzNPG3HTc8qmTp8M4xDRuqNZUu_H5FVpheKjj9JkQE8-O2VYXDcDYHrGCpSCyUHs2Q/exec";
+
+        // --- 全体初期化 ---
+        window.addEventListener('DOMContentLoaded', () => {
+            initNavbar();
+            loadNews();
+            updateCounter();
+        });
+
+        // --- ナビゲーション制御 ---
+        function initNavbar() {
             const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
             if ($navbarBurgers.length > 0) {
                 $navbarBurgers.forEach( el => {
@@ -215,17 +226,9 @@
                     });
                 });
             }
-        });
+        }
 
-        // --- お知らせ機能 (GAS) ---
-        const MASTER_PW = "OyamaKouhouPolice";
-        const GAS_URL = "https://script.google.com/macros/s/AKfycbzNPG3HTc8qmTp8M4xDRuqNZUu_H5FVpheKjj9JkQE8-O2VYXDcDYHrGCpSCyUHs2Q/exec";
-
-        window.onload = function() {
-            loadNews();
-            updateCounter();
-        };
-
+        // --- お知らせ読み込み ---
         async function loadNews() {
             const newsList = document.getElementById('newsList');
             newsList.innerHTML = "<p style='text-align:center; padding:20px;'>読み込み中...</p>";
@@ -247,10 +250,12 @@
             } catch (e) { newsList.innerHTML = "<p style='text-align:center; padding:20px;'>お知らせはありません</p>"; }
         }
 
-        // --- 閲覧数カウンター機能 (ローカルストレージ) ---
+        // --- 閲覧数カウンター機能 (本日: セッション / 累計: ローカル) ---
         function updateCounter() {
-            let total = localStorage.getItem('oyama_total_views') || 125840;
-            let today = sessionStorage.getItem('oyama_today_views') || 432;
+            // ローカルストレージから取得（なければ0）
+            let total = localStorage.getItem('oyama_total_views') || 0;
+            // セッションストレージから取得（ページを閉じるとリセット）
+            let today = sessionStorage.getItem('oyama_today_views') || 0;
 
             total = parseInt(total) + 1;
             today = parseInt(today) + 1;
@@ -262,6 +267,7 @@
             document.getElementById('todayCount').innerText = today.toLocaleString();
         }
 
+        // --- お知らせ投稿・削除関連 ---
         const postModal = document.getElementById('postModal');
         document.getElementById('openModal').onclick = () => postModal.classList.add('is-active');
         document.getElementById('cancelModal').onclick = () => postModal.classList.remove('is-active');
